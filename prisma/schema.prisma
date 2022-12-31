@@ -14,12 +14,12 @@ datasource db {
 model Product {
   id          String   @id @default(cuid())
   name        String
-  description String
-  quantity    String
+  image       String?
+  description String?
+  quantity    Int
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  String
-  order       Order?   @relation(fields: [orderId], references: [id])
-  orderId     String?
+  orders      Order[]
 }
 
 model Category {
@@ -40,6 +40,7 @@ model Order {
   user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId   String
   status   Status
+  size     Int
 }
 
 model Address {
