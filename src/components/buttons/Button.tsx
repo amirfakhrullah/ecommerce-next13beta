@@ -20,10 +20,10 @@ const Button = ({
   ...props
 }: ButtonProps) => {
   const baseClassName =
-    "rounded-lg ease-in duration-150 flex flex-row items-center justify-center";
+    "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
   const primaryClassName = baseClassName + " bg-red-800 hover:bg-red-900 text-gray-100";
   const secondaryClassName =
-    baseClassName + " border border-red-800 hover:bg-red-800 text-red-800 hover:text-red-900";
+    baseClassName + " border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100";
 
   return (
     <button
