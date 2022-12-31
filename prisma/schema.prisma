@@ -13,10 +13,11 @@ datasource db {
 // Order
 model Product {
   id          String   @id @default(cuid())
-  name        String
+  name        String   @unique
   image       String?
   description String?
   quantity    Int
+  price       Int 
   category    Category @relation(fields: [categoryId], references: [id])
   categoryId  String
   orders      Order[]
@@ -24,7 +25,7 @@ model Product {
 
 model Category {
   id       String    @id @default(cuid())
-  name     String
+  name     String    @unique
   products Product[]
 }
 

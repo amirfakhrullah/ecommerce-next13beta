@@ -1,7 +1,8 @@
 import Hero from "../../components/Hero";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import PopularProducts from "../../components/PopularProducts";
+import PopularProductsSection from "../../components/PopularProductsSection";
+import CategorySection from "../../components/CategorySection";
 
 export default function Home() {
   return (
@@ -9,7 +10,9 @@ export default function Home() {
       <Header />
       <Hero />
       {/* @ts-expect-error Server Component */}
-      <PopularProducts />
+      <PopularProductsSection />
+      {/* @ts-expect-error Server Component */}
+      <CategorySection />
       <Footer />
     </div>
   );
