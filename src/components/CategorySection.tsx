@@ -13,7 +13,7 @@ const CategorySection = async () => {
       <Border />
       <div className="sm:mx-3 px-2 sm:py-10 py-5">
         <h2 className="mx-auto max-w-6xl text-2xl font-black mb-4">
-          Choose by categories:
+          Filter by categories 🚀
         </h2>
         <div className="mx-auto max-w-6xl w-full grid sm:grid-cols-2  grid-cols-1 gap-2">
           {categories.map((category) => (
