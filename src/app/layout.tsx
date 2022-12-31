@@ -1,4 +1,7 @@
 import "../styles/globals.css";
+import { Inter } from "@next/font/google";
+
+const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
 export default function RootLayout({
   children,
@@ -6,13 +9,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
-      {/*
-        <head /> will contain the components returned by the nearest parent
-        head.tsx. Find out more at https://beta.nextjs.org/docs/api-reference/file-conventions/head
-      */}
+    <html lang="en" className={inter.variable}>
       <head />
-      <body className="bg-red-700">{children}</body>
+      <body className="bg-gray-100">{children}</body>
     </html>
   );
 }

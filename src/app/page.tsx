@@ -1,11 +1,11 @@
-import { Inter } from "@next/font/google";
-
-const inter = Inter({ subsets: ["latin"] });
+import Hero from "../components/Hero";
+import Header from "../components/Header";
 
 export default function Home() {
   return (
-    <div className="p-28 bg-red-900">
-      <p className="text-2xl font-bold underline">Hello</p>
+    <div>
+      <Header />
+      <Hero />
     </div>
   );
 }
