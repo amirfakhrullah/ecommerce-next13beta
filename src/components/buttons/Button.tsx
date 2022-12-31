@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import { FiLoader } from "react-icons/fi";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
@@ -21,9 +22,11 @@ const Button = ({
 }: ButtonProps) => {
   const baseClassName =
     "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
-  const primaryClassName = baseClassName + " bg-red-800 hover:bg-red-900 text-gray-100";
+  const primaryClassName =
+    baseClassName + " bg-red-800 hover:bg-red-900 text-gray-100";
   const secondaryClassName =
-    baseClassName + " border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100";
+    baseClassName +
+    " border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100";
 
   return (
     <button
@@ -38,7 +41,7 @@ const Button = ({
       onClick={() => !disabled && !isLoading && onClick()}
       {...props}
     >
-      {children}
+      {isLoading ? <FiLoader className="m-1" /> : <>{children}</>}
     </button>
   );
 };

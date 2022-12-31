@@ -1,13 +1,21 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { signIn, signOut } from "next-auth/react";
 import Button from "./Button";
 
 export const SignInButton = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignIn = async () => {
+    setIsLoading(true);
+    await signIn("github");
+  };
+
   return (
     <Button
-      onClick={() => signIn("github")}
+      onClick={() => handleSignIn()}
+      isLoading={isLoading}
       color="primary"
       className="px-4 py-2"
     >
@@ -17,8 +25,20 @@ export const SignInButton = () => {
 };
 
 export const SignOutButton = () => {
+  const [isLoading, setIsLoading] = useState(false);
+
+  const handleSignOut = async () => {
+    setIsLoading(true);
+    await signOut();
+  };
+
   return (
-    <Button onClick={() => signOut()} color="primary" className="px-4 py-2">
+    <Button
+      onClick={() => handleSignOut()}
+      isLoading={isLoading}
+      color="primary"
+      className="px-4 py-2"
+    >
       Logout
     </Button>
   );

@@ -10,9 +10,12 @@ const Hero = () => {
         <h2 className="text-4xl font-black mb-2 text-red-800">
           Checks over stripes.
         </h2>
-        <p className="font-medium mb-2">Marketplace for copping heat Nike sneakers 🔥</p>
+        <p className="font-medium mb-2">
+          Marketplace for copping heat Nike sneakers 🔥
+        </p>
         <p className="text-zinc-500 text-[16px]">
-          (Not legit. This is a site built with Next.js 13 Beta for experimenting and learning purposes)
+          (Not legit. This is a site built with Next.js 13 Beta for
+          experimenting and learning purposes)
         </p>
       </div>
       <div>
@@ -20,8 +23,9 @@ const Hero = () => {
           src="/images/thumbnail.png"
           alt="thumbnail"
           priority={true}
-          height={300}
-          width={300}
+          height={200}
+          width={200}
+          className="w-auto"
         />
       </div>
     </div>

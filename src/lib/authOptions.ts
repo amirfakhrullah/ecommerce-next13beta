@@ -13,8 +13,8 @@ const authOptions: NextAuthOptions = {
     }),
   ],
   pages: {
-    signIn: "/auth",
-    signOut: "/auth",
+    signIn: "/",
+    signOut: "/",
   },
   callbacks: {
     session({ user, session }) {
