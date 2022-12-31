@@ -1,13 +1,11 @@
 import React from "react";
-import Button from "./Button";
-import { signIn } from "next-auth/react";
+import { SignInButton, SignOutButton } from "./AuthClientButtons";
+import { getCurrentUser } from "../../lib/session";
 
-const AuthButton = () => {
-  return (
-    <Button onClick={() => signIn()} color="primary" className="px-4 py-2">
-      Login
-    </Button>
-  );
+const AuthButton = async () => {
+  const user = await getCurrentUser();
+
+  return <div>{!user ? <SignInButton /> : <SignOutButton />}</div>;
 };
 
 export default AuthButton;

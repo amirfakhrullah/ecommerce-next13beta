@@ -19,6 +19,7 @@ const Hero = () => {
         <Image
           src="/images/thumbnail.png"
           alt="thumbnail"
+          priority={true}
           height={300}
           width={300}
         />

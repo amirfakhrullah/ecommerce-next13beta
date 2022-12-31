@@ -1,5 +1,12 @@
 import { getEnvSafely } from "./config";
 
 // Next Auth
-export const GOOGLE_CLIENT_ID = getEnvSafely("GOOGLE_CLIENT_ID");
-export const GOOGLE_CLIENT_SECRET = getEnvSafely("GOOGLE_CLIENT_SECRET");
+const GITHUB_CLIENT_ID = getEnvSafely("GITHUB_CLIENT_ID");
+const GITHUB_CLIENT_SECRET = getEnvSafely("GITHUB_CLIENT_SECRET");
+
+const env = {
+  GITHUB_CLIENT_ID,
+  GITHUB_CLIENT_SECRET,
+};
+
+export default env;
