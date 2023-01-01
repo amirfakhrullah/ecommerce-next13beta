@@ -1,7 +1,5 @@
 # Checks
 
-## Description
-
 An e-commerce site for Nike sneakers built using Next.js 13 Beta
 
 - This project is still in development
@@ -13,8 +11,8 @@ An e-commerce site for Nike sneakers built using Next.js 13 Beta
 - [TailwindCSS](https://tailwindcss.com/)
 - [Next-Auth](https://next-auth.js.org/)
 - [Prisma](https://www.prisma.io/)
-- [Typescript](https://www.typescriptlang.org/)
 - [PostgreSQL](https://www.postgresql.org/)
+- [Typescript](https://www.typescriptlang.org/)
 
 ## Deployments/Hosting
 
@@ -33,13 +31,19 @@ git clone https://github.com/amirfakhrullah/ecommerce-next13beta.git
 - Create and set up the `.env` file, refer to `.env.sample` for the required keys
 - Install the dependencies
 
-```
+```bash
 npm i
+```
+
+- Push and synchronize the Prisma schema to the database
+
+```bash
+npx prisma db push
 ```
 
 - Run locally
 
-```
+```bash
 npm run dev
 ```
 
