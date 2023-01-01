@@ -5,7 +5,7 @@ import Button from "./Button";
 
 const CheckoutBtn = () => {
   return (
-    <Button onClick={() => {}} color="secondary" className="p-2">
+    <Button onClick={() => {}} loaderOnClick={false} color="secondary" className="p-2">
       <AiOutlineShoppingCart className="text-xl" />
     </Button>
   );

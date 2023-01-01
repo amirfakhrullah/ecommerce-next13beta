@@ -1,11 +1,12 @@
 "use client";
 
-import React from "react";
+import React, { useState } from "react";
 import { FiLoader } from "react-icons/fi";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
   isLoading?: boolean;
+  loaderOnClick?: boolean; // default to true
   disabled?: boolean;
   children: React.ReactNode | string | string[];
   color?: "primary" | "secondary";
@@ -15,18 +16,34 @@ const Button = ({
   onClick,
   className = "",
   isLoading = false,
+  loaderOnClick = true,
   disabled = false,
   children,
   color,
   ...props
 }: ButtonProps) => {
+  const [localLoading, setLocalLoading] = useState(false);
+
+  const loadStatus = isLoading || (loaderOnClick && localLoading);
+
   const baseClassName =
     "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
   const primaryClassName =
-    baseClassName + " bg-red-800 hover:bg-red-900 text-gray-100";
+    baseClassName +
+    ` bg-red-800 hover:bg-red-900 text-gray-100 ${
+      loadStatus ? "bg-red-900 cursor-not-allowed" : ""
+    }`;
   const secondaryClassName =
     baseClassName +
-    " border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100";
+    ` border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100 ${
+      loadStatus ? "bg-red-800 text-gray-100 cursor-not-allowed" : ""
+    }`;
+
+  const handleClick = () => {
+    if (disabled || loadStatus) return;
+    setLocalLoading(true);
+    onClick();
+  };
 
   return (
     <button
@@ -37,11 +54,11 @@ const Button = ({
           ? secondaryClassName
           : ""
       }`}
-      disabled={disabled || isLoading}
-      onClick={() => !disabled && !isLoading && onClick()}
+      disabled={disabled || loadStatus}
+      onClick={() => handleClick()}
       {...props}
     >
-      {isLoading ? <FiLoader className="m-1" /> : <>{children}</>}
+      {loadStatus ? <FiLoader className="m-1" /> : <>{children}</>}
     </button>
   );
 };
