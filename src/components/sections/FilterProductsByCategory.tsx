@@ -1,13 +1,10 @@
-import { Category } from "@prisma/client";
-import { notFound } from "next/navigation";
 import React from "react";
-import db from "../../lib/prismadb";
-import { ProductClient } from "../../types/types";
+import { FullProductClient } from "../../types/types";
 import Border from "../Border";
 import ProductCard from "../cards/ProductCard";
 
 interface FilterProductsByCategoryProps {
-  products: ProductClient[];
+  products: FullProductClient[];
 }
 
 const FilterProductsByCategory = async ({

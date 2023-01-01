@@ -1,9 +1,14 @@
 import { Product } from "@prisma/client";
 
-export interface ProductClient extends Omit<Product, "sizes"> {
-  sizes: string[];
+// product data including its category and number or orderedItems
+export interface FullProduct extends Product {
   category: Category;
   _count: {
     orderItems: number;
   };
+}
+
+// FullProduct data but converting sizes types from decimal to string for the client side usage
+export interface FullProductClient extends Omit<FullProduct, "sizes"> {
+  sizes: string[];
 }

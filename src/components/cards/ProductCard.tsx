@@ -4,7 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import React from "react";
 import { displayNumbers } from "../../helpers/numbers";
-import { ProductClient } from "../../types/types";
+import { FullProductClient } from "../../types/types";
 
 const ProductCard = ({
   id,
@@ -12,7 +12,7 @@ const ProductCard = ({
   image,
   price,
   _count: { orderItems: totalOrdered },
-}: ProductClient) => {
+}: FullProductClient) => {
   const router = useRouter();
 
   return (
