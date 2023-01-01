@@ -10,16 +10,20 @@ interface ProductCartProps {
   product: FullProductClient;
 }
 
+/**
+ * Temporary used only
+ * Haven't fully migrated the sizes yet
+ */
+const DEFAULT_SIZES = ["9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5"];
+
 const ProductCart = ({ product }: ProductCartProps) => {
   const { id, name, image, sizes } = product;
   const [size, setSize] = useState<string | undefined>();
-  const [isLoading, setIsLoading] = useState(false);
 
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const handleAddToCart = () => {
     if (!size) return;
-    setIsLoading(true);
     setCartItems([
       ...cartItems,
       {
@@ -30,14 +34,13 @@ const ProductCart = ({ product }: ProductCartProps) => {
       },
     ]);
     setSize(undefined);
-    setIsLoading(false);
   };
 
   return (
     <div className="pt-3">
       <p className="text-[16px]">Select Size:</p>
       <div className="flex flex-row flex-wrap gap-1 pt-2 pb-5">
-        {sizes.map((currSize, idx) => (
+        {(sizes.length ? sizes : DEFAULT_SIZES).map((currSize, idx) => (
           <div
             onClick={() => setSize(currSize)}
             key={id + idx}
@@ -52,7 +55,6 @@ const ProductCart = ({ product }: ProductCartProps) => {
 
       <Button
         onClick={() => handleAddToCart()}
-        isLoading={isLoading}
         loaderOnClick={false}
         color="primary"
         className="py-2 px-4 mb-5"

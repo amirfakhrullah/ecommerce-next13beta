@@ -13,6 +13,7 @@ function useLocalStorage<T>(
     if (item) {
       setStoredValue(JSON.parse(item) as T)
     }
+    // eslint-disable-next-line
   }, [])
 
   const setValue = (value: T) => {

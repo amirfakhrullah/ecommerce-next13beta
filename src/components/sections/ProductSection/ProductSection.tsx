@@ -12,8 +12,8 @@ const ProductSection = ({ product }: ProductSectionProps) => {
 
   return (
     <div className="mx-auto max-w-6xl sm:p-5 px-2 py-5">
-      <div className="flex md:flex-row flex-col justify-around">
-        <div className="flex flex-col items-center justify-center">
+      <div className="flex lg:flex-row flex-col justify-around">
+        <div className="flex flex-col items-center justify-center lg:p-3 p-5">
           <Image
             src={image}
             alt={id}
@@ -25,7 +25,7 @@ const ProductSection = ({ product }: ProductSectionProps) => {
           />
         </div>
 
-        <div className="md:flex-[0.8]">
+        <div className="lg:flex-[1] lg:mt-0 mt-10">
           <h2 className="md:text-3xl text-2xl font-black">{name}</h2>
           <h3 className="text-xl font-black pt-5 text-red-800">
             ${displayNumbers(price)}
