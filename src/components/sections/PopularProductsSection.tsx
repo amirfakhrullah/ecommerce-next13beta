@@ -1,13 +1,13 @@
 import React from "react";
-import db from "../lib/prismadb";
-import Border from "./Border";
-import ProductCard from "./ProductCard";
+import db from "../../lib/prismadb";
+import Border from "../Border";
+import ProductCard from "../ProductCard";
 
 const fetchPopularProducts = async () =>
   await db.product.findMany({
     take: 10,
     orderBy: {
-      orders: {
+      orderItems: {
         _count: "desc",
       },
     },
@@ -15,7 +15,7 @@ const fetchPopularProducts = async () =>
       category: true,
       _count: {
         select: {
-          orders: true,
+          orderItems: true,
         },
       },
     },

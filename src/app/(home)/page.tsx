@@ -1,8 +1,8 @@
 import Hero from "../../components/Hero";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
-import PopularProductsSection from "../../components/PopularProductsSection";
-import CategorySection from "../../components/CategorySection";
+import PopularProductsSection from "../../components/sections/PopularProductsSection";
+import CategorySection from "../../components/sections/CategorySection";
 
 export default function Home() {
   return (

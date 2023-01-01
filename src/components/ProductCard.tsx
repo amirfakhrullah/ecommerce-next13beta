@@ -7,7 +7,7 @@ import React from "react";
 interface ProductCardProps extends Product {
   category: Category;
   _count: {
-    orders: number;
+    orderItems: number;
   };
 }
 
@@ -15,7 +15,7 @@ const ProductCard = ({
   id,
   name,
   price,
-  _count: { orders: totalOrdered },
+  _count: { orderItems: totalOrdered },
 }: ProductCardProps) => {
   return (
     <div className="p-2 border border-zinc-300 overflow-hidden">

@@ -1,7 +1,7 @@
 import React from "react";
-import db from "../lib/prismadb";
-import Border from "./Border";
-import { CategoryCard } from "./CategoryCard";
+import db from "../../lib/prismadb";
+import Border from "../Border";
+import { CategoryCard } from "../CategoryCard";
 
 const fetchAllCategories = async () => db.category.findMany();
 

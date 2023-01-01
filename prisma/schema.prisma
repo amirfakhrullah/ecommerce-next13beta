@@ -10,22 +10,24 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// Order
+// Product
 model Product {
-  id          String   @id @default(cuid())
-  name        String   @unique
+  id          String      @id @default(cuid())
+  name        String      @unique
   image       String?
   description String?
+  sizes       Int[]
   quantity    Int
-  price       Int 
-  category    Category @relation(fields: [categoryId], references: [id])
+  price       Int
+  category    Category    @relation(fields: [categoryId], references: [id])
   categoryId  String
-  orders      Order[]
+  orderItems  OrderItem[]
 }
 
 model Category {
   id       String    @id @default(cuid())
   name     String    @unique
+  image    String
   products Product[]
 }
 
@@ -35,13 +37,22 @@ enum Status {
   OnTheWay
 }
 
+model OrderItem {
+  id        String  @id @default(cuid())
+  product   Product @relation(fields: [productId], references: [id])
+  productId String
+  order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
+  orderId   String
+  size      Int
+  quantity  Int
+}
+
 model Order {
-  id       String    @id @default(cuid())
-  products Product[]
-  user     User      @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId   String
-  status   Status
-  size     Int
+  id         String      @id @default(cuid())
+  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId     String
+  status     Status
+  orderItems OrderItem[]
 }
 
 model Address {
