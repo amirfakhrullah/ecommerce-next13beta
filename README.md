@@ -16,8 +16,9 @@ An e-commerce site for Nike sneakers built using Next.js 13 Beta
 
 ## Deployments/Hosting
 
-- [Vercel](https://vercel.com/)
-- [Railway](https://railway.app/)
+- Next.js: [Vercel](https://vercel.com/)
+- Database: [Railway](https://railway.app/)
+- Image hosting: [AWS S3](https://aws.amazon.com/s3/)
 
 ## Setting up locally
 
@@ -35,7 +36,7 @@ git clone https://github.com/amirfakhrullah/ecommerce-next13beta.git
 npm i
 ```
 
-- Push and synchronize the Prisma schema to the database:
+- Push and synchronize the prisma schema to the database:
 
 ```bash
 npx prisma db push

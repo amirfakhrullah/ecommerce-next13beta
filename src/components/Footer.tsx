@@ -44,7 +44,7 @@ const Footer = () => {
           &{" "}
           <Link
             className="underline"
-            href="https://aws.amazon.com/"
+            href="https://aws.amazon.com/s3/"
             target="_blank"
           >
             AWS S3
