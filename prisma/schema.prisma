@@ -14,9 +14,9 @@ datasource db {
 model Product {
   id          String      @id @default(cuid())
   name        String      @unique
-  image       String?
+  image       String
   description String?
-  sizes       Int[]
+  sizes       Decimal[] @default([9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5])
   quantity    Int
   price       Int
   category    Category    @relation(fields: [categoryId], references: [id])
@@ -43,7 +43,7 @@ model OrderItem {
   productId String
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
-  size      Int
+  size      Decimal
   quantity  Int
 }
 

@@ -1,7 +1,7 @@
 import React from "react";
 import db from "../../lib/prismadb";
 import Border from "../Border";
-import ProductCard from "../ProductCard";
+import ProductCard from "../cards/ProductCard";
 
 const fetchPopularProducts = async () =>
   await db.product.findMany({
@@ -32,21 +32,6 @@ const PopularProductsSection = async () => {
           Heat Sneakers 🔥
         </h2>
         <div className="mx-auto max-w-6xl w-full grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-1">
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
           {products.map((product) => (
             <ProductCard {...product} key={product.id} />
           ))}
