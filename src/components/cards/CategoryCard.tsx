@@ -21,7 +21,7 @@ export const CategoryCard = ({ id, name, image }: Category) => {
           height={300}
         />
       </div>
-      <h3 className="text-2xl font-black text-center">{name}</h3>
+      <h3 className="text-2xl font-black text-center">Nike {name}</h3>
     </div>
   );
 };

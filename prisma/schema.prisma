@@ -16,7 +16,7 @@ model Product {
   name        String      @unique
   image       String
   description String?
-  sizes       Decimal[] @default([9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5])
+  sizes       Decimal[]   @default([9, 9.5, 10, 10.5, 11, 11.5, 12, 12.5])
   quantity    Int
   price       Int
   category    Category    @relation(fields: [categoryId], references: [id])
@@ -25,10 +25,11 @@ model Product {
 }
 
 model Category {
-  id       String    @id @default(cuid())
-  name     String    @unique
-  image    String
-  products Product[]
+  id          String    @id @default(cuid())
+  name        String    @unique
+  image       String
+  description String
+  products    Product[]
 }
 
 enum Status {

@@ -1,4 +1,4 @@
-import Hero from "../../components/Hero";
+import Hero from "../../components/heros/Hero";
 import Header from "../../components/Header";
 import Footer from "../../components/Footer";
 import PopularProductsSection from "../../components/sections/PopularProductsSection";
