@@ -47,7 +47,7 @@ const Button = ({
 
   return (
     <button
-      className={`${className} ${
+      className={`${className} ${disabled ? "cursor-not-allowed" : ""} ${
         color === "primary"
           ? primaryClassName
           : color === "secondary"

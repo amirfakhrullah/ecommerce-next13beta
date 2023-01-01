@@ -12,3 +12,10 @@ export interface FullProduct extends Product {
 export interface FullProductClient extends Omit<FullProduct, "sizes"> {
   sizes: string[];
 }
+
+export interface CartItem {
+  id: string;
+  name: string;
+  image: string;
+  size: string;
+}

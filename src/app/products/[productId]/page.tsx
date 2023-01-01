@@ -1,4 +1,7 @@
 import { notFound } from "next/navigation";
+import Border from "../../../components/Border";
+import BackButton from "../../../components/buttons/BackButton";
+import ProductSection from "../../../components/sections/ProductSection/ProductSection";
 import { fetchProductById } from "../../../server/handlers/fetchProducts";
 
 interface PageProps {
@@ -15,10 +18,11 @@ const ProductIdPage = async ({ params: { productId } }: PageProps) => {
   }
 
   return (
-    <div>
-      <h1 className="text-center font-bold text-xl">This page is in WIP</h1>
-      {JSON.stringify(product)}
-    </div>
+    <>
+      <BackButton />
+      <Border />
+      <ProductSection product={product} />
+    </>
   );
 };
 
