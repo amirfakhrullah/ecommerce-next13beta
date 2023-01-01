@@ -18,3 +18,17 @@ export const fetchPopularProducts = async (limit: number) => {
   });
   return massageProductClientList(products);
 };
+
+export const fetchProducts = async () => {
+  const products = await db.product.findMany({
+    include: {
+      category: true,
+      _count: {
+        select: {
+          orderItems: true,
+        },
+      },
+    },
+  });
+  return massageProductClientList(products);
+};

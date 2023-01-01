@@ -1,4 +1,6 @@
 import { notFound } from "next/navigation";
+import Border from "../../../components/Border";
+import BackButton from "../../../components/buttons/BackButton";
 import CategoryHero from "../../../components/heros/CategoryHero";
 import FilterProductsByCategory from "../../../components/sections/FilterProductsByCategory";
 import { fetchProductsByCategory } from "../../../server/handlers/fetchProductsByCategory";
@@ -18,7 +20,9 @@ const CategoryIdPage = async ({ params: { categoryId } }: PageProps) => {
 
   return (
     <div>
-      <CategoryHero category={category}  />
+      <BackButton />
+      <Border />
+      <CategoryHero category={category} />
       {/* @ts-expect-error Server Component */}
       <FilterProductsByCategory category={category} products={products} />
     </div>

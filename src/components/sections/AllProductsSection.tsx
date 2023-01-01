@@ -1,23 +1,16 @@
-import { Category } from "@prisma/client";
-import { FullProductClient } from "../../types/types";
+import { fetchProducts } from "../../server/handlers/fetchProducts";
 import Border from "../Border";
 import ProductCard from "../cards/ProductCard";
 
-interface FilterProductsByCategoryProps {
-  category: Category
-  products: FullProductClient[];
-}
+const AllProductsSection = async () => {
+  const products = await fetchProducts();
 
-const FilterProductsByCategory = async ({
-  category,
-  products,
-}: FilterProductsByCategoryProps) => {
   return (
     <>
       <Border />
       <div className="sm:mx-3 px-2 sm:py-10 py-5">
         <h2 className="mx-auto max-w-6xl text-2xl font-black mb-4">
-          All Available Nike {category.name} ({products.length}):
+          All Available Products ({products.length}):
         </h2>
         <div className="mx-auto max-w-6xl w-full grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-1">
           {products.map((product) => (
@@ -29,4 +22,4 @@ const FilterProductsByCategory = async ({
   );
 };
 
-export default FilterProductsByCategory;
+export default AllProductsSection;
