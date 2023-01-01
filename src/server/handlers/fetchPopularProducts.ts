@@ -5,9 +5,7 @@ export const fetchPopularProducts = async (limit: number) => {
   const products = await db.product.findMany({
     take: limit,
     orderBy: {
-      orderItems: {
-        _count: "desc",
-      },
+      price: "desc",
     },
     include: {
       category: true,

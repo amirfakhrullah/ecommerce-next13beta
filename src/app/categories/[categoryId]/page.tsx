@@ -24,7 +24,7 @@ const CategoryIdPage = async ({ params: { categoryId } }: PageProps) => {
       <Header />
       <CategoryHero category={category}  />
       {/* @ts-expect-error Server Component */}
-      <FilterProductsByCategory products={products} />
+      <FilterProductsByCategory category={category} products={products} />
       <Footer />
     </div>
   );
