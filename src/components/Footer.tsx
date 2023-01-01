@@ -14,8 +14,8 @@ const Footer = () => {
             href="https://twitter.com/amirfkrlh"
           >
             @amirfkrlh
-          </Link>
-          {" "}(2023). See source code{" "}
+          </Link>{" "}
+          (2023). See source code{" "}
           <Link
             className="underline"
             target="_blank"
@@ -23,6 +23,33 @@ const Footer = () => {
           >
             here.
           </Link>
+        </p>
+        <p className="text-[14px]">
+          Powered by{" "}
+          <Link
+            className="underline"
+            href="https://vercel.com/"
+            target="_blank"
+          >
+            Vercel
+          </Link>
+          ,{" "}
+          <Link
+            className="underline"
+            href="https://railway.app/"
+            target="_blank"
+          >
+            Railway
+          </Link>{" "}
+          &{" "}
+          <Link
+            className="underline"
+            href="https://aws.amazon.com/"
+            target="_blank"
+          >
+            AWS S3
+          </Link>
+          .
         </p>
       </div>
 
