@@ -3,9 +3,9 @@ import db from "../../lib/prismadb";
 import Border from "../Border";
 import ProductCard from "../cards/ProductCard";
 
-const fetchPopularProducts = async () =>
-  await db.product.findMany({
-    take: 10,
+const fetchPopularProducts = async () => {
+  const products = await db.product.findMany({
+    take: 12,
     orderBy: {
       orderItems: {
         _count: "desc",
@@ -20,6 +20,12 @@ const fetchPopularProducts = async () =>
       },
     },
   });
+  return products.map((product) => ({
+    ...product,
+    // decimal cannot be rendered on the client side later on, so we convert it to string
+    sizes: product.sizes.map((size) => size.toString()),
+  }));
+};
 
 const PopularProductsSection = async () => {
   const products = await fetchPopularProducts();
