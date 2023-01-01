@@ -21,6 +21,7 @@ const ProductSection = ({ product }: ProductSectionProps) => {
             height={350}
             width={350}
             className="h-auto w-auto"
+            unoptimized={true}
           />
         </div>
 
