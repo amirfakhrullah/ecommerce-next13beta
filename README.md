@@ -22,26 +22,26 @@ An e-commerce site for Nike sneakers built using Next.js 13 Beta
 ## Setting up locally
 
 - Clone or fork this repository
-- To clone
+- To clone:
 
 ```bash
 git clone https://github.com/amirfakhrullah/ecommerce-next13beta.git
 ```
 
 - Create and set up the `.env` file, refer to `.env.sample` for the required keys
-- Install the dependencies
+- Install the dependencies and generate prisma client (postinstall):
 
 ```bash
 npm i
 ```
 
-- Push and synchronize the Prisma schema to the database
+- Push and synchronize the Prisma schema to the database:
 
 ```bash
 npx prisma db push
 ```
 
-- Run locally
+- Run locally:
 
 ```bash
 npm run dev
