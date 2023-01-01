@@ -18,6 +18,7 @@ export const CategoryCard = ({ id, name, image }: Category) => {
           alt={id}
           width={300}
           height={300}
+          className="h-auto w-auto"
         />
       </div>
       <h3 className="text-2xl font-black text-center group-hover:text-red-800">Nike {name}</h3>

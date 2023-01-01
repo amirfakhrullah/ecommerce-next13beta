@@ -13,7 +13,13 @@ const AuthButton = async () => {
     <div className="flex flex-row items-center justify-center">
       {user.image && (
         <div className="rounded-full overflow-hidden mr-2">
-          <Image src={user.image} alt="user-image" height={35} width={35} />
+          <Image
+            src={user.image}
+            alt="user-image"
+            height={32}
+            width={32}
+            className="h-auto w-auto"
+          />
         </div>
       )}
       <SignOutButton />

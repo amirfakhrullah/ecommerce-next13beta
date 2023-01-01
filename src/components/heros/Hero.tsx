@@ -11,8 +11,8 @@ const Hero = () => {
           Marketplace for copping heat Nike sneakers 👟
         </p>
         <p className="text-zinc-500 text-[16px]">
-          (This is a site built with Next.js 13 Beta for
-          experimenting and learning purposes)
+          (This is a site built with Next.js 13 Beta for experimenting and
+          learning purposes)
         </p>
       </div>
       <div>
@@ -22,7 +22,7 @@ const Hero = () => {
           priority={true}
           height={200}
           width={200}
-          className="w-auto"
+          className="h-auto w-auto"
         />
       </div>
     </div>

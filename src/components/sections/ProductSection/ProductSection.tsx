@@ -20,7 +20,7 @@ const ProductSection = ({ product }: ProductSectionProps) => {
             priority={true}
             height={350}
             width={350}
-            className="w-auto"
+            className="h-auto w-auto"
           />
         </div>
 

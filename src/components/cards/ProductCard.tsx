@@ -17,7 +17,13 @@ const ProductCard = ({
   return (
     <div className="p-2 border border-zinc-300 flex flex-col">
       <div className="mb-4 flex flex-row items-center justify-center h-32">
-        <Image src={image} alt={id} width={200} height={200} />
+        <Image
+          src={image}
+          className="h-auto w-auto"
+          alt={id}
+          width={200}
+          height={200}
+        />
       </div>
       <div className="flex flex-col justify-between flex-1">
         <p

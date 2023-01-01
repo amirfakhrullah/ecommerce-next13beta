@@ -15,7 +15,7 @@ const CategoryHero = ({
           priority={true}
           height={200}
           width={200}
-          className="w-auto"
+          className="h-auto w-auto"
         />
       </div>
       <div className="md:p-8 p-5 md:flex-[0.8]">
