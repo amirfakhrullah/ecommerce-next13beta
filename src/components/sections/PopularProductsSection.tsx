@@ -1,4 +1,3 @@
-import React from "react";
 import { fetchPopularProducts } from "../../server/handlers/fetchPopularProducts";
 import Border from "../Border";
 import ProductCard from "../cards/ProductCard";

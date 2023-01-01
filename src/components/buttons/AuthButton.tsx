@@ -1,4 +1,3 @@
-import React from "react";
 import { SignInButton, SignOutButton } from "./AuthClientButtons";
 import { getCurrentUser } from "../../lib/session";
 import Image from "next/image";

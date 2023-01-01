@@ -1,4 +1,3 @@
-import React from "react";
 import { fetchAllCategories } from "../../server/handlers/fetchAllCategories";
 import Border from "../Border";
 import { CategoryCard } from "../cards/CategoryCard";

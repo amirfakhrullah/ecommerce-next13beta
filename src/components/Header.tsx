@@ -1,4 +1,3 @@
-import React from "react";
 import CheckoutBtn from "./buttons/CheckoutBtn";
 import AuthButton from "./buttons/AuthButton";
 import TitleClick from "./TitleClick";

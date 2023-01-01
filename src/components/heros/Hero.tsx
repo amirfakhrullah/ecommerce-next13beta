@@ -1,4 +1,3 @@
-import React from "react";
 import Image from "next/image";
 
 const Hero = () => {
@@ -9,10 +8,10 @@ const Hero = () => {
           Checks over stripes.
         </h2>
         <p className="font-medium mb-2">
-          Marketplace for copping heat Nike sneakers 🔥
+          Marketplace for copping heat Nike sneakers 👟
         </p>
         <p className="text-zinc-500 text-[16px]">
-          (Not legit. This is a site built with Next.js 13 Beta for
+          (This is a site built with Next.js 13 Beta for
           experimenting and learning purposes)
         </p>
       </div>
