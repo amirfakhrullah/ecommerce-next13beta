@@ -1,4 +1,7 @@
-import { massageProductClientList } from "../../helpers/massageProductClient";
+import {
+  massageProductClient,
+  massageProductClientList,
+} from "../../helpers/massageProductClient";
 import db from "../../lib/prismadb";
 
 export const fetchPopularProducts = async (limit: number) => {
@@ -31,4 +34,22 @@ export const fetchProducts = async () => {
     },
   });
   return massageProductClientList(products);
+};
+
+export const fetchProductById = async (id: string) => {
+  const product = await db.product.findFirst({
+    where: {
+      id,
+    },
+    include: {
+      category: true,
+      _count: {
+        select: {
+          orderItems: true,
+        },
+      },
+    },
+  });
+  if (!product) return;
+  return massageProductClient(product);
 };
