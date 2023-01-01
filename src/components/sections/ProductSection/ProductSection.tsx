@@ -25,7 +25,7 @@ const ProductSection = ({ product }: ProductSectionProps) => {
           />
         </div>
 
-        <div className="md:flex-[0.6]">
+        <div className="md:flex-[0.8]">
           <h2 className="md:text-3xl text-2xl font-black">{name}</h2>
           <h3 className="text-xl font-black pt-5 text-red-800">
             ${displayNumbers(price)}
