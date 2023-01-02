@@ -6,7 +6,7 @@ const CategoriesPage = () => {
     <div>
       <BackButton />
       {/* @ts-expect-error Server Component */}
-      <CategorySection displaySeeAllButton={false} />
+      <CategorySection displaySeeAllButton={false} displayTotal />
     </div>
   );
 };
