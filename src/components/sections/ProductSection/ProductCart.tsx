@@ -54,7 +54,7 @@ const ProductCart = ({ product }: ProductCartProps) => {
             key={id + idx}
             className={cn(
               "cursor-pointer border border-zinc-300 hover:border-zinc-800 hover:text-zinc-800 p-2 ease-in duration-75",
-              size === currSize && "bg-zinc-800 text-white hover:text-white"
+              size === currSize && "bg-zinc-700 text-white hover:text-white"
             )}
           >
             US M {currSize}

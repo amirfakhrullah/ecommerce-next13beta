@@ -4,6 +4,7 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CartContextProvider from "../contextProviders/cartContextProviders";
 import Toaster from "../components/Toaster";
+import { AnalyticsWrapper } from "../lib/Analytics";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -22,6 +23,7 @@ export default function RootLayout({
             {children}
             <Toaster position="top-center" />
             <Footer />
+            <AnalyticsWrapper />
           </>
         </CartContextProvider>
       </body>
