@@ -8,6 +8,7 @@ import { CartContext } from "../contextProviders/cartContextProviders";
 import Button from "./buttons/Button";
 import SeeAllButton from "./buttons/SeeAllButton";
 import cn from "../helpers/cn";
+import { toast } from "react-hot-toast";
 
 const CheckoutBtn = () => {
   const { cartItems, setCartItems } = useContext(CartContext);
@@ -20,6 +21,7 @@ const CheckoutBtn = () => {
     setCartItems([...cartItems.filter((_, index) => index !== idx)]);
     setTimeout(() => {
       setIsLoading(false);
+      toast.success("Item successfully removed!")
     }, 200);
   };
 

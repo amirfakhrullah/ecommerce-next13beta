@@ -67,7 +67,7 @@ const ProductCart = ({ product }: ProductCartProps) => {
         localLoaderOnClick={false}
         isLoading={isLoading}
         color="primary"
-        className="py-2 px-4 mb-5"
+        className="py-3 px-6 mb-5"
         disabled={!size}
       >
         <IoIosAddCircle className="text-xl mr-1" />
