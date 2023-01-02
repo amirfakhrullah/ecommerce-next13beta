@@ -13,7 +13,7 @@ const ProductSection = ({ product }: ProductSectionProps) => {
   return (
     <div className="mx-auto max-w-6xl sm:p-5 px-2 py-5">
       <div className="flex lg:flex-row flex-col justify-around">
-        <div className="flex flex-col items-center justify-center lg:p-3 p-5">
+        <div className="lg:flex-[0.6] flex flex-col items-center justify-center lg:p-3 p-5">
           <Image
             src={image}
             alt={id}

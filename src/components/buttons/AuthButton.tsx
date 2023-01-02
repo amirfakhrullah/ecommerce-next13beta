@@ -1,6 +1,6 @@
 import { SignInButton, SignOutButton } from "./AuthClientButtons";
 import { getCurrentUser } from "../../lib/session";
-import Image from "next/image";
+import UserAvatar from "../Avatar";
 
 const AuthButton = async () => {
   const user = await getCurrentUser();
@@ -11,17 +11,14 @@ const AuthButton = async () => {
 
   return (
     <div className="flex flex-row items-center justify-center">
-      {user.image && (
-        <div className="rounded-full overflow-hidden mr-2">
-          <Image
-            src={user.image}
-            alt="user-image"
-            height={32}
-            width={32}
-            className="h-auto w-auto"
-          />
-        </div>
-      )}
+      <div className={`rounded-full h-8 w-8 flex flex-row items-center justify-center overflow-hidden mr-2 ${!user.image ? "bg-purple-400" : ""}`}>
+        <UserAvatar
+          user={user}
+          fallbackProps={{
+            delayMs: 600
+          }}
+        />
+      </div>
       <SignOutButton />
     </div>
   );
