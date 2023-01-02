@@ -3,13 +3,16 @@
 An e-commerce site for Nike sneakers built with the new Next.js 13 Beta
 
 > **Warning**
-> This is not a real e-commerce site. Built for experimenting and learning purposes
+> Not a real e-commerce site. Built for experimenting and learning purposes.
+> This app is still in development.
 
 ## Demo
 
 - This project is still in development
 
-![progress](https://user-images.githubusercontent.com/73758525/210260803-e0725ada-ccd0-4c7f-983e-6d47026bfdae.png)
+![progress1](https://user-images.githubusercontent.com/73758525/210262578-0057b65c-b193-4f2c-9529-28bc2562823e.png)
+
+![progress2](https://user-images.githubusercontent.com/73758525/210262585-61f377d1-1985-4210-b5ac-9f7cf0183cc4.png)
 
 ## About
 
