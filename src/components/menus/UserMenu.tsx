@@ -4,9 +4,9 @@ import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import { useState } from "react";
-import cn from "../helpers/cn";
-import UserAvatar from "./Avatar";
-import Button from "./buttons/Button";
+import cn from "../../helpers/cn";
+import UserAvatar from "../Avatar";
+import Button from "../buttons/Button";
 
 const UserMenu = ({ user }: { user: User }) => {
   const [isLoading, setIsLoading] = useState(false);

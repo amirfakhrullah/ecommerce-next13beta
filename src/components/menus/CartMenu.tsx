@@ -4,13 +4,15 @@ import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { CartContext } from "../contextProviders/cartContextProviders";
-import Button from "./buttons/Button";
-import SeeAllButton from "./buttons/SeeAllButton";
-import cn from "../helpers/cn";
+import { CartContext } from "../../contextProviders/cartContextProviders";
+import Button from "../buttons/Button";
+import SeeAllButton from "../buttons/SeeAllButton";
+import cn from "../../helpers/cn";
 import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const CheckoutBtn = () => {
+  const router = useRouter();
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +23,7 @@ const CheckoutBtn = () => {
     setCartItems([...cartItems.filter((_, index) => index !== idx)]);
     setTimeout(() => {
       setIsLoading(false);
-      toast.success("Item successfully removed!")
+      toast.success("Item successfully removed!");
     }, 200);
   };
 
@@ -30,6 +32,11 @@ const CheckoutBtn = () => {
       <MenuHandler>
         <div className="flex flex-row items-center justify-center cursor-pointer border border-zinc-400 text-zinc-500 hover:border-zinc-700 hover:text-zinc-800 ease-in duration-100 p-2 rounded-md">
           <AiOutlineShoppingCart className="text-xl mr-1" />
+          {cartItems.length > 0 && (
+            <div className="absolute top-2 right-0 bg-red-800 h-6 w-6 rounded-full flex justify-center items-center">
+              <p className="text-[12px] text-white">{cartItems.length}</p>
+            </div>
+          )}
         </div>
       </MenuHandler>
       <MenuList
@@ -66,7 +73,12 @@ const CheckoutBtn = () => {
             </div>
             <div className="col-span-3 flex flex-col justify-between p-1">
               <div>
-                <p className="text-[14px]">{item.name}</p>
+                <p
+                  onClick={() => router.push(`/products/${item.id}`)}
+                  className="text-[14px] hover:underline hover:text-red-800 ease-in duration-75 cursor-pointer"
+                >
+                  {item.name}
+                </p>
                 <p className="text-[14px] font-medium">US M{item.size}</p>
               </div>
               <div className="flex justify-end">
