@@ -38,8 +38,8 @@ const UserMenu = ({ user }: { user: User }) => {
         <p className="text-[14px]">{user.email}</p>
         <div className="border-t border-zinc-300 my-2" />
         <Button
-          color="secondary"
-          className="w-full py-1"
+          color="primary"
+          className="w-full py-2"
           onClick={handleSignOut}
           isLoading={isLoading}
         >

@@ -10,7 +10,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   localLoaderOnClick?: boolean; // default to true
   disabled?: boolean;
   children: React.ReactNode | string | string[];
-  color?: "primary" | "secondary";
+  color?: "primary" | "secondary" | "red";
 }
 
 const Button = ({
@@ -28,16 +28,21 @@ const Button = ({
   const loadStatus = isLoading || (localLoaderOnClick && localLoading);
 
   const baseClassName =
-    "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
+    "rounded-md ease-in duration-100 flex flex-row items-center justify-center text-[14px]";
   const primaryClassName = cn(
     baseClassName,
-    "bg-red-800 hover:bg-red-900 text-gray-100",
-    loadStatus && "bg-red-900 cursor-not-allowed"
+    "bg-zinc-700 hover:bg-zinc-900 text-gray-100",
+    loadStatus && "bg-zinc-900 cursor-not-allowed"
   );
   const secondaryClassName = cn(
     baseClassName,
-    "border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100",
-    loadStatus && "bg-red-800 text-gray-100 cursor-not-allowed"
+    "border border-zinc-300 hover:bg-zinc-200 text-zinc-500",
+    loadStatus && "bg-zinc-200 cursor-not-allowed"
+  );
+  const redClassName = cn(
+    baseClassName,
+    "bg-red-800 hover:bg-red-900 text-gray-100",
+    loadStatus && "bg-red-900 cursor-not-allowed"
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
@@ -53,7 +58,9 @@ const Button = ({
         disabled && "cursor-not-allowed",
         color === "primary"
           ? primaryClassName
-          : color === "secondary" && secondaryClassName
+          : color === "secondary"
+          ? secondaryClassName
+          : color === "red" && redClassName
       )}
       disabled={disabled || loadStatus}
       onClick={handleClick}

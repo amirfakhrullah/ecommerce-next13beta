@@ -17,7 +17,7 @@ export const SignInButton = () => {
       onClick={() => handleSignIn()}
       isLoading={isLoading}
       color="primary"
-      className="px-4 py-2"
+      className="py-2 px-6"
     >
       Login
     </Button>

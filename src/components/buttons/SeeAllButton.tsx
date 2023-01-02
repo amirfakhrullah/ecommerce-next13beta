@@ -1,6 +1,5 @@
 "use client";
 
-import React from "react";
 import Button from "./Button";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
@@ -16,7 +15,7 @@ const SeeAllButton = ({ children, route }: SeeAllButtonProps) => {
   return (
     <Button
       onClick={() => router.push(route)}
-      className="py-2 px-4"
+      className="py-3 px-6"
       color="secondary"
     >
       {children ?? "See All"}

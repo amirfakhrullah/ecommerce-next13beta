@@ -9,7 +9,7 @@ const BackButton = () => {
 
   return (
     <div className="ml-5 my-3">
-      <Button onClick={() => router.back()} className="py-2 px-4" color="secondary">
+      <Button onClick={() => router.back()} className="py-3 px-6" color="secondary">
         <IoArrowBackOutline className="text-xl mr-2" />
         Back
       </Button>

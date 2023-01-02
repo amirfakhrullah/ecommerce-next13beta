@@ -7,12 +7,9 @@ import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CartContext } from "../contextProviders/cartContextProviders";
 import Button from "./buttons/Button";
 import SeeAllButton from "./buttons/SeeAllButton";
-import { IoArrowForwardOutline } from "react-icons/io5";
 import cn from "../helpers/cn";
-import { useRouter } from "next/navigation";
 
 const CheckoutBtn = () => {
-  const router = useRouter();
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -44,13 +41,7 @@ const CheckoutBtn = () => {
             <h3 className="text-xl font-black pl-2">
               Total ({cartItems.length})
             </h3>
-            <div
-              className="cursor-pointer flex flex-row items-center justify-center py-2 px-6 border rounded-md border-zinc-300 text-zinc-500 hover:bg-zinc-200 ease-in duration-100"
-              onClick={() => router.push("/carts")}
-            >
-              <p className="text-[14px]">Checkout</p>
-              <IoArrowForwardOutline className="text-lg ml-2" />
-            </div>
+            <SeeAllButton route="/carts">Checkout</SeeAllButton>
           </div>
         ) : (
           <div className="p-3">
@@ -76,14 +67,16 @@ const CheckoutBtn = () => {
                 <p className="text-[14px]">{item.name}</p>
                 <p className="text-[14px] font-medium">US M{item.size}</p>
               </div>
-              <Button
-                onClick={() => handleRemove(idx)}
-                isLoading={isLoading}
-                color="secondary"
-                className="py-1 w-full"
-              >
-                Remove
-              </Button>
+              <div className="flex justify-end">
+                <Button
+                  onClick={() => handleRemove(idx)}
+                  isLoading={isLoading}
+                  color="red"
+                  className="py-2 px-6"
+                >
+                  Remove
+                </Button>
+              </div>
             </div>
           </div>
         ))}
