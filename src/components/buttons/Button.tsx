@@ -5,9 +5,9 @@ import { FiLoader } from "react-icons/fi";
 import cn from "../../helpers/cn";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: () => void;
+  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
-  loaderOnClick?: boolean; // default to true
+  localLoaderOnClick?: boolean; // default to true
   disabled?: boolean;
   children: React.ReactNode | string | string[];
   color?: "primary" | "secondary";
@@ -17,7 +17,7 @@ const Button = ({
   onClick,
   className = "",
   isLoading = false,
-  loaderOnClick = true,
+  localLoaderOnClick = true,
   disabled = false,
   children,
   color,
@@ -25,7 +25,7 @@ const Button = ({
 }: ButtonProps) => {
   const [localLoading, setLocalLoading] = useState(false);
 
-  const loadStatus = isLoading || (loaderOnClick && localLoading);
+  const loadStatus = isLoading || (localLoaderOnClick && localLoading);
 
   const baseClassName =
     "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
@@ -40,10 +40,10 @@ const Button = ({
     loadStatus && "bg-red-800 text-gray-100 cursor-not-allowed"
   );
 
-  const handleClick = () => {
+  const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (disabled || loadStatus) return;
     setLocalLoading(true);
-    onClick();
+    return onClick(e);
   };
 
   return (
@@ -56,7 +56,7 @@ const Button = ({
           : color === "secondary" && secondaryClassName
       )}
       disabled={disabled || loadStatus}
-      onClick={() => handleClick()}
+      onClick={handleClick}
       {...props}
     >
       {loadStatus ? <FiLoader className="m-1" /> : <>{children}</>}

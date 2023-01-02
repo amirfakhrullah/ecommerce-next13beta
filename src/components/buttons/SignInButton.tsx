@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { signIn, signOut } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import Button from "./Button";
 
 export const SignInButton = () => {
@@ -20,26 +20,6 @@ export const SignInButton = () => {
       className="px-4 py-2"
     >
       Login
-    </Button>
-  );
-};
-
-export const SignOutButton = () => {
-  const [isLoading, setIsLoading] = useState(false);
-
-  const handleSignOut = async () => {
-    setIsLoading(true);
-    await signOut();
-  };
-
-  return (
-    <Button
-      onClick={() => handleSignOut()}
-      isLoading={isLoading}
-      color="primary"
-      className="px-4 py-2"
-    >
-      Logout
     </Button>
   );
 };

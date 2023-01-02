@@ -23,9 +23,11 @@ const ProductCart = ({ product }: ProductCartProps) => {
   const [size, setSize] = useState<string | undefined>();
 
   const { cartItems, setCartItems } = useContext(CartContext);
+  const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = () => {
     if (!size) return;
+    setIsLoading(true);
     setCartItems([
       ...cartItems,
       {
@@ -36,7 +38,10 @@ const ProductCart = ({ product }: ProductCartProps) => {
       },
     ]);
     setSize(undefined);
-    toast.success("Successfully added to cart!");
+    setTimeout(() => {
+      setIsLoading(false);
+      toast.success("Successfully added to cart!");
+    }, 200);
   };
 
   return (
@@ -49,7 +54,7 @@ const ProductCart = ({ product }: ProductCartProps) => {
             key={id + idx}
             className={cn(
               "cursor-pointer border border-zinc-300 hover:border-zinc-800 hover:text-zinc-800 p-2 ease-in duration-75",
-              size === currSize && "bg-zinc-800 text-white"
+              size === currSize && "bg-zinc-800 text-white hover:text-white"
             )}
           >
             US M {currSize}
@@ -59,7 +64,8 @@ const ProductCart = ({ product }: ProductCartProps) => {
 
       <Button
         onClick={() => handleAddToCart()}
-        loaderOnClick={false}
+        localLoaderOnClick={false}
+        isLoading={isLoading}
         color="primary"
         className="py-2 px-4 mb-5"
         disabled={!size}

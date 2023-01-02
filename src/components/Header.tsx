@@ -1,4 +1,4 @@
-import CheckoutBtn from "./buttons/CheckoutBtn";
+import CheckoutBtn from "./CartMenu";
 import AuthButton from "./buttons/AuthButton";
 import TitleClick from "./TitleClick";
 
