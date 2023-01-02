@@ -1,6 +1,7 @@
 "use client";
 
 import React, { createContext } from "react";
+import { cartsSchema } from "../helpers/validations/zodValidations";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { CartItem } from "../types/types";
 
@@ -16,10 +17,19 @@ export const CartContext = createContext<CartContextValues>({
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("carts", []);
 
+  const parsedCartItems = (cartItems: CartItem[]) => {
+    try {
+      return cartsSchema.parse(cartItems);
+    } catch (_) {
+      setCartItems([]);
+      return [];
+    }
+  };
+
   return (
     <CartContext.Provider
       value={{
-        cartItems,
+        cartItems: parsedCartItems(cartItems),
         setCartItems,
       }}
     >

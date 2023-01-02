@@ -1,4 +1,6 @@
 import { Product } from "@prisma/client";
+import { z } from "zod";
+import { cartItemSchema } from "../helpers/validations/zodValidations";
 
 // product data including its category and number or orderedItems
 export interface FullProduct extends Product {
@@ -13,9 +15,4 @@ export interface FullProductClient extends Omit<FullProduct, "sizes"> {
   sizes: string[];
 }
 
-export interface CartItem {
-  id: string;
-  name: string;
-  image: string;
-  size: string;
-}
+export type CartItem = z.infer<typeof cartItemSchema>;

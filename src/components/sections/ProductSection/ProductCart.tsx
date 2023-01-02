@@ -5,6 +5,8 @@ import { FullProductClient } from "../../../types/types";
 import Button from "../../buttons/Button";
 import { IoIosAddCircle } from "react-icons/io";
 import { CartContext } from "../../../contextProviders/cartContextProviders";
+import { toast } from "react-hot-toast";
+import cn from "../../../helpers/cn";
 
 interface ProductCartProps {
   product: FullProductClient;
@@ -34,6 +36,7 @@ const ProductCart = ({ product }: ProductCartProps) => {
       },
     ]);
     setSize(undefined);
+    toast.success("Successfully added to cart!");
   };
 
   return (
@@ -44,9 +47,10 @@ const ProductCart = ({ product }: ProductCartProps) => {
           <div
             onClick={() => setSize(currSize)}
             key={id + idx}
-            className={`cursor-pointer border border-zinc-300 hover:border-zinc-800 hover:text-zinc-800 p-2 ease-in duration-75 ${
-              size === currSize ? "bg-zinc-800 text-white" : ""
-            }`}
+            className={cn(
+              "cursor-pointer border border-zinc-300 hover:border-zinc-800 hover:text-zinc-800 p-2 ease-in duration-75",
+              size === currSize && "bg-zinc-800 text-white"
+            )}
           >
             US M {currSize}
           </div>

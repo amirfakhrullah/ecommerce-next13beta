@@ -2,6 +2,7 @@
 
 import { useRouter } from "next/navigation";
 import React from "react";
+import cn from "../helpers/cn";
 
 interface TitleClickProps extends React.HTMLAttributes<HTMLDivElement> {
   route: string;
@@ -18,7 +19,7 @@ const TitleClick = ({
   return (
     <div
       {...props}
-      className={`${className} cursor-pointer`}
+      className={cn("cursor-pointer", className)}
       onClick={() => router.push(route)}
     >
       {children}

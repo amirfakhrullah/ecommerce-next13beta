@@ -6,15 +6,15 @@ function useLocalStorage<T>(
   key: string,
   initialValue: T
 ): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(initialValue)
+  const [storedValue, setStoredValue] = useState<T>(initialValue);
 
   useEffect(() => {
     const item = window.localStorage.getItem(key);
     if (item) {
-      setStoredValue(JSON.parse(item) as T)
+      setStoredValue(JSON.parse(item) as T);
     }
     // eslint-disable-next-line
-  }, [])
+  }, []);
 
   const setValue = (value: T) => {
     try {
@@ -30,7 +30,6 @@ function useLocalStorage<T>(
     }
   };
   return [storedValue, setValue];
-
 }
 
 export default useLocalStorage;

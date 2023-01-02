@@ -2,6 +2,7 @@
 
 import React, { useState } from "react";
 import { FiLoader } from "react-icons/fi";
+import cn from "../../helpers/cn";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   onClick: () => void;
@@ -28,16 +29,16 @@ const Button = ({
 
   const baseClassName =
     "rounded-lg ease-in duration-150 flex flex-row items-center justify-center text-[14px]";
-  const primaryClassName =
-    baseClassName +
-    ` bg-red-800 hover:bg-red-900 text-gray-100 ${
-      loadStatus ? "bg-red-900 cursor-not-allowed" : ""
-    }`;
-  const secondaryClassName =
-    baseClassName +
-    ` border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100 ${
-      loadStatus ? "bg-red-800 text-gray-100 cursor-not-allowed" : ""
-    }`;
+  const primaryClassName = cn(
+    baseClassName,
+    "bg-red-800 hover:bg-red-900 text-gray-100",
+    loadStatus && "bg-red-900 cursor-not-allowed"
+  );
+  const secondaryClassName = cn(
+    baseClassName,
+    "border border-red-800 hover:bg-red-800 text-red-800 hover:text-gray-100",
+    loadStatus && "bg-red-800 text-gray-100 cursor-not-allowed"
+  );
 
   const handleClick = () => {
     if (disabled || loadStatus) return;
@@ -47,13 +48,13 @@ const Button = ({
 
   return (
     <button
-      className={`${className} ${disabled ? "cursor-not-allowed" : ""} ${
+      className={cn(
+        className,
+        disabled && "cursor-not-allowed",
         color === "primary"
           ? primaryClassName
-          : color === "secondary"
-          ? secondaryClassName
-          : ""
-      }`}
+          : color === "secondary" && secondaryClassName
+      )}
       disabled={disabled || loadStatus}
       onClick={() => handleClick()}
       {...props}
