@@ -14,7 +14,7 @@ An e-commerce site for Nike sneakers built with the new Next.js 13 Beta
 
 ## About
 
-- For testing and experimenting all the new features in Next.js 13 (`/app` dir, server components and everything new)
+- For testing and experimenting all the new features in Next.js 13 Beta (`/app` dir, server components and everything new)
 - Inspired by [Taxonomy](https://github.com/shadcn/taxonomy) built by [@shadcn](https://twitter.com/shadcn)
 - Haven't built an e-commerce site, so I'm challenging myself to build one!
 - Building this in public. You can follow the progress/updates on [@amirfkrlh](https://twitter.com/amirfkrlh)
