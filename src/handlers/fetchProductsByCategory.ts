@@ -27,3 +27,34 @@ export const fetchProductsByCategory = async (categoryId: string) => {
     products: massageProductClientList(products),
   };
 };
+
+export const fetchProductSuggestions = async ({
+  categoryId,
+  skipProductId,
+  limit,
+}: {
+  categoryId: string;
+  skipProductId?: string;
+  limit?: number;
+}) => {
+  const products = await db.product.findMany({
+    where: {
+      categoryId,
+      ...(skipProductId && {
+        NOT: {
+          id: skipProductId,
+        },
+      }),
+    },
+    ...(limit && { take: limit }),
+    include: {
+      category: true,
+      _count: {
+        select: {
+          orderItems: true,
+        },
+      },
+    },
+  });
+  return massageProductClientList(products);
+};
