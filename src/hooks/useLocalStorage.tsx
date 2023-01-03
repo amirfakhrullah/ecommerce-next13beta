@@ -16,7 +16,7 @@ function useLocalStorage<T>(
     // eslint-disable-next-line
   }, []);
 
-  const setValue = (value: T) => {
+  const setValue = (value: T | ((prop: T) => T)) => {
     try {
       const valueToStore =
         value instanceof Function ? value(storedValue) : value;
