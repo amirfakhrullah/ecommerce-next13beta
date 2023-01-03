@@ -2,10 +2,10 @@ import { inferAsyncReturnType, initTRPC } from "@trpc/server";
 import { CreateNextContextOptions } from "@trpc/server/adapters/next";
 import superjson from "superjson";
 import { getServerAuthSession } from "./common/get-server-auth-session";
-import { Session, User } from "next-auth";
+import { Session } from "next-auth";
 import { ZodError } from "zod";
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
+// eslint-disable-next-line 
 interface CreateContextOptions {
   session: Session | null;
 }
