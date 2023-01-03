@@ -9,7 +9,6 @@ const Header = () => {
         Checks!
       </TitleClick>
       <div className="flex flex-row items-center justify-center">
-        {/* @ts-expect-error Server Component */}
         <AuthButton />
         <div className="m-1" />
         <CheckoutBtn />

@@ -1,17 +1,18 @@
+import { use } from "react";
 import { fetchAllCategories } from "../../handlers/fetchAllCategories";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import { CategoryCard } from "../cards/CategoryCard";
 import NotFoundText from "../NotFoundText";
 
-const CategorySection = async ({
+const CategorySection = ({
   displaySeeAllButton = true,
   displayTotal = false,
 }: {
   displaySeeAllButton?: boolean;
   displayTotal?: boolean;
 }) => {
-  const categories = await fetchAllCategories();
+  const categories = use(fetchAllCategories());
 
   return (
     <>

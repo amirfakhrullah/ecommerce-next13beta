@@ -23,7 +23,6 @@ const CategoryIdPage = async ({ params: { categoryId } }: PageProps) => {
       <BackButton />
       <Border />
       <CategoryHero category={category} />
-      {/* @ts-expect-error Server Component */}
       <FilterProductsByCategory category={category} products={products} />
     </div>
   );

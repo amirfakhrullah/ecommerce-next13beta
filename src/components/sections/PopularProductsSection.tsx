@@ -1,10 +1,11 @@
+import { use } from "react";
 import { fetchPopularProducts } from "../../handlers/fetchProducts";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import ProductGrids from "../ProductGrids";
 
-const PopularProductsSection = async () => {
-  const products = await fetchPopularProducts(12);
+const PopularProductsSection = () => {
+  const products = use(fetchPopularProducts(12));
 
   return (
     <>

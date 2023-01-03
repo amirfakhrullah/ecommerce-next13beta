@@ -5,7 +5,6 @@ const ProductsPage = () => {
   return (
     <>
       <BackButton />
-      {/* @ts-expect-error Server Component */}
       <AllProductsSection />
     </>
   );

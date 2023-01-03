@@ -8,7 +8,7 @@ interface FilterProductsByCategoryProps {
   products: FullProductClient[];
 }
 
-const FilterProductsByCategory = async ({
+const FilterProductsByCategory = ({
   category,
   products,
 }: FilterProductsByCategoryProps) => {

@@ -1,3 +1,4 @@
+import { use } from "react";
 import { fetchProductSuggestions } from "../../handlers/fetchProductsByCategory";
 import { FullProductClient } from "../../types/types";
 import Border from "../Border";
@@ -8,15 +9,17 @@ interface ProductSuggestionSectionProps {
   product: FullProductClient;
 }
 
-const ProductSuggestionSection = async ({
+const ProductSuggestionSection = ({
   product,
 }: ProductSuggestionSectionProps) => {
   const { id: skipProductId, categoryId, category } = product;
-  const productSuggestions = await fetchProductSuggestions({
-    categoryId,
-    skipProductId,
-    limit: 6,
-  });
+  const productSuggestions = use(
+    fetchProductSuggestions({
+      categoryId,
+      skipProductId,
+      limit: 6,
+    })
+  );
 
   return (
     <>

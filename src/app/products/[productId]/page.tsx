@@ -23,7 +23,6 @@ const ProductIdPage = async ({ params: { productId } }: PageProps) => {
       <BackButton />
       <Border />
       <ProductSection product={product} />
-      {/* @ts-expect-error Server Component */}
       <ProductSuggestionSection product={product} />
     </>
   );
