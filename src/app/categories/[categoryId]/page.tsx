@@ -3,7 +3,7 @@ import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import CategoryHero from "../../../components/heros/CategoryHero";
 import FilterProductsByCategory from "../../../components/sections/FilterProductsByCategory";
-import { fetchProductsByCategory } from "../../../server/handlers/fetchProductsByCategory";
+import { fetchProductsByCategory } from "../../../handlers/fetchProductsByCategory";
 
 interface PageProps {
   params: {

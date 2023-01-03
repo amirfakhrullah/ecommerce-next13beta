@@ -1,4 +1,4 @@
-import { fetchPopularProducts } from "../../server/handlers/fetchProducts";
+import { fetchPopularProducts } from "../../handlers/fetchProducts";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import ProductCard from "../cards/ProductCard";

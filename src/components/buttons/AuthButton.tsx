@@ -1,5 +1,5 @@
 import { SignInButton } from "./SignInButton";
-import { getCurrentUser } from "../../lib/session";
+import { getCurrentUser } from "../../lib/servers/session";
 import UserMenu from "../menus/UserMenu";
 
 const AuthButton = async () => {

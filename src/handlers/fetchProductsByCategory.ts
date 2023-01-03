@@ -1,5 +1,5 @@
-import { massageProductClientList } from "../../helpers/massageProductClient";
-import db from "../../lib/prismadb";
+import { massageProductClientList } from "../helpers/massageProductClient";
+import db from "../lib/servers/prismadb";
 
 export const fetchProductsByCategory = async (categoryId: string) => {
   const [category, products] = await db.$transaction([

@@ -1,4 +1,4 @@
-import { fetchAllCategories } from "../../server/handlers/fetchAllCategories";
+import { fetchAllCategories } from "../../handlers/fetchAllCategories";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import { CategoryCard } from "../cards/CategoryCard";

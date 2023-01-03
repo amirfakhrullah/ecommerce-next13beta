@@ -1,8 +1,8 @@
 import {
   massageProductClient,
   massageProductClientList,
-} from "../../helpers/massageProductClient";
-import db from "../../lib/prismadb";
+} from "../helpers/massageProductClient";
+import db from "../lib/servers/prismadb";
 
 export const fetchPopularProducts = async (limit: number) => {
   const products = await db.product.findMany({

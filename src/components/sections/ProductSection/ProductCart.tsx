@@ -4,7 +4,7 @@ import { useContext, useState } from "react";
 import { FullProductClient } from "../../../types/types";
 import Button from "../../buttons/Button";
 import { IoIosAddCircle } from "react-icons/io";
-import { CartContext } from "../../../contextProviders/cartContextProviders";
+import { CartContext } from "../../../providers/CartContextProvider";
 import { toast } from "react-hot-toast";
 import cn from "../../../helpers/cn";
 

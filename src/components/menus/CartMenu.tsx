@@ -4,7 +4,7 @@ import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import { useContext, useState } from "react";
 import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
-import { CartContext } from "../../contextProviders/cartContextProviders";
+import { CartContext } from "../../providers/CartContextProvider";
 import Button from "../buttons/Button";
 import SeeAllButton from "../buttons/SeeAllButton";
 import cn from "../../helpers/cn";
