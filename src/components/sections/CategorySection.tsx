@@ -2,6 +2,7 @@ import { fetchAllCategories } from "../../handlers/fetchAllCategories";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import { CategoryCard } from "../cards/CategoryCard";
+import NotFoundText from "../NotFoundText";
 
 const CategorySection = async ({
   displaySeeAllButton = true,
@@ -22,11 +23,15 @@ const CategorySection = async ({
           </h2>
           {displaySeeAllButton && <SeeAllButton route="/categories" />}
         </div>
-        <div className="mx-auto max-w-6xl w-full grid sm:grid-cols-2  grid-cols-1 gap-2">
-          {categories.map((category) => (
-            <CategoryCard key={category.id} {...category} />
-          ))}
-        </div>
+        {categories.length ? (
+          <div className="mx-auto max-w-6xl w-full grid sm:grid-cols-2  grid-cols-1 gap-2">
+            {categories.map((category) => (
+              <CategoryCard key={category.id} {...category} />
+            ))}
+          </div>
+        ) : (
+          <NotFoundText>No Sneaker Types Found.</NotFoundText>
+        )}
       </div>
     </>
   );

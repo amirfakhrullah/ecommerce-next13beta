@@ -1,6 +1,6 @@
 import { fetchProducts } from "../../handlers/fetchProducts";
 import Border from "../Border";
-import ProductCard from "../cards/ProductCard";
+import ProductGrids from "../ProductGrids";
 
 const AllProductsSection = async () => {
   const products = await fetchProducts();
@@ -12,11 +12,7 @@ const AllProductsSection = async () => {
         <h2 className="mx-auto max-w-6xl text-2xl font-black mb-4">
           All Available Products ({products.length}):
         </h2>
-        <div className="mx-auto max-w-6xl w-full grid lg:grid-cols-6 sm:grid-cols-4 grid-cols-2 gap-1">
-          {products.map((product) => (
-            <ProductCard {...product} key={product.id} />
-          ))}
-        </div>
+        <ProductGrids products={products} />
       </div>
     </>
   );

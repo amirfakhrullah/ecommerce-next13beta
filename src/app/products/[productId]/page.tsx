@@ -1,7 +1,7 @@
 import { notFound } from "next/navigation";
 import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
-import ProductSection from "../../../components/sections/ProductSection/ProductSection";
+import ProductSection from "../../../components/sections/ProductSection";
 import { fetchProductById } from "../../../handlers/fetchProducts";
 
 interface PageProps {

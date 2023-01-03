@@ -1,7 +1,7 @@
 import Image from "next/image";
-import { displayNumbers } from "../../../helpers/numbers";
-import { FullProductClient } from "../../../types/types";
-import ProductCart from "./ProductCart";
+import { displayNumbers } from "../../helpers/numbers";
+import { FullProductClient } from "../../types/types";
+import ProductCart from "../ProductCart";
 
 interface ProductSectionProps {
   product: FullProductClient;

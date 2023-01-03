@@ -1,12 +1,12 @@
 "use client";
 
 import { useContext, useState } from "react";
-import { FullProductClient } from "../../../types/types";
-import Button from "../../buttons/Button";
+import { FullProductClient } from "../types/types";
+import Button from "./buttons/Button";
 import { IoIosAddCircle } from "react-icons/io";
-import { CartContext } from "../../../providers/CartContextProvider";
+import { CartContext } from "../providers/CartContextProvider";
 import { toast } from "react-hot-toast";
-import cn from "../../../helpers/cn";
+import cn from "../helpers/cn";
 
 interface ProductCartProps {
   product: FullProductClient;
