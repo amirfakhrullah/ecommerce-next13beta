@@ -1,3 +1,4 @@
+import { Prisma, PrismaClient } from "@prisma/client";
 import { massageProductClientList } from "../helpers/massageProductClient";
 import db from "../lib/servers/prismadb";
 
@@ -29,15 +30,21 @@ export const fetchProductsByCategory = async (categoryId: string) => {
 };
 
 export const fetchProductSuggestions = async ({
+  prisma,
   categoryId,
   skipProductId,
   limit,
 }: {
+  prisma: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >;
   categoryId: string;
   skipProductId?: string;
   limit?: number;
 }) => {
-  const products = await db.product.findMany({
+  const products = await prisma.product.findMany({
     where: {
       categoryId,
       ...(skipProductId && {

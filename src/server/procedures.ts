@@ -19,7 +19,7 @@ export const adminProcedure = procedure.use(async ({ ctx, next }) => {
   if (!ctx.session || !ctx.session.user) {
     throw new trpc.TRPCError({ code: "UNAUTHORIZED" });
   }
-  const isAdmin = !!db.user.findFirst({
+  const isAdmin = !!ctx.prisma.user.findFirst({
     where: {
       id: ctx.session.user.id,
       userType: UserType.Admin,

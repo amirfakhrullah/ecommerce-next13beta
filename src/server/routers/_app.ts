@@ -25,9 +25,10 @@ export const appRouter = router({
         limit: z.number().optional(),
       })
     )
-    .query(async ({ input }) => {
+    .query(async ({ input, ctx }) => {
       const { categoryId, skipProductId, limit } = input;
       return await fetchProductSuggestions({
+        prisma: ctx.prisma,
         categoryId,
         skipProductId,
         limit,

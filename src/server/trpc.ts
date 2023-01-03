@@ -4,6 +4,7 @@ import superjson from "superjson";
 import { getServerAuthSession } from "./common/get-server-auth-session";
 import { Session } from "next-auth";
 import { ZodError } from "zod";
+import db from "../lib/servers/prismadb"
 
 // eslint-disable-next-line 
 interface CreateContextOptions {
@@ -17,7 +18,7 @@ interface CreateContextOptions {
 export const createContextInner = async (opts: CreateContextOptions) => {
   return {
     session: opts.session,
-    prisma,
+    prisma: db,
   };
 };
 
