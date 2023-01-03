@@ -15,10 +15,10 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={inter.variable}>
-      <head />
-      <body className="bg-gray-100">
-        <TRPCProvider>
+    <TRPCProvider>
+      <html lang="en" className={inter.variable}>
+        <head />
+        <body className="bg-gray-100">
           <CartContextProvider>
             <>
               <Header />
@@ -28,8 +28,8 @@ export default function RootLayout({
               <AnalyticsWrapper />
             </>
           </CartContextProvider>
-        </TRPCProvider>
-      </body>
-    </html>
+        </body>
+      </html>
+    </TRPCProvider>
   );
 }

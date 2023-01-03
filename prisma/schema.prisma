@@ -97,6 +97,11 @@ model Session {
   user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
 }
 
+enum UserType {
+  User
+  Admin
+}
+
 model User {
   id            String    @id @default(cuid())
   name          String?
@@ -107,6 +112,7 @@ model User {
   sessions      Session[]
   orders        Order[]
   address       Address?
+  userType      UserType @default(User)
 }
 
 model VerificationToken {

@@ -1,9 +1,10 @@
+import { use } from "react";
 import { fetchProducts } from "../../handlers/fetchProducts";
 import Border from "../Border";
 import ProductGrids from "../ProductGrids";
 
-const AllProductsSection = async () => {
-  const products = await fetchProducts();
+const AllProductsSection = () => {
+  const products = use(fetchProducts());
 
   return (
     <>
