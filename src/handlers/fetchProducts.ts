@@ -1,11 +1,19 @@
+import { Prisma, PrismaClient } from "@prisma/client";
 import {
   massageProductClient,
   massageProductClientList,
 } from "../helpers/massageProductClient";
 import db from "../lib/servers/prismadb";
 
-export const fetchPopularProducts = async (limit: number) => {
-  const products = await db.product.findMany({
+export const fetchPopularProducts = async (
+  limit: number,
+  prisma?: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >
+) => {
+  const products = await (prisma ?? db).product.findMany({
     take: limit,
     orderBy: {
       price: "desc",
@@ -22,8 +30,16 @@ export const fetchPopularProducts = async (limit: number) => {
   return massageProductClientList(products);
 };
 
-export const fetchProducts = async () => {
-  const products = await db.product.findMany({
+export const fetchProducts = async (
+  skip?: number,
+  take?: number,
+  prisma?: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >
+) => {
+  const products = await (prisma ?? db).product.findMany({
     include: {
       category: true,
       _count: {
@@ -32,12 +48,21 @@ export const fetchProducts = async () => {
         },
       },
     },
+    ...(skip && { skip }),
+    ...(take && { take }),
   });
   return massageProductClientList(products);
 };
 
-export const fetchProductById = async (id: string) => {
-  const product = await db.product.findFirst({
+export const fetchProductById = async (
+  id: string,
+  prisma?: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >
+) => {
+  const product = await (prisma ?? db).product.findFirst({
     where: {
       id,
     },

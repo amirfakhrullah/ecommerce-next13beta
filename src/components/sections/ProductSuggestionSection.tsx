@@ -23,9 +23,7 @@ const ProductSuggestionSection = ({
       limit: 6,
     },
     {
-      onError: (err) => {
-        toast(err.message);
-      },
+      onError: (err) => toast(err.message),
     }
   );
 

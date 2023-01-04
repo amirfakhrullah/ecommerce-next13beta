@@ -1,21 +1,19 @@
 import { z } from "zod";
+import { fetchProducts } from "../../handlers/fetchProducts";
 import { fetchProductSuggestions } from "../../handlers/fetchProductsByCategory";
-import db from "../../lib/servers/prismadb";
-import { userProcedure } from "../procedures";
 import { procedure, router } from "../trpc";
 
 export const appRouter = router({
-  hello: userProcedure
+  getProducts: procedure
     .input(
       z.object({
-        text: z.string(),
+        skip: z.number(),
+        take: z.number(),
       })
     )
-    .query(({ input, ctx }) => {
-      return {
-        greeting: `hello ${input.text}`,
-        user: ctx.session.user,
-      };
+    .query(async ({ ctx, input }) => {
+      const { skip, take } = input;
+      return await fetchProducts(skip, take, ctx.prisma);
     }),
   suggestProducts: procedure
     .input(

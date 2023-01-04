@@ -32,17 +32,17 @@ const Button = ({
   const primaryClassName = cn(
     baseClassName,
     "bg-zinc-700 hover:bg-zinc-900 text-gray-100",
-    loadStatus && "bg-zinc-900 cursor-not-allowed"
+    loadStatus || disabled && "bg-zinc-900 cursor-not-allowed"
   );
   const secondaryClassName = cn(
     baseClassName,
     "border border-zinc-300 hover:bg-zinc-200 text-zinc-500",
-    loadStatus && "bg-zinc-200 cursor-not-allowed"
+    loadStatus || disabled && "bg-zinc-200 cursor-not-allowed"
   );
   const redClassName = cn(
     baseClassName,
     "bg-red-800 hover:bg-red-900 text-gray-100",
-    loadStatus && "bg-red-900 cursor-not-allowed"
+    loadStatus || disabled && "bg-red-900 cursor-not-allowed"
   );
 
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
