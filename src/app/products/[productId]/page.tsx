@@ -8,13 +8,16 @@ import { fetchProductById } from "../../../handlers/fetchProducts";
 
 interface PageProps {
   params: {
-    productId: string;
+    productId: any;
   };
 }
 
 const ProductIdPage = ({ params: { productId } }: PageProps) => {
-  const product = use(fetchProductById(productId));
+  if (typeof productId !== "string") {
+    return notFound();
+  }
 
+  const product = use(fetchProductById(productId));
   if (!product) {
     return notFound();
   }

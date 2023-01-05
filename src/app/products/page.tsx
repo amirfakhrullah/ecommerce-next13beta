@@ -4,12 +4,12 @@ import AllProductsSection from "../../components/sections/AllProductsSection";
 
 interface PageProps {
   searchParams: {
-    page?: string;
+    page: any;
   };
 }
 
 const ProductsPage = ({ searchParams: { page } }: PageProps) => {
-  const pageNum = page ? parseInt(page) : 1;
+  const pageNum = typeof page === "string" ? parseInt(page) : 1;
   return (
     <>
       <BackButton routeTo={page ? "/" : undefined} />
