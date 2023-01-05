@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { use } from "react";
 import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import PaginationButtons from "../../../components/buttons/PaginationButtons";
@@ -16,17 +17,17 @@ interface PageProps {
   };
 }
 
-const CategoryIdPage = async ({
+const CategoryIdPage = ({
   params: { categoryId },
   searchParams: { page },
 }: PageProps) => {
   const pageNum = page ? parseInt(page) : 1;
   const skip = pageNum > 1 ? (pageNum - 1) * PRODUCTS_PER_PAGE : undefined;
-  const { category, products } = await fetchProductsByCategory(
+  const { category, products } = use(fetchProductsByCategory(
     categoryId,
     PRODUCTS_PER_PAGE,
     skip
-  );
+  ));
 
   if (!category) {
     return notFound();

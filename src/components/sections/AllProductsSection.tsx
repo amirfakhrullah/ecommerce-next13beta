@@ -7,7 +7,7 @@ interface Props {
   page: number;
 }
 
-export const PRODUCTS_PER_PAGE = 6;
+export const PRODUCTS_PER_PAGE = 12;
 
 const AllProductsSection = ({ page }: Props) => {
   const skip = page > 1 ? (page - 1) * PRODUCTS_PER_PAGE : undefined;

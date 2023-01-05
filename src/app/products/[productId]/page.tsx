@@ -1,4 +1,5 @@
 import { notFound } from "next/navigation";
+import { use } from "react";
 import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import ProductSection from "../../../components/sections/ProductSection";
@@ -11,8 +12,8 @@ interface PageProps {
   };
 }
 
-const ProductIdPage = async ({ params: { productId } }: PageProps) => {
-  const product = await fetchProductById(productId);
+const ProductIdPage = ({ params: { productId } }: PageProps) => {
+  const product = use(fetchProductById(productId));
 
   if (!product) {
     return notFound();
