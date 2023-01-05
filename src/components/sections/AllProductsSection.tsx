@@ -6,7 +6,9 @@ import ProductGrids from "../ProductGrids";
 interface Props {
   page: number;
 }
-const PRODUCTS_PER_PAGE = 12;
+
+export const PRODUCTS_PER_PAGE = 12;
+
 const AllProductsSection = ({ page }: Props) => {
   const skip = page > 1 ? (page - 1) * PRODUCTS_PER_PAGE : undefined;
   const products = use(fetchProducts(skip, PRODUCTS_PER_PAGE));

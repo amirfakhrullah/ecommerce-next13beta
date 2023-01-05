@@ -27,7 +27,7 @@ const ProductSuggestionSection = ({
       <div className="sm:mx-3 px-2 sm:py-10 py-5">
         <div className="mx-auto max-w-6xl flex flex-row items-center justify-between mb-4">
           <h2 className="text-2xl font-black">More {category.name}:</h2>
-          <SeeAllButton route="/products" />
+          <SeeAllButton route={`/categories/${categoryId}`} />
         </div>
         <ProductGrids products={products} />
       </div>
