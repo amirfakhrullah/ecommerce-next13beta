@@ -3,12 +3,13 @@ import BackButton from "../../components/buttons/BackButton";
 import AllProductsSection from "../../components/sections/AllProductsSection";
 
 interface PageProps {
-  searchParams: {
-    page?: string | string[];
+  searchParams?: {
+    page?: string;
   };
 }
 
-const ProductsPage = ({ searchParams: { page } }: PageProps) => {
+const ProductsPage = (props: PageProps) => {
+  const page = props.searchParams?.page;
   const pageNum = typeof page === "string" ? parseInt(page) : 1;
   return (
     <>

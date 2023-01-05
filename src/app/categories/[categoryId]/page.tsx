@@ -13,18 +13,19 @@ interface PageProps {
   params: {
     categoryId: string;
   };
-  searchParams: {
-    page?: string | string[];
+  searchParams?: {
+    page?: string;
   };
 }
 
-const CategoryIdPage = ({
-  params: { categoryId },
-  searchParams: { page },
-}: PageProps) => {
-  const pageNum = typeof page === 'string' ? parseInt(page) : 1;
+const CategoryIdPage = (props: PageProps) => {
+  const page = props.searchParams?.page;
+  const pageNum = typeof page === "string" ? parseInt(page) : 1;
   const skip = pageNum > 1 ? (pageNum - 1) * PRODUCTS_PER_PAGE : undefined;
 
+  const {
+    params: { categoryId },
+  } = props;
   const { category, products } = use(
     fetchProductsByCategory(categoryId, PRODUCTS_PER_PAGE, skip)
   );
