@@ -10,7 +10,7 @@ import { fetchProductsByCategory } from "../../../handlers/fetchProductsByCatego
 
 interface PageProps {
   params: {
-    categoryId: any;
+    categoryId: string;
   };
   searchParams: {
     page: any;
@@ -23,10 +23,7 @@ const CategoryIdPage = ({
 }: PageProps) => {
   const pageNum = typeof page === 'string' ? parseInt(page) : 1;
   const skip = pageNum > 1 ? (pageNum - 1) * PRODUCTS_PER_PAGE : undefined;
-  if (typeof categoryId !== 'string') {
-    return notFound();
-  }
-  
+
   const { category, products } = use(fetchProductsByCategory(
     categoryId,
     PRODUCTS_PER_PAGE,
