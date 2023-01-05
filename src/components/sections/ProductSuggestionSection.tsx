@@ -1,11 +1,8 @@
-"use client";
-
-import { toast } from "react-hot-toast";
-import { trpc } from "../../providers/trpcProvider";
+import { use } from "react";
+import { fetchProductSuggestions } from "../../handlers/fetchProductsByCategory";
 import { FullProductClient } from "../../types/types";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
-import Loader from "../Loader";
 import ProductGrids from "../ProductGrids";
 
 interface ProductSuggestionSectionProps {
@@ -16,15 +13,12 @@ const ProductSuggestionSection = ({
   product,
 }: ProductSuggestionSectionProps) => {
   const { id: skipProductId, categoryId, category } = product;
-  const { isLoading, data: productSuggestions } = trpc.suggestProducts.useQuery(
-    {
+  const products = use(
+    fetchProductSuggestions({
       categoryId,
-      skipProductId,
       limit: 6,
-    },
-    {
-      onError: (err) => toast(err.message),
-    }
+      skipProductId,
+    })
   );
 
   return (
@@ -35,11 +29,7 @@ const ProductSuggestionSection = ({
           <h2 className="text-2xl font-black">More {category.name}:</h2>
           <SeeAllButton route="/products" />
         </div>
-        {isLoading || typeof productSuggestions === "undefined" ? (
-          <Loader />
-        ) : (
-          <ProductGrids products={productSuggestions} />
-        )}
+        <ProductGrids products={products} />
       </div>
     </>
   );

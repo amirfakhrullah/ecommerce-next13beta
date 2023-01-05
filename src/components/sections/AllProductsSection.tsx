@@ -1,15 +1,15 @@
 import { use } from "react";
 import { fetchProducts } from "../../handlers/fetchProducts";
 import PaginationButtons from "../buttons/PaginationButtons";
-import NotFoundText from "../NotFoundText";
-import ProductGridsWithPaginations from "../ProductGridsWithPaginations";
+import ProductGrids from "../ProductGrids";
 
 interface Props {
   page: number;
 }
+const PRODUCTS_PER_PAGE = 12;
 const AllProductsSection = ({ page }: Props) => {
-  const skip = page > 1 ? page * 6 : undefined;
-  const products = use(fetchProducts(skip, 6));
+  const skip = page > 1 ? (page - 1) * PRODUCTS_PER_PAGE : undefined;
+  const products = use(fetchProducts(skip, PRODUCTS_PER_PAGE));
 
   return (
     <>
@@ -17,22 +17,12 @@ const AllProductsSection = ({ page }: Props) => {
         <h2 className="mx-auto max-w-6xl text-2xl font-black mb-4">
           All Available Products:
         </h2>
-        {!products || !products.length ? (
-          <>
-            <NotFoundText>No Product Found.</NotFoundText>
-            <PaginationButtons
-              currentPage={page}
-              route="/products"
-              disableNextPage
-            />
-          </>
-        ) : (
-          <ProductGridsWithPaginations
-            initialProducts={products}
-            page={page}
-            skip={skip ? skip + 6 : 6}
-          />
-        )}
+        <ProductGrids products={products} />
+        <PaginationButtons
+          currentPage={page}
+          route="/products"
+          disableNextPage={products.length < PRODUCTS_PER_PAGE}
+        />
       </div>
     </>
   );
