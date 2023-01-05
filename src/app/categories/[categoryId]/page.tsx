@@ -34,13 +34,13 @@ const CategoryIdPage = async ({
 
   return (
     <div>
-      <BackButton />
+      <BackButton routeTo={page ? "/" : undefined} />
       <Border />
       <CategoryHero category={category} />
       <FilterProductsByCategory category={category} products={products} />
       <PaginationButtons
         currentPage={pageNum}
-        route="/categories"
+        route={`/categories/${categoryId}`}
         disableNextPage={products.length < PRODUCTS_PER_PAGE}
       />
     </div>

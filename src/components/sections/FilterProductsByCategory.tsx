@@ -17,7 +17,7 @@ const FilterProductsByCategory = ({
       <Border />
       <div className="sm:mx-3 px-2 sm:py-10 py-5">
         <h2 className="mx-auto max-w-6xl text-2xl font-black mb-4">
-          All Available Nike {category.name} ({products.length}):
+          All Available Nike {category.name}:
         </h2>
         <ProductGrids products={products} />
       </div>
