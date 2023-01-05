@@ -13,7 +13,7 @@ interface PageProps {
     categoryId: string;
   };
   searchParams: {
-    page: any;
+    page?: any;
   };
 }
 

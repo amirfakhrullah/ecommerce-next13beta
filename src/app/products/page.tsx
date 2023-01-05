@@ -4,7 +4,7 @@ import AllProductsSection from "../../components/sections/AllProductsSection";
 
 interface PageProps {
   searchParams: {
-    page: any;
+    page?: any;
   };
 }
 
