@@ -1,4 +1,5 @@
 import { use } from "react";
+import { PRODUCTS_PER_PAGE } from "../../constants";
 import { fetchProducts } from "../../handlers/fetchProducts";
 import PaginationButtons from "../buttons/PaginationButtons";
 import ProductGrids from "../ProductGrids";
@@ -6,8 +7,6 @@ import ProductGrids from "../ProductGrids";
 interface Props {
   page: number;
 }
-
-export const PRODUCTS_PER_PAGE = 12;
 
 const AllProductsSection = ({ page }: Props) => {
   const skip = page > 1 ? (page - 1) * PRODUCTS_PER_PAGE : undefined;

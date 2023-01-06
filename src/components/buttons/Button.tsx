@@ -9,7 +9,7 @@ interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   isLoading?: boolean;
   localLoaderOnClick?: boolean; // default to true
   disabled?: boolean;
-  children: React.ReactNode | string | string[];
+  children: React.ReactNode;
   color?: "primary" | "secondary" | "red";
 }
 

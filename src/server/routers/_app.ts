@@ -1,38 +1,26 @@
 import { z } from "zod";
-import { fetchProducts } from "../../handlers/fetchProducts";
-// import { fetchProductSuggestions } from "../../handlers/fetchProductsByCategory";
-import { adminProcedure } from "../procedures";
-import { router } from "../trpc";
+import { PRODUCTS_PER_PAGE } from "../../constants";
+import { getProductsBySearch } from "../../handlers/fetchProducts";
+import { procedure, router } from "../trpc";
 
 export const appRouter = router({
-  getProducts: adminProcedure
+  searchProducts: procedure
     .input(
       z.object({
-        skip: z.number(),
-        take: z.number(),
+        search: z.string(),
+        page: z.number(),
       })
     )
     .query(async ({ ctx, input }) => {
-      const { skip, take } = input;
-      return await fetchProducts(skip, take, ctx.prisma);
+      const { search, page } = input;
+      if (!search) return [];
+      return await getProductsBySearch(
+        search,
+        PRODUCTS_PER_PAGE,
+        (page - 1) * PRODUCTS_PER_PAGE,
+        ctx.prisma
+      );
     }),
-  // suggestProducts: procedure
-  //   .input(
-  //     z.object({
-  //       categoryId: z.string(),
-  //       skipProductId: z.string().optional(),
-  //       limit: z.number().optional(),
-  //     })
-  //   )
-  //   .query(async ({ input, ctx }) => {
-  //     const { categoryId, skipProductId, limit } = input;
-  //     return await fetchProductSuggestions({
-  //       prisma: ctx.prisma,
-  //       categoryId,
-  //       skipProductId,
-  //       limit,
-  //     });
-  //   }),
 });
 
 // export type definition of API

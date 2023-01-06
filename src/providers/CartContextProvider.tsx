@@ -1,6 +1,6 @@
 "use client";
 
-import React, { createContext } from "react";
+import React, { createContext, useContext } from "react";
 import { cartsSchema } from "../helpers/validations/zodValidations";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { CartItem } from "../types/types";
@@ -13,6 +13,8 @@ export const CartContext = createContext<CartContextValues>({
   cartItems: [],
   setCartItems: () => {},
 });
+
+export const useCartContext = () => useContext(CartContext);
 
 const CartContextProvider = ({ children }: { children: React.ReactNode }) => {
   const [cartItems, setCartItems] = useLocalStorage<CartItem[]>("carts", []);

@@ -1,10 +1,10 @@
 "use client";
 
-import { useContext, useState } from "react";
+import { useState } from "react";
 import { FullProductClient } from "../types/types";
 import Button from "./buttons/Button";
 import { IoIosAddCircle } from "react-icons/io";
-import { CartContext } from "../providers/CartContextProvider";
+import { useCartContext } from "../providers/CartContextProvider";
 import { toast } from "react-hot-toast";
 import cn from "../helpers/cn";
 
@@ -22,7 +22,7 @@ const ProductCart = ({ product }: ProductCartProps) => {
   const { id, name, image, sizes } = product;
   const [size, setSize] = useState<string | undefined>();
 
-  const { cartItems, setCartItems } = useContext(CartContext);
+  const { cartItems, setCartItems } = useCartContext();
   const [isLoading, setIsLoading] = useState(false);
 
   const handleAddToCart = () => {

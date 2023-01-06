@@ -78,3 +78,46 @@ export const fetchProductById = async (
   if (!product) return;
   return massageProductClient(product);
 };
+
+export const getProductsBySearch = async (
+  search: string,
+  take?: number,
+  skip?: number,
+  prisma?: PrismaClient<
+    Prisma.PrismaClientOptions,
+    never,
+    Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
+  >
+) => {
+  const products = await (prisma ?? db).product.findMany({
+    where: {
+      OR: [
+        {
+          name: {
+            contains: search,
+            mode: "insensitive",
+          },
+        },
+        {
+          category: {
+            name: {
+              contains: search,
+              mode: "insensitive",
+            },
+          },
+        },
+      ],
+    },
+    include: {
+      category: true,
+      _count: {
+        select: {
+          orderItems: true,
+        },
+      },
+    },
+    ...(take && { take }),
+    ...(skip && { skip }),
+  });
+  return massageProductClientList(products);
+};

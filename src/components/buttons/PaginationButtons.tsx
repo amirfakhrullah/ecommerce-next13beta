@@ -6,24 +6,38 @@ import Button from "./Button";
 
 interface PaginationButtonsProps {
   currentPage: number;
-  route: string;
   disableNextPage?: boolean;
+  route?: string;
+  handlePrev?: () => void;
+  handleNext?: () => void;
 }
 const PaginationButtons = ({
   currentPage,
   route,
   disableNextPage,
+  handlePrev,
+  handleNext,
 }: PaginationButtonsProps) => {
   const router = useRouter();
 
   const handleNextPage = () => {
     if (disableNextPage) return;
-    router.push(`${route}?page=${currentPage + 1}`);
+    if (route) {
+      return router.push(`${route}?page=${currentPage + 1}`);
+    }
+    if (handleNext) {
+      return handleNext();
+    }
   };
 
   const handlePrevPage = () => {
     if (currentPage === 1) return;
-    router.push(`${route}?page=${currentPage - 1}`);
+    if (route) {
+      return router.push(`${route}?page=${currentPage - 1}`);
+    }
+    if (handlePrev) {
+      return handlePrev();
+    }
   };
 
   return (
