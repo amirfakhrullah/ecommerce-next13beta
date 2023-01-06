@@ -59,7 +59,10 @@ const SearchSection = () => {
             </div>
           </div>
           {search ? (
-            <SearchProductSection search={search} />
+            <SearchProductSection
+              search={search}
+              onClose={() => setOpen(false)}
+            />
           ) : (
             <NotFoundText>Start Typing...</NotFoundText>
           )}

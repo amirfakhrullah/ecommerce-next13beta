@@ -11,7 +11,8 @@ const ProductCard = ({
   image,
   price,
   _count: { orderItems: totalOrdered },
-}: FullProductClient) => {
+  handleClickAfter,
+}: FullProductClient & { handleClickAfter?: () => void }) => {
   const router = useRouter();
 
   return (
@@ -28,7 +29,12 @@ const ProductCard = ({
       <div className="flex flex-col justify-between flex-1">
         <p
           className="text-sm cursor-pointer hover:underline hover:text-red-800 ease-in duration-150"
-          onClick={() => router.push(`/products/${id}`)}
+          onClick={() => {
+            router.push(`/products/${id}`);
+            if (handleClickAfter) {
+              handleClickAfter();
+            }
+          }}
         >
           {name}
         </p>

@@ -11,8 +11,9 @@ import ProductGrids from "../../ProductGrids";
 
 interface SearchProductSection {
   search: string;
+  onClose?: () => void;
 }
-const SearchProductSection = ({ search }: SearchProductSection) => {
+const SearchProductSection = ({ search, onClose }: SearchProductSection) => {
   const [page, setPage] = useState(1);
 
   const { data: products, isLoading } = trpc.searchProducts.useQuery(
@@ -33,7 +34,7 @@ const SearchProductSection = ({ search }: SearchProductSection) => {
   }
   return (
     <>
-      <ProductGrids products={products} />
+      <ProductGrids products={products} handleClickAfter={onClose} />
       {products.length !== 0 && (
         <PaginationButtons
           currentPage={page}
