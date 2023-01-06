@@ -1,12 +1,11 @@
-import { NextPage } from "next";
 import { notFound } from "next/navigation";
 import { use } from "react";
 import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import PaginationButtons from "../../../components/buttons/PaginationButtons";
 import CategoryHero from "../../../components/heros/CategoryHero";
-import { PRODUCTS_PER_PAGE } from "../../../components/sections/AllProductsSection";
 import FilterProductsByCategory from "../../../components/sections/FilterProductsByCategory";
+import { PRODUCTS_PER_PAGE } from "../../../constants";
 import { fetchProductsByCategory } from "../../../handlers/fetchProductsByCategory";
 
 interface PageProps {

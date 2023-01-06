@@ -18,6 +18,7 @@ const SearchSection = () => {
     debounce((val: string) => {
       setSearch(val);
     }, 500),
+    // eslint-disable-next-line
     []
   );
 
