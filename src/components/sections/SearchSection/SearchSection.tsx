@@ -52,11 +52,12 @@ const SearchSection = () => {
               value={inputValue}
               onChange={handleInputChange}
               placeholder="Search something"
-              className="px-3 py-1 border border-zinc-300 focus:outline-none rounded-md w-[40%]"
+              className="py-3 px-6 border border-zinc-300 focus:outline-none rounded-md w-[40%]"
             />
-            <div onClick={handleOpen} className="cursor-pointer">
-              <AiOutlineClose />
-            </div>
+            <Button color="secondary" localLoaderOnClick={false} onClick={handleOpen} className="py-3 px-6">
+              Close
+              <AiOutlineClose className="ml-1" />
+            </Button>
           </div>
           {search ? (
             <SearchProductSection
