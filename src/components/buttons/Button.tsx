@@ -36,7 +36,7 @@ const Button = ({
   );
   const secondaryClassName = cn(
     baseClassName,
-    "border border-zinc-300 hover:bg-zinc-200 text-zinc-500",
+    "border border-zinc-300 hover:bg-zinc-200 text-zinc-600",
     loadStatus || (disabled && "bg-zinc-200 cursor-not-allowed")
   );
   const redClassName = cn(

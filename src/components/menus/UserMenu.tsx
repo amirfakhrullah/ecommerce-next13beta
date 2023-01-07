@@ -4,7 +4,6 @@ import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
 import cn from "../../helpers/cn";
 import UserAvatar from "../Avatar";
 import Button from "../buttons/Button";
@@ -41,7 +40,7 @@ const UserMenu = ({ user }: { user: User }) => {
         <div className="border-t border-zinc-300 my-2" />
         <Button
           color="secondary"
-          className="w-full py-2 mb-1 text-zinc-600"
+          className="w-full py-2 mb-1"
           onClick={() => router.push("/user")}
         >
           Manage

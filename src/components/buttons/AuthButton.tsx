@@ -1,15 +1,12 @@
+"use client";
+
 import { SignInButton } from "./SignInButton";
 import UserMenu from "../menus/UserMenu";
-import { User } from "next-auth";
+import { useUserContext } from "../../providers/UserProvider";
 
-interface AuthButtonProps {
-  user:
-    | (User & {
-        id: string;
-      })
-    | undefined;
-}
-const AuthButton = ({ user }: AuthButtonProps) => {
+const AuthButton = () => {
+  const { user } = useUserContext();
+  
   if (!user) {
     return <SignInButton />;
   }

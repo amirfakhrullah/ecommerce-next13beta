@@ -27,7 +27,7 @@ export default function RootLayout({
           <TRPCProvider>
             <CartContextProvider>
               <>
-                <Header user={user} />
+                <Header />
                 {children}
                 <Toaster position="top-center" />
                 <Footer />
