@@ -2,6 +2,7 @@ import { z } from "zod";
 import { LIMIT_SEARCH_INPUT, PRODUCTS_PER_PAGE } from "../../constants";
 import { getProductsBySearch } from "../handlers/fetchProducts";
 import { procedure, router } from "../trpc";
+import { userRoutes } from "./user.route";
 
 export const appRouter = router({
   searchProducts: procedure
@@ -21,6 +22,7 @@ export const appRouter = router({
         ctx.prisma
       );
     }),
+  ...userRoutes,
 });
 
 // export type definition of API

@@ -22,6 +22,8 @@ model Product {
   category    Category    @relation(fields: [categoryId], references: [id])
   categoryId  String
   orderItems  OrderItem[]
+  createdAt   DateTime    @default(now())
+  updatedAt   DateTime?
 }
 
 model Category {
@@ -54,6 +56,8 @@ model Order {
   userId     String
   status     Status
   orderItems OrderItem[]
+  createdAt  DateTime    @default(now())
+  updatedAt  DateTime?
 }
 
 model Address {
@@ -112,7 +116,7 @@ model User {
   sessions      Session[]
   orders        Order[]
   address       Address?
-  userType      UserType @default(User)
+  userType      UserType  @default(User)
 }
 
 model VerificationToken {

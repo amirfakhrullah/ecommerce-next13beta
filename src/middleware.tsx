@@ -15,5 +15,5 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
 }
 
 export const config = {
-  matcher: "/user",
+  matcher: "/user/:path*",
 };

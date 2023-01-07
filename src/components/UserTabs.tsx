@@ -1,7 +1,6 @@
 "use client";
 
 import { useRouter, usePathname } from "next/navigation";
-import { useState } from "react";
 import { userTabs } from "../constants";
 import cn from "../helpers/cn";
 
