@@ -42,17 +42,17 @@ const SearchSection = () => {
         dismiss={{
           enabled: false,
         }}
-        className="w-full mx-auto max-w-[77rem] xl:px-0 px-2 bg-white mt-20 shadow-lg border-zinc-300 rounded-md"
+        className="w-full mx-auto max-w-[77rem] xl:px-0 px-2 pt-6 bg-white mt-20 shadow-lg border-zinc-300 rounded-md"
         open={open}
         handler={handleOpen}
       >
         <DialogBody className="block">
-          <div className="mx-auto max-w-6xl flex flex-row items-center justify-between py-4 border-b border-zinc-300">
+          <div className="mx-auto max-w-6xl flex flex-row items-center justify-between pb-4 border-b border-zinc-300">
             <input
               value={inputValue}
               onChange={handleInputChange}
-              placeholder="Search"
-              className="py-3 px-6 border border-zinc-300 focus:outline-none rounded-md w-[40%]"
+              placeholder="Search something..."
+              className="sm:py-3 py-[10px] px-6 border border-zinc-300 focus:outline-none rounded-md sm:w-[40%] w-full sm:mr-0 mr-1"
             />
             <Button
               color="secondary"
