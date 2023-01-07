@@ -9,7 +9,7 @@ const UserTabs = () => {
   const path = usePathname();
 
   return (
-    <div className="sm:border-t-0 border-t border-b border-zinc-300 sm:px-0 px-1">
+    <div className="border border-zinc-300 sm:px-0 px-1">
       <div
         className={cn(
           "grid gap-1 md:w-[60%] w-full",

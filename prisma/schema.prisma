@@ -114,6 +114,7 @@ model User {
   image         String?
   accounts      Account[]
   sessions      Session[]
+  createdAt     DateTime  @default(now())
   orders        Order[]
   address       Address?
   userType      UserType  @default(User)
