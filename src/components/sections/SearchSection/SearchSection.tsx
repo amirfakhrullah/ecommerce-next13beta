@@ -42,31 +42,38 @@ const SearchSection = () => {
         dismiss={{
           enabled: false,
         }}
-        className="w-full mx-auto max-w-7xl bg-white mt-20 shadow-lg border-zinc-300 rounded-md"
+        className="w-full mx-auto max-w-[77rem] bg-white mt-20 shadow-lg border-zinc-300 rounded-md"
         open={open}
         handler={handleOpen}
       >
         <DialogBody className="block">
-          <div className="p-4 flex flex-row items-center justify-between pb-4 mb-4 border-b border-zinc-300">
+          <div className="mx-auto max-w-6xl flex flex-row items-center justify-between py-4 border-b border-zinc-300">
             <input
               value={inputValue}
               onChange={handleInputChange}
-              placeholder="Search something"
+              placeholder="Search"
               className="py-3 px-6 border border-zinc-300 focus:outline-none rounded-md w-[40%]"
             />
-            <Button color="secondary" localLoaderOnClick={false} onClick={handleOpen} className="py-3 px-6">
+            <Button
+              color="secondary"
+              localLoaderOnClick={false}
+              onClick={handleOpen}
+              className="py-3 px-6"
+            >
               Close
               <AiOutlineClose className="ml-1" />
             </Button>
           </div>
-          {search ? (
-            <SearchProductSection
-              search={search}
-              onClose={() => setOpen(false)}
-            />
-          ) : (
-            <NotFoundText>Start Typing...</NotFoundText>
-          )}
+          <div className="pt-4 max-h-[70vh] overflow-y-auto">
+            {search ? (
+              <SearchProductSection
+                search={search}
+                onClose={() => setOpen(false)}
+              />
+            ) : (
+              <NotFoundText>Start Typing...</NotFoundText>
+            )}
+          </div>
         </DialogBody>
       </Dialog>
     </>
