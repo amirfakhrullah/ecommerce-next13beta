@@ -12,7 +12,7 @@ export interface FullProduct extends Product {
 
 // FullProduct data but converting sizes types from decimal to string for the client side usage
 export interface FullProductClient
-  extends Omit<FullProduct, "sizes", "createdAt", "updatedAt"> {
+  extends Omit<FullProduct, "sizes" | "createdAt" | "updatedAt"> {
   sizes: string[];
   createdAt: string;
   updatedAt?: string | null;
