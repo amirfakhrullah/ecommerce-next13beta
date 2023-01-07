@@ -1,5 +1,5 @@
 import { use } from "react";
-import { fetchPopularProducts } from "../../handlers/fetchProducts";
+import { fetchPopularProducts } from "../../server/handlers/fetchProducts";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
 import ProductGrids from "../ProductGrids";

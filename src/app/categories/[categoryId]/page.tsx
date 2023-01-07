@@ -6,7 +6,7 @@ import PaginationButtons from "../../../components/buttons/PaginationButtons";
 import CategoryHero from "../../../components/heros/CategoryHero";
 import FilterProductsByCategory from "../../../components/sections/FilterProductsByCategory";
 import { PRODUCTS_PER_PAGE } from "../../../constants";
-import { fetchProductsByCategory } from "../../../handlers/fetchProductsByCategory";
+import { fetchProductsByCategory } from "../../../server/handlers/fetchProductsByCategory";
 
 interface PageProps {
   params: {

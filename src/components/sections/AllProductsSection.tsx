@@ -1,6 +1,6 @@
 import { use } from "react";
 import { PRODUCTS_PER_PAGE } from "../../constants";
-import { fetchProducts } from "../../handlers/fetchProducts";
+import { fetchProducts } from "../../server/handlers/fetchProducts";
 import PaginationButtons from "../buttons/PaginationButtons";
 import ProductGrids from "../ProductGrids";
 

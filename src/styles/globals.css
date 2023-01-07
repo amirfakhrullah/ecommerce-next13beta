@@ -3,9 +3,11 @@
 @tailwind utilities;
 
 body {
-    @apply text-zinc-800;
+  color: #27272a;
 }
 
 p {
-    @apply text-lg text-zinc-600;
+  font-size: 1.125rem; /* 18px */
+  line-height: 1.75rem;
+  color: #52525b;
 }

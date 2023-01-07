@@ -1,6 +1,6 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import { massageProductClientList } from "../helpers/massageProductClient";
-import db from "../lib/servers/prismadb";
+import { massageProductClientList } from "../../helpers/massageProductClient";
+import db from "../../lib/servers/prismadb";
 
 export const fetchProductsByCategory = async (
   categoryId: string,

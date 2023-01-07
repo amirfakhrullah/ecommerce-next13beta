@@ -2,8 +2,8 @@ import { Prisma, PrismaClient } from "@prisma/client";
 import {
   massageProductClient,
   massageProductClientList,
-} from "../helpers/massageProductClient";
-import db from "../lib/servers/prismadb";
+} from "../../helpers/massageProductClient";
+import db from "../../lib/servers/prismadb";
 
 export const fetchPopularProducts = async (
   limit: number,

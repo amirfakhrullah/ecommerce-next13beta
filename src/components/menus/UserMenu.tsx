@@ -3,16 +3,16 @@
 import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
 import { User } from "next-auth";
 import { signOut } from "next-auth/react";
+import { useRouter } from "next/navigation";
 import { useState } from "react";
 import cn from "../../helpers/cn";
 import UserAvatar from "../Avatar";
 import Button from "../buttons/Button";
 
 const UserMenu = ({ user }: { user: User }) => {
-  const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const handleSignOut = async () => {
-    setIsLoading(true);
     await signOut();
   };
 
@@ -34,15 +34,20 @@ const UserMenu = ({ user }: { user: User }) => {
         </div>
       </MenuHandler>
       <MenuList className="rounded-md bg-zinc-100 p-3 shadow-md mb-2">
-        <p className="text-[14px] font-medium" onClick={() => signOut()}>{user.name}</p>
+        <p className="text-[14px] font-medium" onClick={() => signOut()}>
+          {user.name}
+        </p>
         <p className="text-[14px]">{user.email}</p>
         <div className="border-t border-zinc-300 my-2" />
         <Button
-          color="primary"
-          className="w-full py-2"
-          onClick={handleSignOut}
-          isLoading={isLoading}
+          color="secondary"
+          className="w-full py-2 mb-1 text-zinc-600"
+          onClick={() => router.push("/user")}
         >
+          Manage
+        </Button>
+
+        <Button color="primary" className="w-full py-2" onClick={handleSignOut}>
           Logout
         </Button>
       </MenuList>

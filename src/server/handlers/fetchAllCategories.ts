@@ -1,5 +1,5 @@
 import { Prisma, PrismaClient } from "@prisma/client";
-import db from "../lib/servers/prismadb";
+import db from "../../lib/servers/prismadb";
 
 export const fetchAllCategories = async (
   prisma?: PrismaClient<

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import { LIMIT_SEARCH_INPUT, PRODUCTS_PER_PAGE } from "../../constants";
-import { getProductsBySearch } from "../../handlers/fetchProducts";
+import { getProductsBySearch } from "../handlers/fetchProducts";
 import { procedure, router } from "../trpc";
 
 export const appRouter = router({
