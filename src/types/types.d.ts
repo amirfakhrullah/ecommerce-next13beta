@@ -1,6 +1,13 @@
 import { Product } from "@prisma/client";
+import { User } from "next-auth";
 import { z } from "zod";
 import { cartItemSchema } from "../helpers/validations/cartItemSchema";
+
+export type UserSession =
+  | (User & {
+      id: string;
+    })
+  | undefined;
 
 // product data including its category and number or orderedItems
 export interface FullProduct extends Product {

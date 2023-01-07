@@ -1,13 +1,7 @@
 "use client";
 
-import { User } from "next-auth";
 import React, { createContext, useContext, useState } from "react";
-
-export type UserSession =
-  | (User & {
-      id: string;
-    })
-  | undefined;
+import { UserSession } from "../types/types";
 
 interface UserContextValues {
   user: UserSession;
