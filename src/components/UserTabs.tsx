@@ -14,7 +14,7 @@ const UserTabs = () => {
       <div
         className={cn(
           "grid gap-1 md:w-[60%] w-full",
-          `grid-cols-${userTabs.length}`
+          `grid-cols-4`
         )}
       >
         {userTabs.map(({ href, label }) => (
