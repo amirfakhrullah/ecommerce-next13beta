@@ -1,5 +1,5 @@
 import { use } from "react";
-import { fetchProductSuggestions } from "../../server/handlers/products/fetchProductsByCategory";
+import { fetchProductSuggestions } from "../../server/handlers/products/fetchProductSuggestions";
 import { FullProductClient } from "../../types/types";
 import Border from "../Border";
 import SeeAllButton from "../buttons/SeeAllButton";
