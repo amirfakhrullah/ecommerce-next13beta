@@ -7,3 +7,5 @@ export const PRODUCTS_PER_PAGE = 12;
 export const DEFAULT_SIZES = ["9", "9.5", "10", "10.5", "11", "11.5", "12", "12.5"];
 
 export const LIMIT_CART_SIZE = 5;
+
+export const LIMIT_SEARCH_INPUT = 50;

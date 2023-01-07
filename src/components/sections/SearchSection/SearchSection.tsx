@@ -3,10 +3,12 @@
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Button from "../../buttons/Button";
 import { Dialog, DialogBody } from "@material-tailwind/react";
-import { useCallback, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { debounce } from "lodash";
 import SearchProductSection from "./SearchProductSection";
 import NotFoundText from "../../NotFoundText";
+import { LIMIT_SEARCH_INPUT } from "../../../constants";
+import { toast } from "react-hot-toast";
 
 const SearchSection = () => {
   const [open, setOpen] = useState(false);
@@ -24,7 +26,11 @@ const SearchSection = () => {
 
   const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value);
-    debounced(e.target.value);
+
+    const trimmedValue = e.target.value.slice(0, LIMIT_SEARCH_INPUT).trim();
+    if (trimmedValue !== search) {
+      debounced(e.target.value.slice(0, LIMIT_SEARCH_INPUT).trim());
+    }
   };
 
   return (

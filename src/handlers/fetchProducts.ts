@@ -89,14 +89,20 @@ export const getProductsBySearch = async (
     Prisma.RejectOnNotFound | Prisma.RejectPerOperation | undefined
   >
 ) => {
+  const searchValues = search.split(" ");
+  if (searchValues.length === 0) return [];
   const products = await (prisma ?? db).product.findMany({
     where: {
       OR: [
         {
-          name: {
-            contains: search,
-            mode: "insensitive",
-          },
+          AND: searchValues.flatMap((val) => [
+            {
+              name: {
+                contains: val,
+                mode: "insensitive",
+              },
+            },
+          ]),
         },
         {
           category: {
@@ -105,6 +111,18 @@ export const getProductsBySearch = async (
               mode: "insensitive",
             },
           },
+        },
+        {
+          AND: searchValues.flatMap((val) => [
+            {
+              category: {
+                name: {
+                  contains: val,
+                  mode: "insensitive",
+                },
+              },
+            },
+          ]),
         },
       ],
     },

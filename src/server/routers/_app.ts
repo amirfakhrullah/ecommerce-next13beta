@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { PRODUCTS_PER_PAGE } from "../../constants";
+import { LIMIT_SEARCH_INPUT, PRODUCTS_PER_PAGE } from "../../constants";
 import { getProductsBySearch } from "../../handlers/fetchProducts";
 import { procedure, router } from "../trpc";
 
@@ -7,7 +7,7 @@ export const appRouter = router({
   searchProducts: procedure
     .input(
       z.object({
-        search: z.string(),
+        search: z.string().max(LIMIT_SEARCH_INPUT),
         page: z.number(),
       })
     )
