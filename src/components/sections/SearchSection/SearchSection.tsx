@@ -8,7 +8,6 @@ import { debounce } from "lodash";
 import SearchProductSection from "./SearchProductSection";
 import NotFoundText from "../../NotFoundText";
 import { LIMIT_SEARCH_INPUT } from "../../../constants";
-import { toast } from "react-hot-toast";
 
 const SearchSection = () => {
   const [open, setOpen] = useState(false);
