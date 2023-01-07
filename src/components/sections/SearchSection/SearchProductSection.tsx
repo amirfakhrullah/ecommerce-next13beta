@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { PRODUCTS_PER_PAGE } from "../../../constants";
-import { trpc } from "../../../providers/TRPCProvider";
+import { trpc } from "../../../providers/trpcProvider";
 import PaginationButtons from "../../buttons/PaginationButtons";
 import Loader from "../../Loader";
 import NotFoundText from "../../NotFoundText";
