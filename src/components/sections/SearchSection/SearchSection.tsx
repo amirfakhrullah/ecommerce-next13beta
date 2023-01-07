@@ -47,7 +47,7 @@ const SearchSection = () => {
         handler={handleOpen}
       >
         <DialogBody className="block">
-          <div className="mx-auto max-w-6xl flex flex-row items-center justify-between py-4 border-b border-zinc-300">
+          <div className="mx-auto max-w-6xl flex flex-row items-center justify-between pb-4 pt-3 border-b border-zinc-300">
             <input
               value={inputValue}
               onChange={handleInputChange}
