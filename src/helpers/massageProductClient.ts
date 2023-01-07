@@ -6,6 +6,8 @@ export const massageProductClient = (
   ...product,
   // decimal cannot be rendered on the client side later on, so we convert it to string
   sizes: product.sizes.map((size) => size.toString()),
+  createdAt: product.createdAt.toUTCString(),
+  updatedAt: product.updatedAt?.toUTCString(),
 });
 
 export const massageProductClientList = (

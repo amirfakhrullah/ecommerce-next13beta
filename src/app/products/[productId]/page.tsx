@@ -4,7 +4,7 @@ import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import ProductSection from "../../../components/sections/ProductSection";
 import ProductSuggestionSection from "../../../components/sections/ProductSuggestionSection";
-import { fetchProductById } from "../../../server/handlers/fetchProducts";
+import { fetchProductById } from "../../../server/handlers/products/fetchProductById";
 
 interface PageProps {
   params: {

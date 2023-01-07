@@ -1,5 +1,4 @@
 import * as trpc from "@trpc/server";
-import db from "../lib/servers/prismadb";
 import { UserType } from "@prisma/client";
 import { procedure } from "./trpc";
 

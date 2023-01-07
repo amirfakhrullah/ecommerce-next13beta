@@ -5,7 +5,7 @@ import Footer from "../components/Footer";
 import CartContextProvider from "../providers/CartContextProvider";
 import Toaster from "../components/Toaster";
 import { AnalyticsWrapper } from "../lib/clients/Analytics";
-import { TRPCProvider } from "../providers/trpcProvider";
+import { TRPCProvider } from "../providers/TRPCProvider";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 

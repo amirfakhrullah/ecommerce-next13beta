@@ -1,6 +1,6 @@
 import { use } from "react";
 import { PRODUCTS_PER_PAGE } from "../../constants";
-import { fetchProducts } from "../../server/handlers/fetchProducts";
+import { fetchAllProducts } from "../../server/handlers/products/fetchAllProducts";
 import PaginationButtons from "../buttons/PaginationButtons";
 import ProductGrids from "../ProductGrids";
 
@@ -10,7 +10,7 @@ interface Props {
 
 const AllProductsSection = ({ page }: Props) => {
   const skip = page > 1 ? (page - 1) * PRODUCTS_PER_PAGE : undefined;
-  const products = use(fetchProducts(skip, PRODUCTS_PER_PAGE));
+  const products = use(fetchAllProducts(skip, PRODUCTS_PER_PAGE));
 
   return (
     <>

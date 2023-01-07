@@ -1,13 +1,12 @@
-import { userProcedure } from "../procedures";
-import { z } from "zod";
+import { userProcedure } from "../../procedures";
+import {
+  orderHistoryInputSchema,
+  userIdSchema,
+} from "../../../helpers/validations/userRoutesSchema";
 
 export const userRoutes = {
   getProfileData: userProcedure
-    .input(
-      z.object({
-        id: z.string().max(30),
-      })
-    )
+    .input(userIdSchema)
     .query(async ({ ctx, input }) => {
       return await ctx.prisma.user.findFirst({
         where: {
@@ -16,13 +15,7 @@ export const userRoutes = {
       });
     }),
   getOrderHistory: userProcedure
-    .input(
-      z.object({
-        userId: z.string().max(30),
-        skip: z.number().optional(),
-        take: z.number(),
-      })
-    )
+    .input(orderHistoryInputSchema)
     .query(async ({ ctx, input }) => {
       const { userId, take, skip } = input;
       return await ctx.prisma.order.findMany({
@@ -41,11 +34,7 @@ export const userRoutes = {
       });
     }),
   getAddress: userProcedure
-    .input(
-      z.object({
-        id: z.string().max(30),
-      })
-    )
+    .input(userIdSchema)
     .query(async ({ ctx, input }) => {
       return await ctx.prisma.address.findFirst({
         where: {

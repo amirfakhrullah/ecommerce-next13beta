@@ -1,7 +1,7 @@
 "use client";
 
 import React, { createContext, useContext } from "react";
-import { cartsSchema } from "../helpers/validations/zodValidations";
+import { cartsSchema } from "../helpers/validations/cartItemSchema";
 import useLocalStorage from "../hooks/useLocalStorage";
 import { CartItem } from "../types/types";
 
