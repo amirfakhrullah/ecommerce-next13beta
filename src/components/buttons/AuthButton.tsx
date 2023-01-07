@@ -1,11 +1,15 @@
 import { SignInButton } from "./SignInButton";
-import { getCurrentUser } from "../../lib/servers/session";
 import UserMenu from "../menus/UserMenu";
-import { use } from "react";
+import { User } from "next-auth";
 
-const AuthButton = () => {
-  const user = use(getCurrentUser());
-
+interface AuthButtonProps {
+  user:
+    | (User & {
+        id: string;
+      })
+    | undefined;
+}
+const AuthButton = ({ user }: AuthButtonProps) => {
   if (!user) {
     return <SignInButton />;
   }

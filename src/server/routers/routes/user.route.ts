@@ -1,26 +1,21 @@
 import { userProcedure } from "../../procedures";
-import {
-  orderHistoryInputSchema,
-  userIdSchema,
-} from "../../../helpers/validations/userRoutesSchema";
+import { orderHistoryInputSchema } from "../../../helpers/validations/userRoutesSchema";
 
 export const userRoutes = {
-  getProfileData: userProcedure
-    .input(userIdSchema)
-    .query(async ({ ctx, input }) => {
-      return await ctx.prisma.user.findFirst({
-        where: {
-          id: input.id,
-        },
-      });
-    }),
+  getProfileData: userProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.user.findFirst({
+      where: {
+        id: ctx.session.user.id,
+      },
+    });
+  }),
   getOrderHistory: userProcedure
     .input(orderHistoryInputSchema)
     .query(async ({ ctx, input }) => {
-      const { userId, take, skip } = input;
+      const { take, skip } = input;
       return await ctx.prisma.order.findMany({
         where: {
-          userId,
+          userId: ctx.session.user.id,
         },
         include: {
           orderItems: {
@@ -33,13 +28,11 @@ export const userRoutes = {
         ...(skip && { skip }),
       });
     }),
-  getAddress: userProcedure
-    .input(userIdSchema)
-    .query(async ({ ctx, input }) => {
-      return await ctx.prisma.address.findFirst({
-        where: {
-          userId: input.id,
-        },
-      });
-    }),
+  getAddress: userProcedure.query(async ({ ctx }) => {
+    return await ctx.prisma.address.findFirst({
+      where: {
+        userId: ctx.session.user.id,
+      },
+    });
+  }),
 };

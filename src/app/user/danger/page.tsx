@@ -1,7 +1,7 @@
 import NotFoundText from "../../../components/NotFoundText";
 
-const ShippingPage = () => {
+const Danger = () => {
   return <NotFoundText>Shipping Page in progress..</NotFoundText>;
 };
 
-export default ShippingPage;
+export default Danger;

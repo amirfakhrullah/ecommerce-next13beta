@@ -34,11 +34,11 @@ export const userTabs: UserTabObj[] = [
     label: "Order History",
   },
   {
-    href: "/user/shipping",
-    label: "Shipping Address",
-  },
-  {
     href: "/user/card",
     label: "Debit/Credit Card",
+  },
+  {
+    href: "/user/danger",
+    label: "Danger Section",
   },
 ];
