@@ -31,7 +31,7 @@ const CartSection = ({
 
   const router = useRouter();
 
-  const { isLoading, isRefetching } = trpc.getCartProducts.useQuery(
+  const { isLoading, isRefetching, isFetching } = trpc.getCartProducts.useQuery(
     cartItems.map((item) => ({
       id: item.id,
       size: item.size,
@@ -113,7 +113,7 @@ const CartSection = ({
     );
   };
 
-  if (isLoading || isRefetching) return <Loader />;
+  if (isLoading || isRefetching || isFetching) return <Loader />;
 
   return (
     <div className="mx-auto max-w-4xl w-full py-4 sm:px-0 px-2">

@@ -31,7 +31,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
       switch (paymentIntent?.status) {
         case "succeeded":
           toast.success("Payment succeeded!");
-          return router.push("/orders");
+          return router.push("/");
         case "processing":
           return toast("Your payment is processing.");
         // case "requires_payment_method":
