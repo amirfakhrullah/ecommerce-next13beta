@@ -9,7 +9,7 @@ import {
 import Button from "../buttons/Button";
 import CartSection from "../sections/CartSection";
 import { useUserContext } from "../../providers/UserProvider";
-import { notFound, useRouter } from "next/navigation";
+import { notFound, usePathname, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -17,7 +17,9 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
   const stripe = useStripe();
   const elements = useElements();
   const { user } = useUserContext();
+
   const router = useRouter();
+  const path = usePathname()
 
   const [isPaying, setIsPaying] = useState(false);
 
