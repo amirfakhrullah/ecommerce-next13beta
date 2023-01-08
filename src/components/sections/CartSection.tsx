@@ -11,6 +11,7 @@ import { useMemo, useState } from "react";
 import Button from "../buttons/Button";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
+import { displayNumbers } from "../../helpers/numbers";
 
 interface ProductMap {
   [key: string]: {
@@ -105,7 +106,7 @@ const CartSection = () => {
           )}
           <div className="w-full flex flex-col items-end my-10">
             <p className="font-medium mb-2">Your Total</p>
-            <h2 className="text-4xl font-black mb-4">${totalPrice}</h2>
+            <h2 className="text-4xl font-black mb-4">${displayNumbers(totalPrice)}</h2>
             <div className="flex flex-row items-center gap-2">
               <Button
                 onClick={() => router.push("/products")}

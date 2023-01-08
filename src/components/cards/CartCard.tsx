@@ -4,6 +4,7 @@ import Image from "next/image";
 import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
+import { displayNumbers } from "../../helpers/numbers";
 import { useCartContext } from "../../providers/CartContextProvider";
 import { CartItem } from "../../types/types";
 import Button from "../buttons/Button";
@@ -50,7 +51,7 @@ const CartCard = ({ item, price, index }: Props) => {
           {item.name}
         </p>
         <p className="text-[14px] font-medium">US M{item.size}</p>
-        <p className="text-md font-bold">${price}</p>
+        <p className="text-md font-bold">${displayNumbers(price)}</p>
         <div className="flex justify-end">
           <Button
             onClick={() => handleRemove()}
