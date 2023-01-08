@@ -7,7 +7,11 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "ts-node": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\""
+  },
+  "prisma": {
+    "seed": "npm run ts-node --transpile-only prisma/seed.ts"
   },
   "dependencies": {
     "@material-tailwind/react": "^1.2.4",
@@ -37,6 +41,7 @@
     "react-loader-spinner": "^5.3.4",
     "superjson": "^1.12.1",
     "tailwind-merge": "^1.8.1",
+    "ts-node": "^10.9.1",
     "typescript": "4.9.4",
     "zod": "^3.20.2"
   },

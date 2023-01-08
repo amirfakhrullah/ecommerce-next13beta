@@ -14,14 +14,16 @@ interface ProductCartProps {
 }
 
 const ProductCart = ({ product }: ProductCartProps) => {
-  const { id, name, image, sizes } = product;
+  const { id, name, image, sizes, quantity } = product;
   const [size, setSize] = useState<string | undefined>();
 
   const { cartItems, setCartItems } = useCartContext();
   const [isLoading, setIsLoading] = useState(false);
 
+  const soldOut = quantity === 0;
+
   const handleAddToCart = () => {
-    if (!size) return;
+    if (!size || soldOut) return;
     if (cartItems.length >= LIMIT_CART_SIZE) {
       return toast.error(
         `You are allowed to add only ${LIMIT_CART_SIZE} items to the cart`
@@ -48,13 +50,17 @@ const ProductCart = ({ product }: ProductCartProps) => {
     <div className="pt-3">
       <p className="text-[16px]">Select Size:</p>
       <div className="flex flex-row flex-wrap gap-1 pt-2 pb-5">
-        {(sizes.length ? sizes : DEFAULT_SIZES).map((currSize, idx) => (
+        {DEFAULT_SIZES.map((currSize, idx) => (
           <div
-            onClick={() => setSize(currSize)}
+            onClick={() =>
+              (!soldOut || sizes.includes(currSize)) && setSize(currSize)
+            }
             key={id + idx}
             className={cn(
               "cursor-pointer border border-zinc-300 hover:border-zinc-800 hover:text-zinc-800 p-2 ease-in duration-75",
-              size === currSize && "bg-zinc-700 text-white hover:text-white"
+              size === currSize && "bg-zinc-700 text-white hover:text-white",
+              (soldOut || !sizes.includes(currSize)) &&
+                "cursor-not-allowed bg-zinc-300 text-zinc-500 hover:border-zinc-300 hover:text-zinc-500"
             )}
           >
             US M {currSize}

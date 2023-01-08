@@ -1,11 +1,17 @@
 export const PRODUCTS_PER_PAGE = 12;
 
-/**
- * Temporary used only
- * Haven't fully migrated the sizes yet
- */
 export const DEFAULT_SIZES = [
-  "9",
+  "3.5",
+  "4",
+  "4.5",
+  "5",
+  "5.5",
+  "6",
+  "6.5",
+  "7",
+  "7.5",
+  "8",
+  "8.5",
   "9.5",
   "10",
   "10.5",
@@ -13,6 +19,14 @@ export const DEFAULT_SIZES = [
   "11.5",
   "12",
   "12.5",
+  "13",
+  "13.5",
+  "14",
+  "14.5",
+  "15",
+  "16",
+  "17",
+  "18",
 ];
 
 export const LIMIT_CART_SIZE = 5;
