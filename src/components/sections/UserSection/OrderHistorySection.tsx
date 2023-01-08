@@ -7,7 +7,7 @@ import NotFoundText from "../../../components/NotFoundText";
 import { PRODUCTS_PER_PAGE } from "../../../constants";
 import { trpc } from "../../../providers/trpcProvider";
 
-const OrderHistoryPage = () => {
+const OrderHistorySection = () => {
   const [page, setPage] = useState(1);
 
   const { isLoading } = trpc.getOrderHistory.useQuery(
@@ -25,7 +25,7 @@ const OrderHistoryPage = () => {
     return <Loader />;
   }
 
-  return <NotFoundText>Order History Page in progress..</NotFoundText>;
+  return <NotFoundText>Order History section is in development..</NotFoundText>;
 };
 
-export default OrderHistoryPage;
+export default OrderHistorySection;

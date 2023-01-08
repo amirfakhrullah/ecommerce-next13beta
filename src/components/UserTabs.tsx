@@ -1,34 +1,30 @@
 "use client";
 
-import { useRouter, usePathname } from "next/navigation";
+import React from "react";
 import { userTabs } from "../constants";
 import cn from "../helpers/cn";
 
-const UserTabs = () => {
-  const router = useRouter();
-  const path = usePathname();
-
+interface UserTabsProps {
+  tab: number;
+  setTab: React.Dispatch<React.SetStateAction<number>>;
+}
+const UserTabs = ({ tab, setTab }: UserTabsProps) => {
   return (
     <div className="border border-zinc-300 sm:px-0 px-1">
-      <div
-        className={cn(
-          "grid gap-1 md:w-[60%] w-full",
-          `grid-cols-4`
-        )}
-      >
-        {userTabs.map(({ href, label }) => (
+      <div className={cn("grid gap-1 md:w-[60%] w-full", `grid-cols-4`)}>
+        {userTabs.map(({ label }, idx) => (
           <div
             key={label}
-            onClick={() => router.push(href)}
+            onClick={() => setTab(idx)}
             className={cn(
               "col-span-1 sm:p-3 p-1 flex flex-row items-center justify-center cursor-pointer border-b border-gray-100 ease-in duration-100",
-              href === path && "border-red-800"
+              idx === tab && "border-red-800"
             )}
           >
             <p
               className={cn(
                 "text-[14px] text-center",
-                href === path && "text-zinc-900"
+                idx === tab && "text-zinc-900"
               )}
             >
               {label}
