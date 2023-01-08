@@ -47,7 +47,7 @@ const SearchSection = () => {
         dismiss={{
           enabled: false,
         }}
-        className="w-full mx-auto max-w-[77rem] xl:px-0 px-2 pt-6 bg-zinc-100 mt-20 shadow-md border-zinc-300 rounded-md"
+        className="w-full mx-auto max-w-[77rem] xl:px-0 px-2 pt-6 bg-gray-100 mt-20 shadow-md border border-zinc-300 rounded-md"
         open={open}
         handler={handleOpen}
       >
