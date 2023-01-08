@@ -8,6 +8,7 @@ import { trpc } from "../../../providers/trpcProvider";
 
 const ProfilePage = () => {
   const { isLoading } = trpc.getAddress.useQuery(undefined, {
+    refetchOnWindowFocus: false,
     onError: (err) => toast.error(err.message),
   });
 

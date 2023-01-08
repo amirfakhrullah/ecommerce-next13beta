@@ -1,5 +1,9 @@
 import { PRODUCTS_PER_PAGE } from "../../../constants";
-import { searchProductsSchema } from "../../../helpers/validations/productRoutesSchema";
+import {
+  getCartProductsInputSchema,
+  searchProductsSchema,
+} from "../../../helpers/validations/productRoutesSchema";
+import { getCartProducts } from "../../handlers/products/getCartProducts";
 import { getProductsBySearch } from "../../handlers/products/getProductsBySearch";
 import { procedure } from "../../trpc";
 
@@ -15,5 +19,10 @@ export const productRoutes = {
         (page - 1) * PRODUCTS_PER_PAGE,
         ctx.prisma
       );
+    }),
+  getCartProducts: procedure
+    .input(getCartProductsInputSchema)
+    .query(async ({ ctx, input }) => {
+      return await getCartProducts(input, ctx.prisma);
     }),
 };

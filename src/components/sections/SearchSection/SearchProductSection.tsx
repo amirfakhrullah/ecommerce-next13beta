@@ -23,6 +23,7 @@ const SearchProductSection = ({ search, onClose }: SearchProductSection) => {
     },
     {
       onError: (err) => toast(err.message),
+      refetchOnWindowFocus: false,
     }
   );
 

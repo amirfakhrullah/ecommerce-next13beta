@@ -9,10 +9,11 @@ import Button from "../buttons/Button";
 import SeeAllButton from "../buttons/SeeAllButton";
 import cn from "../../helpers/cn";
 import { toast } from "react-hot-toast";
-import { useRouter } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 
 const CheckoutBtn = () => {
   const router = useRouter();
+  const toHide = usePathname() === "/carts";
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);
@@ -26,6 +27,10 @@ const CheckoutBtn = () => {
       toast.success("Item successfully removed!");
     }, 200);
   };
+
+  if (toHide) {
+    return <></>;
+  }
 
   return (
     <Menu placement="bottom-end">

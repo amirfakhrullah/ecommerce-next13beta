@@ -1,7 +1,15 @@
-import NotFoundText from "../../components/NotFoundText";
+import Border from "../../components/Border";
+import BackButton from "../../components/buttons/BackButton";
+import CartSection from "../../components/sections/CartSection";
 
 const CartsPage = () => {
-  return <NotFoundText>Carts Page is in progress...</NotFoundText>;
+  return (
+    <>
+      <BackButton />
+      <Border />
+      <CartSection />
+    </>
+  );
 };
 
 export default CartsPage;

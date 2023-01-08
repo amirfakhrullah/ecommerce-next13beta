@@ -17,6 +17,7 @@ const OrderHistoryPage = () => {
     },
     {
       onError: (err) => toast.error(err.message),
+      refetchOnWindowFocus: false,
     }
   );
 
