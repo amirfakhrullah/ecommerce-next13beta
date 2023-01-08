@@ -26,6 +26,14 @@ export const paymentRoute = {
         await failOrder(order.id, ctx.prisma);
         throw new Error("There's an error with the stripe");
       }
+      await ctx.prisma.order.update({
+        where: {
+          id: order.id
+        },
+        data: {
+          stripePaymentIntent: paymentIntent.client_secret,
+        },
+      });
 
       return paymentIntent.client_secret;
     }),

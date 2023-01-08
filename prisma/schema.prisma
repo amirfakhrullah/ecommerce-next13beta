@@ -35,11 +35,10 @@ model Category {
 }
 
 enum Status {
-  InProgress
+  NotPaid
+  Processing
   Failed
   Paid
-  Cancel
-  OnTheWay
 }
 
 model OrderItem {
@@ -52,13 +51,14 @@ model OrderItem {
 }
 
 model Order {
-  id         String      @id @default(cuid())
-  user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId     String
-  status     Status      @default(InProgress)
-  orderItems OrderItem[]
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime?
+  id                  String      @id @default(cuid())
+  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId              String
+  status              Status      @default(NotPaid)
+  orderItems          OrderItem[]
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime?
+  stripePaymentIntent String?
 }
 
 model Address {
