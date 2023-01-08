@@ -35,6 +35,8 @@ model Category {
 }
 
 enum Status {
+  InProgress
+  Failed
   Paid
   Cancel
   OnTheWay
@@ -47,14 +49,13 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
   size      Decimal
-  quantity  Int
 }
 
 model Order {
   id         String      @id @default(cuid())
   user       User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId     String
-  status     Status
+  status     Status      @default(InProgress)
   orderItems OrderItem[]
   createdAt  DateTime    @default(now())
   updatedAt  DateTime?

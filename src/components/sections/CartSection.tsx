@@ -12,6 +12,7 @@ import Button from "../buttons/Button";
 import { IoArrowForwardOutline } from "react-icons/io5";
 import { useRouter } from "next/navigation";
 import { displayNumbers } from "../../helpers/numbers";
+import { useUserContext } from "../../providers/UserProvider";
 
 interface ProductMap {
   [key: string]: {
@@ -19,7 +20,12 @@ interface ProductMap {
     price: number;
   };
 }
-const CartSection = () => {
+const CartSection = ({
+  isCheckingOut = false,
+}: {
+  isCheckingOut?: boolean;
+}) => {
+  const { user } = useUserContext();
   const { cartItems, setCartItems } = useCartContext();
   const [productsMap, setProductsMap] = useState<ProductMap>({});
 
@@ -83,6 +89,30 @@ const CartSection = () => {
     [cartItems, productsMap]
   );
 
+  const { isLoading: isPaymentIntentLoading, mutate } =
+    trpc.createPaymentIntent.useMutation({
+      onError: (err) => toast.error(err.message),
+      onSuccess: (key) => {
+        if (!key) {
+          toast.error("There's an error occured with the payment system");
+        }
+        router.push(`/checkout?user_checkout_session=${key}`);
+      },
+      retry: false,
+    });
+
+  const handleCheckout = () => {
+    if (!user || !user.email) {
+      return toast.error("Please sign-in before checking out");
+    }
+    mutate(
+      cartItems.map((item) => ({
+        id: item.id,
+        size: item.size,
+      }))
+    );
+  };
+
   if (isLoading || isRefetching) return <Loader />;
 
   return (
@@ -106,28 +136,31 @@ const CartSection = () => {
           )}
           <div className="w-full flex flex-col items-end my-10">
             <p className="font-medium mb-2">Your Total</p>
-            <h2 className="text-4xl font-black mb-4">${displayNumbers(totalPrice)}</h2>
-            <div className="flex flex-row items-center gap-2">
-              <Button
-                onClick={() => router.push("/products")}
-                color="secondary"
-                className="px-6 py-3"
-              >
-                Continue Shopping
-              </Button>
+            <h2 className="text-4xl font-black mb-4">
+              ${displayNumbers(totalPrice)}
+            </h2>
+            {!isCheckingOut && (
+              <div className="flex flex-row items-center gap-2">
+                <Button
+                  onClick={() => router.push("/products")}
+                  color="secondary"
+                  className="px-6 py-3"
+                >
+                  Continue Shopping
+                </Button>
 
-              <Button
-                onClick={() =>
-                  toast.success("The checkout system is in development!")
-                }
-                color="primary"
-                className="px-6 py-3"
-                localLoaderOnClick={false}
-              >
-                Checkout
-                <IoArrowForwardOutline className="text-xl ml-2" />
-              </Button>
-            </div>
+                <Button
+                  onClick={() => handleCheckout()}
+                  color="primary"
+                  className="px-6 py-3"
+                  localLoaderOnClick={false}
+                  isLoading={isPaymentIntentLoading}
+                >
+                  Checkout
+                  <IoArrowForwardOutline className="text-xl ml-2" />
+                </Button>
+              </div>
+            )}
           </div>
         </>
       ) : (

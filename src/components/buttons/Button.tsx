@@ -5,7 +5,7 @@ import { FiLoader } from "react-icons/fi";
 import cn from "../../helpers/cn";
 
 interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
-  onClick: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
+  onClick?: (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => void;
   isLoading?: boolean;
   localLoaderOnClick?: boolean; // default to true
   disabled?: boolean;
@@ -48,7 +48,9 @@ const Button = ({
   const handleClick = (e: React.MouseEvent<HTMLButtonElement, MouseEvent>) => {
     if (disabled || loadStatus) return;
     setLocalLoading(true);
-    return onClick(e);
+    if (onClick) {
+      return onClick(e);
+    }
   };
 
   return (
