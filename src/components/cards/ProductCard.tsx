@@ -16,7 +16,7 @@ const ProductCard = ({
   const router = useRouter();
 
   return (
-    <div className="p-2 border border-zinc-300 flex flex-col">
+    <div className="p-2 border border-zinc-300 bg-gradient-to-tl from-zinc-200 flex flex-col">
       <div className="mb-4 flex flex-row items-center justify-center h-32">
         <Image
           src={image}

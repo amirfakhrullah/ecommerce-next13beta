@@ -33,7 +33,7 @@ const CartCard = ({ item, price, index }: Props) => {
   };
 
   return (
-    <div className="p-4 border border-zinc-300 grid sm:grid-cols-4 grid-cols-3 mt-2 gap-2">
+    <div className="p-4 border border-zinc-300 bg-gradient-to-tl from-zinc-200 grid sm:grid-cols-4 grid-cols-3 mt-2 gap-2">
       <div className="col-span-1">
         <Image
           src={item.image}
