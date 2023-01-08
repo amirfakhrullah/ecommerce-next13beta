@@ -6,9 +6,22 @@ import env from "../../../env";
 import db from "../../../lib/servers/prismadb";
 import { Status } from "@prisma/client";
 
-const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+export const config = {
+  api: {
+    bodyParser: false,
+  },
+};
+
+export default async function handler(
+  req: NextApiRequest,
+  res: NextApiResponse
+) {
   const body = await rawBody(req);
-  const signature = req.headers["stripe-signature"] ?? "";
+  const signature = req.headers["stripe-signature"];
+
+  if (!signature) {
+    return res.status(401).end();
+  }
 
   let event: Stripe.Event;
 
@@ -19,12 +32,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       env.STRIPE_WEBHOOK_SECRET
     );
   } catch (ex) {
+    console.log(ex);
     if (ex instanceof Error) {
-      console.error(`Webhook error: ${ex.message}`);
+      return res.status(400).send(`Webhook error: ${ex.message}`);
     } else {
-      console.error(`Webhook error: ${JSON.stringify(ex)}`);
+      return res.status(400).send("Webhook error occurred");
     }
-    return res.status(400).end();
   }
 
   const eventObj = event.data.object as Stripe.PaymentIntent;
@@ -61,12 +74,4 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   res.status(200).end();
-};
-
-export const config = {
-  api: {
-    bodyParser: false,
-  },
-};
-
-export default handler;
+}
