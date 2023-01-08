@@ -51,14 +51,15 @@ model OrderItem {
 }
 
 model Order {
-  id                  String      @id @default(cuid())
-  user                User        @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId              String
-  status              Status      @default(NotPaid)
-  orderItems          OrderItem[]
-  createdAt           DateTime    @default(now())
-  updatedAt           DateTime?
-  stripePaymentIntent String?
+  id                        String      @id @default(cuid())
+  user                      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
+  userId                    String
+  status                    Status      @default(NotPaid)
+  orderItems                OrderItem[]
+  createdAt                 DateTime    @default(now())
+  updatedAt                 DateTime?
+  stripePaymentIntentId     String?
+  stripePaymentClientSecret String?
 }
 
 model Address {

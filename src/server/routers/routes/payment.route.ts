@@ -28,10 +28,11 @@ export const paymentRoute = {
       }
       await ctx.prisma.order.update({
         where: {
-          id: order.id
+          id: order.id,
         },
         data: {
-          stripePaymentIntent: paymentIntent.client_secret,
+          stripePaymentIntentId: paymentIntent.id,
+          stripePaymentClientSecret: paymentIntent.client_secret,
         },
       });
 

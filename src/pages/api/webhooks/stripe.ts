@@ -28,7 +28,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   }
 
   const eventObj = event.data.object as Stripe.PaymentIntent;
-  const stripePaymentIntent = eventObj.id;
+  const stripePaymentIntentId = eventObj.id;
+  const stripePaymentIntentClientSecret = eventObj.client_secret;
 
   let status: Status | undefined;
 
@@ -47,10 +48,11 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       break;
   }
 
-  if (stripePaymentIntent && status) {
+  if (stripePaymentIntentId && stripePaymentIntentClientSecret && status) {
     await db.order.updateMany({
       where: {
-        stripePaymentIntent,
+        stripePaymentIntentId,
+        stripePaymentClientSecret: stripePaymentIntentClientSecret,
       },
       data: {
         status,
