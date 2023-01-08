@@ -28,6 +28,7 @@ const CartSection = ({
   const { user } = useUserContext();
   const { cartItems, setCartItems } = useCartContext();
   const [productsMap, setProductsMap] = useState<ProductMap>({});
+  const [isRedirecting, setIsRedirecting] = useState(false);
 
   const router = useRouter();
 
@@ -96,6 +97,7 @@ const CartSection = ({
         if (!key) {
           toast.error("There's an error occured with the payment system");
         }
+        setIsRedirecting(true);
         router.push(`/checkout?user_checkout_session=${key}`);
       },
       retry: false,
@@ -113,7 +115,8 @@ const CartSection = ({
     );
   };
 
-  if (isLoading || isRefetching || isFetching) return <Loader />;
+  if (isLoading || isRefetching || isFetching || isRedirecting)
+    return <Loader />;
 
   return (
     <div className="mx-auto max-w-4xl w-full py-4 sm:px-0 px-2">
