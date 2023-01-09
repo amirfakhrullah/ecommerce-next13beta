@@ -25,8 +25,8 @@ export const userRoutes = {
           },
         },
         take: take,
-        skip: 1,
         ...(cursor && {
+          skip: 1,
           cursor: {
             id: cursor,
           },
