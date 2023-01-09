@@ -1,5 +1,10 @@
-import { loadStripe } from "@stripe/stripe-js";
+import { Stripe, loadStripe } from "@stripe/stripe-js";
 
-export const stripeClientPromise = loadStripe(
-  process.env.NEXT_PUBLIC_STRIPE_KEY ?? ""
-);
+let stripePromise: Promise<Stripe | null>;
+
+export const getClientStripe = () => {
+  if (!stripePromise) {
+    stripePromise = loadStripe(process.env.NEXT_PUBLIC_STRIPE_KEY ?? "");
+  }
+  return stripePromise;
+};

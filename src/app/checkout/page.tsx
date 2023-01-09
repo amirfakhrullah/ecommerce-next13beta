@@ -1,8 +1,8 @@
 "use client";
 
-import { notFound, useRouter } from "next/navigation";
+import { notFound } from "next/navigation";
 import { Elements } from "@stripe/react-stripe-js";
-import { stripeClientPromise } from "../../lib/clients/stripeClient";
+import { getClientStripe } from "../../lib/clients/stripeClient";
 import CheckoutForm from "../../components/forms/CheckoutForm";
 
 interface PageProps {
@@ -16,6 +16,8 @@ const CheckoutPage = ({ searchParams }: PageProps) => {
   if (!clientSecret || typeof clientSecret !== "string") {
     return notFound();
   }
+
+  const stripeClientPromise = getClientStripe();
 
   return (
     <div>

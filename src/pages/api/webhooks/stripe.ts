@@ -32,7 +32,6 @@ export default async function handler(
       env.STRIPE_WEBHOOK_SECRET
     );
   } catch (ex) {
-    console.log(ex);
     if (ex instanceof Error) {
       return res.status(400).send(`Webhook error: ${ex.message}`);
     } else {
