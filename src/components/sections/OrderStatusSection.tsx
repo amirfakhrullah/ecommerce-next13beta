@@ -1,6 +1,6 @@
 "use client";
 
-import { notFound, useRouter } from "next/navigation";
+import { notFound, redirect, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useCartContext } from "../../providers/CartContextProvider";
 import { trpc } from "../../providers/trpcProvider";
@@ -30,33 +30,16 @@ const OrderStatusSection = ({
       },
       onSuccess: (res) => {
         if (res && res.id && res.status) {
-          if (res.orderItems.length !== cartItems.length) {
-            return;
+          if (res.status === "Paid") {
+            toast.success("Payment successful");
+          } else if (res.status === "Processing") {
+            toast(
+              "Payment is processing. Make sure you're checking out properly"
+            );
+          } else {
+            toast.error("Payment unsuccessful");
           }
-          const checkCarts = new Map<string, string[]>();
-          res.orderItems.forEach((item) => {
-            const prev = checkCarts.get(item.productId) ?? [];
-            checkCarts.set(item.productId, [...prev, item.size]);
-          });
-          let isSame = true;
-          cartItems.forEach((item) => {
-            if (!isSame) return;
-            let prev = checkCarts.get(item.id) ?? [];
-            const index = prev.findIndex((size) => size === item.size);
-            if (index < 0) {
-              isSame = false;
-              return;
-            }
-            prev.splice(index, index + 1);
-            checkCarts.set(item.id, prev);
-          });
-          if (!isSame) return;
-          const isEmpty = !!Array.from(checkCarts.values())
-            .flatMap((val) => val)
-            .find((val) => !!val);
-          if (!isEmpty) {
-            return setCartItems([]);
-          }
+          router.push("/user");
         }
       },
     }
@@ -70,12 +53,7 @@ const OrderStatusSection = ({
     return notFound();
   }
 
-  return (
-    <div>
-      <h1>{data.id}</h1>
-      <h1>{data.status}</h1>
-    </div>
-  );
+  return <Loader />;
 };
 
 export default OrderStatusSection;

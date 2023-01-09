@@ -74,6 +74,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     <div className="mx-auto w-full max-w-xl px-4 md:order-none order-last mb-2">
       <div className="md:py-20">
         <div className="p-6 border border-zinc-300 z-0 sm:sticky sm:top-[120px] static">
+        <p className="text-[16px] mb-2 text-red-700">This is a Test Stripe account. Please use <span className="font-bold">4242 4242 4242 4242</span></p>
           <h2 className="text-2xl font-black mb-4">Proceed:</h2>
           <form id="payment-form" onSubmit={handleSubmit}>
             <LinkAuthenticationElement

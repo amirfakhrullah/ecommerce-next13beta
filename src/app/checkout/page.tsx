@@ -4,6 +4,8 @@ import { notFound } from "next/navigation";
 import { Elements } from "@stripe/react-stripe-js";
 import { getClientStripe } from "../../lib/clients/stripeClient";
 import CheckoutForm from "../../components/forms/CheckoutForm";
+import { useCartContext } from "../../providers/CartContextProvider";
+import { useEffect } from "react";
 
 interface PageProps {
   searchParams?: {
@@ -12,10 +14,15 @@ interface PageProps {
 }
 const CheckoutPage = ({ searchParams }: PageProps) => {
   const clientSecret = searchParams?.user_checkout_session;
+  const { setCartItems } = useCartContext();
 
   if (!clientSecret || typeof clientSecret !== "string") {
     return notFound();
   }
+
+  useEffect(() => {
+    setCartItems([]);
+  }, []);
 
   const stripeClientPromise = getClientStripe();
 
