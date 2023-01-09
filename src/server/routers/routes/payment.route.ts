@@ -33,6 +33,7 @@ export const paymentRoute = {
         data: {
           stripePaymentIntentId: paymentIntent.id,
           stripePaymentClientSecret: paymentIntent.client_secret,
+          updatedAt: new Date(),
         },
       });
 

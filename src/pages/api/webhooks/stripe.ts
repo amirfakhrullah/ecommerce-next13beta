@@ -20,7 +20,7 @@ export default async function handler(
   const signature = req.headers["stripe-signature"];
 
   if (!signature) {
-    return res.status(401).end();
+    return res.status(400).end();
   }
 
   let event: Stripe.Event;
@@ -46,6 +46,9 @@ export default async function handler(
   let status: Status | undefined;
 
   switch (event.type) {
+    case "payment_intent.created":
+      status = "Processing";
+      break;
     case "payment_intent.succeeded":
       status = "Paid";
       break;
@@ -68,6 +71,7 @@ export default async function handler(
       },
       data: {
         status,
+        updatedAt: new Date(),
       },
     });
   }
