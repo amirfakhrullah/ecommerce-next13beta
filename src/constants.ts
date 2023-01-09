@@ -40,9 +40,6 @@ export interface UserTabObj {
 
 export const userTabs: UserTabObj[] = [
   {
-    label: "Profile",
-  },
-  {
     label: "Order History",
   },
   {

@@ -71,12 +71,8 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     return notFound();
   }
   return (
-    <div className="mx-auto w-full max-w-6xl px-4 py-10 grid md:grid-cols-2 grid-cols-1 gap-3 md:order-none order-last">
-      <div className="grid-cols-1 p-4 md:block hidden">
-        <CartSection isCheckingOut={true} />
-      </div>
-
-      <div className="grid-cols-1 md:py-20">
+    <div className="mx-auto w-full max-w-xl px-4 md:order-none order-last mb-2">
+      <div className="md:py-20">
         <div className="p-6 border border-zinc-300 z-0 sm:sticky sm:top-[120px] static">
           <h2 className="text-2xl font-black mb-4">Proceed:</h2>
           <form id="payment-form" onSubmit={handleSubmit}>

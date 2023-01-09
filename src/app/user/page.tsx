@@ -12,10 +12,8 @@ const ProfilePage = () => {
   const CurrentDisplay = () => {
     switch (tab) {
       case 0:
-        return <ProfileSection />;
-      case 1:
         return <OrderHistorySection />;
-      case 2:
+      case 1:
         return <UserDangerSection />;
       default:
         return <></>;

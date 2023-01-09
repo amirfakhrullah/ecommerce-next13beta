@@ -3,15 +3,15 @@ import { PrismaClient } from "@prisma/client";
 const prisma = new PrismaClient();
 
 const seed = async () => {
-  // const orders = await prisma.order.updateMany({
-  //   where: {
-  //     status: "InProgress"
-  //   },
-  //   data: {
-  //     status: "Failed"
-  //   }
-  // })
-  // console.log(orders);
+  const products = await prisma.product.updateMany({
+    where: {
+      quantity: 0
+    },
+    data: {
+      quantity: 1
+    }
+  })
+  console.log(products);
 };
 
 seed()

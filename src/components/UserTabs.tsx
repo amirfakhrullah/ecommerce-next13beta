@@ -11,7 +11,7 @@ interface UserTabsProps {
 const UserTabs = ({ tab, setTab }: UserTabsProps) => {
   return (
     <div className="border border-zinc-300 sm:px-0 px-1">
-      <div className={cn("grid gap-1 md:w-[60%] w-full grid-cols-3")}>
+      <div className={cn("grid gap-1 md:w-[50%] w-full grid-cols-2")}>
         {userTabs.map(({ label }, idx) => (
           <div
             key={label}

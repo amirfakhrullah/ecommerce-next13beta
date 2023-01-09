@@ -20,11 +20,7 @@ interface ProductMap {
     price: number;
   };
 }
-const CartSection = ({
-  isCheckingOut = false,
-}: {
-  isCheckingOut?: boolean;
-}) => {
+const CartSection = () => {
   const { user } = useUserContext();
   const { cartItems, setCartItems } = useCartContext();
   const [productsMap, setProductsMap] = useState<ProductMap>({});
@@ -142,28 +138,26 @@ const CartSection = ({
             <h2 className="text-4xl font-black mb-4">
               ${displayNumbers(totalPrice)}
             </h2>
-            {!isCheckingOut && (
-              <div className="flex flex-row items-center gap-2">
-                <Button
-                  onClick={() => router.push("/products")}
-                  color="secondary"
-                  className="px-6 py-3"
-                >
-                  Continue Shopping
-                </Button>
+            <div className="flex flex-row items-center gap-2">
+              <Button
+                onClick={() => router.push("/products")}
+                color="secondary"
+                className="px-6 py-3"
+              >
+                Continue Shopping
+              </Button>
 
-                <Button
-                  onClick={() => handleCheckout()}
-                  color="primary"
-                  className="px-6 py-3"
-                  localLoaderOnClick={false}
-                  isLoading={isPaymentIntentLoading}
-                >
-                  Checkout
-                  <IoArrowForwardOutline className="text-xl ml-2" />
-                </Button>
-              </div>
-            )}
+              <Button
+                onClick={() => handleCheckout()}
+                color="primary"
+                className="px-6 py-3"
+                localLoaderOnClick={false}
+                isLoading={isPaymentIntentLoading}
+              >
+                Checkout
+                <IoArrowForwardOutline className="text-xl ml-2" />
+              </Button>
+            </div>
           </div>
         </>
       ) : (
