@@ -1,4 +1,5 @@
 export const PRODUCTS_PER_PAGE = 12;
+export const ORDERS_PER_PAGE = 8;
 
 export const DEFAULT_SIZES = [
   "3.5",

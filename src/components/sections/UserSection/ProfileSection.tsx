@@ -2,7 +2,7 @@
 
 import { toast } from "react-hot-toast";
 import { trpc } from "../../../providers/trpcProvider";
-import Loader from "../../Loader";
+import Loader from "../../loaders/Loader";
 import NotFoundText from "../../NotFoundText";
 
 const ProfileSection = () => {

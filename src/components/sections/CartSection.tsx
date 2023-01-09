@@ -3,7 +3,7 @@
 import { toast } from "react-hot-toast";
 import { useCartContext } from "../../providers/CartContextProvider";
 import { trpc } from "../../providers/trpcProvider";
-import Loader from "../Loader";
+import Loader from "../loaders/Loader";
 import { CartItem } from "../../types/types";
 import CartCard from "../cards/CartCard";
 import NotFoundText from "../NotFoundText";

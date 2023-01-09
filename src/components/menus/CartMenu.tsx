@@ -16,7 +16,6 @@ const CheckoutBtn = () => {
   const path = usePathname();
   const toHide =
     path && ["/carts", "/checkout", "/orders/status"].includes(path);
-    console.log(path)
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);

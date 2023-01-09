@@ -1,31 +1,57 @@
 "use client";
 
-import { useState } from "react";
+import { Fragment, useEffect } from "react";
 import { toast } from "react-hot-toast";
-import Loader from "../../../components/Loader";
+import Loader from "../../loaders/Loader";
 import NotFoundText from "../../../components/NotFoundText";
-import { PRODUCTS_PER_PAGE } from "../../../constants";
+import { ORDERS_PER_PAGE, PRODUCTS_PER_PAGE } from "../../../constants";
 import { trpc } from "../../../providers/trpcProvider";
+import OrderCard from "../../cards/OrderCard";
+import { useInView } from "react-intersection-observer";
+import SmallLoader from "../../loaders/SmallLoader";
 
 const OrderHistorySection = () => {
-  const [page, setPage] = useState(1);
+  const { ref, inView } = useInView();
+  const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
+    trpc.getOrderHistory.useInfiniteQuery(
+      {
+        take: ORDERS_PER_PAGE,
+      },
+      {
+        onError: (err) => toast.error(err.message),
+        refetchOnWindowFocus: false,
+        getNextPageParam: (lastPage) => lastPage.cursor,
+      }
+    );
 
-  const { isLoading } = trpc.getOrderHistory.useQuery(
-    {
-      take: PRODUCTS_PER_PAGE,
-      skip: (page - 1) * PRODUCTS_PER_PAGE,
-    },
-    {
-      onError: (err) => toast.error(err.message),
-      refetchOnWindowFocus: false,
+  useEffect(() => {
+    if (inView && hasNextPage) {
+      fetchNextPage();
     }
-  );
+  }, [inView]);
 
+  const pages = data?.pages;
   if (isLoading) {
     return <Loader />;
   }
 
-  return <NotFoundText>Order History section is in development..</NotFoundText>;
+  if (!pages) {
+    return <NotFoundText>No Order History</NotFoundText>;
+  }
+
+  return (
+    <div className="mb-5">
+      {pages.map((page) => (
+        <Fragment key={page.cursor ?? "last"}>
+          {page.orders.map((order) => (
+            <OrderCard key={order.id} order={order} />
+          ))}
+        </Fragment>
+      ))}
+      <span ref={ref} />
+      {isFetchingNextPage && <SmallLoader />}
+    </div>
+  );
 };
 
 export default OrderHistorySection;

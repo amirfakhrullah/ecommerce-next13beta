@@ -12,21 +12,33 @@ export const userRoutes = {
   getOrderHistory: userProcedure
     .input(orderHistoryInputSchema)
     .query(async ({ ctx, input }) => {
-      const { take, skip } = input;
-      return await ctx.prisma.order.findMany({
+      const { take, cursor } = input;
+      const orders = await ctx.prisma.order.findMany({
         where: {
           userId: ctx.session.user.id,
         },
         include: {
-          orderItems: {
-            include: {
-              product: true,
+          _count: {
+            select: {
+              orderItems: true,
             },
           },
         },
-        ...(take && { take }),
-        ...(skip && { skip }),
+        take: take,
+        skip: 1,
+        ...(cursor && {
+          cursor: {
+            id: cursor,
+          },
+        }),
+        orderBy: {
+          id: "desc",
+        },
       });
+      return {
+        orders,
+        cursor: orders[take - 1]?.id,
+      };
     }),
   getAddress: userProcedure.query(async ({ ctx }) => {
     return await ctx.prisma.address.findFirst({

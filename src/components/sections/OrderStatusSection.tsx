@@ -4,7 +4,7 @@ import { notFound, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { useCartContext } from "../../providers/CartContextProvider";
 import { trpc } from "../../providers/trpcProvider";
-import Loader from "../Loader";
+import Loader from "../loaders/Loader";
 
 interface OrderStatusSectionProps {
   paymentIntent: string;

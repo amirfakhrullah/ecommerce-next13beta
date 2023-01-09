@@ -5,7 +5,7 @@ import { toast } from "react-hot-toast";
 import { PRODUCTS_PER_PAGE } from "../../../constants";
 import { trpc } from "../../../providers/trpcProvider";
 import PaginationButtons from "../../buttons/PaginationButtons";
-import Loader from "../../Loader";
+import Loader from "../../loaders/Loader";
 import NotFoundText from "../../NotFoundText";
 import ProductGrids from "../../ProductGrids";
 
