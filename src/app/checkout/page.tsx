@@ -16,13 +16,14 @@ const CheckoutPage = ({ searchParams }: PageProps) => {
   const clientSecret = searchParams?.user_checkout_session;
   const { setCartItems } = useCartContext();
 
+  useEffect(() => {
+    setCartItems([]);
+    // eslint-disable-next-line
+  }, []);
+
   if (!clientSecret || typeof clientSecret !== "string") {
     return notFound();
   }
-
-  useEffect(() => {
-    setCartItems([]);
-  }, []);
 
   const stripeClientPromise = getClientStripe();
 

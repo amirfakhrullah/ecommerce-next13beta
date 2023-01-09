@@ -28,6 +28,7 @@ const OrderHistorySection = () => {
     if (inView && hasNextPage) {
       fetchNextPage();
     }
+    // eslint-disable-next-line
   }, [inView]);
 
   const pages = data?.pages;

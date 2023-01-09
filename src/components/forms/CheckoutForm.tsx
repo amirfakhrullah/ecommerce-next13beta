@@ -40,6 +40,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
           return;
       }
     });
+    // eslint-disable-next-line
   }, [stripe]);
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
