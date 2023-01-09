@@ -4,6 +4,7 @@ import { stripe } from "../../../lib/servers/stripe";
 import { failOrder } from "../../handlers/orders/failOrder";
 import { checkoutProducts } from "../../handlers/orders/checkoutProducts";
 import { userProcedure } from "../../procedures";
+import { z } from "zod";
 
 export const paymentRoute = {
   createPaymentIntent: userProcedure
@@ -23,12 +24,13 @@ export const paymentRoute = {
           payment_method_types: ["card"],
         });
       } catch (ex) {
-        await failOrder(order.id, ctx.prisma);
+        await failOrder(order.id, ctx.session.user.id, ctx.prisma);
         throw new Error("There's an error with the stripe");
       }
-      await ctx.prisma.order.update({
+      await ctx.prisma.order.updateMany({
         where: {
           id: order.id,
+          userId: ctx.session.user.id,
         },
         data: {
           stripePaymentIntentId: paymentIntent.id,
@@ -38,5 +40,39 @@ export const paymentRoute = {
       });
 
       return paymentIntent.client_secret;
+    }),
+  checkStatus: userProcedure
+    .input(
+      z.object({
+        paymentIntent: z.string(),
+        paymentIntentClientSecret: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
+      const orders = await ctx.prisma.order.findFirst({
+        where: {
+          userId: ctx.session.user.id,
+          stripePaymentIntentId: input.paymentIntent,
+          stripePaymentClientSecret: input.paymentIntentClientSecret,
+        },
+        select: {
+          status: true,
+          id: true,
+          orderItems: {
+            select: {
+              productId: true,
+              size: true,
+            },
+          },
+        },
+      });
+      if (!orders) return;
+      return {
+        ...orders,
+        orderItems: orders.orderItems.map((item) => ({
+          productId: item.productId,
+          size: item.size.toString(),
+        })),
+      };
     }),
 };

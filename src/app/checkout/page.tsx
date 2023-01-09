@@ -25,13 +25,12 @@ const CheckoutPage = ({ searchParams }: PageProps) => {
         <Elements
           options={{
             appearance: {
-              theme: "stripe",
+              theme: "none",
             },
             clientSecret,
           }}
           stripe={stripeClientPromise}
         >
-          {/* <CheckoutForm /> */}
           <CheckoutForm clientSecret={clientSecret} />
         </Elements>
       )}

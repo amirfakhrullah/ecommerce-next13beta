@@ -9,7 +9,7 @@ import {
 import Button from "../buttons/Button";
 import CartSection from "../sections/CartSection";
 import { useUserContext } from "../../providers/UserProvider";
-import { notFound, usePathname, useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
@@ -19,7 +19,6 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
   const { user } = useUserContext();
 
   const router = useRouter();
-  const path = usePathname()
 
   const [isPaying, setIsPaying] = useState(false);
 
@@ -52,7 +51,9 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
     const { error } = await stripe.confirmPayment({
       elements,
       confirmParams: {
-        return_url: process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000",
+        return_url: `${
+          process.env.NEXT_PUBLIC_URL ?? "http://localhost:3000"
+        }/orders/status`,
       },
     });
 
@@ -76,7 +77,7 @@ const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {
       </div>
 
       <div className="grid-cols-1 md:py-20">
-        <div className="p-6 border border-zinc-300">
+        <div className="p-6 border border-zinc-300 z-0 sm:sticky sm:top-[120px] static">
           <h2 className="text-2xl font-black mb-4">Proceed:</h2>
           <form id="payment-form" onSubmit={handleSubmit}>
             <LinkAuthenticationElement
