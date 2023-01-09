@@ -62,18 +62,6 @@ model Order {
   stripePaymentClientSecret String?
 }
 
-model Address {
-  id       String @id @default(cuid())
-  street   String
-  postcode Int
-  state    String
-  country  String
-
-  user   User   @relation(fields: [userId], references: [id], onDelete: Cascade)
-  userId String
-
-  @@unique([userId])
-}
 
 // Next-Auth
 model Account {
@@ -118,7 +106,6 @@ model User {
   sessions      Session[]
   createdAt     DateTime  @default(now())
   orders        Order[]
-  address       Address?
   userType      UserType  @default(User)
 }
 

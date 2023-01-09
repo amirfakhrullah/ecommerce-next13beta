@@ -40,11 +40,4 @@ export const userRoutes = {
         cursor: orders[take - 1]?.id,
       };
     }),
-  getAddress: userProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.address.findFirst({
-      where: {
-        userId: ctx.session.user.id,
-      },
-    });
-  }),
 };

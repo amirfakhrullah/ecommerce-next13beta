@@ -46,9 +46,6 @@ export const userTabs: UserTabObj[] = [
     label: "Order History",
   },
   {
-    label: "Debit/Credit Card",
-  },
-  {
     label: "Danger Section",
   },
 ];

@@ -11,7 +11,7 @@ const StatusBox = ({ status }: { status: Status }) => {
   switch (status) {
     case "Paid":
       Icon = IoMdDoneAll;
-      boxClassName = "bg-green-500";
+      boxClassName = "bg-green-500 text-white";
       break;
     case "Processing":
       Icon = IoIosTimer;
