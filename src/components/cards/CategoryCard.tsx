@@ -9,7 +9,7 @@ export const CategoryCard = ({ id, name, image }: Category) => {
 
   return (
     <div
-      className=" bg-gradient-to-tl from-zinc-200 group cursor-pointer sm:p-5 p-2 border border-zinc-300 hover:border-red-800 ease-in duration-150 overflow-hidden"
+      className="group cursor-pointer sm:p-5 p-2 border border-zinc-300 hover:border-red-800 ease-in duration-150 overflow-hidden"
       onClick={() => router.push(`/categories/${id}`)}
     >
       <div className="mb-10 flex flex-row items-center justify-center">

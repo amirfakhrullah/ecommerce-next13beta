@@ -45,7 +45,7 @@ const CheckoutSection = ({
                 size: item.size,
               }}
               price={item.product.price}
-              disableRemove
+              disableAction
             />
           ))}
           <div className="border-t border-zinc-300 my-5" />

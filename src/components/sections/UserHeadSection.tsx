@@ -12,7 +12,7 @@ const UserHeadSection = () => {
     return notFound();
   }
   return (
-    <div className="bg-gradient-to-b from-zinc-200 border-t border-x border-zinc-300 pt-14 pb-4 sm:pl-10 pl-4 mt-4 rounded-t-2xl">
+    <div className="bg-gradient-to-bl from-slate-300 border-t border-x border-zinc-300 pt-14 pb-4 sm:pl-10 pl-4 mt-4 rounded-t-2xl">
       <div
         className={cn(
           "mb-3 rounded-full h-20 w-20 flex flex-row items-center justify-center overflow-hidden",
