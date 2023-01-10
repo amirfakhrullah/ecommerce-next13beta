@@ -52,7 +52,7 @@ const CheckoutBtn = () => {
       </MenuHandler>
       <MenuList
         className={cn(
-          "rounded-md bg-zinc-100 p-3 shadow-md mb-2 max-h-[500px] overflow-y-auto",
+          "rounded-md bg-zinc-100 p-3 shadow-md mb-2 max-h-[500px] overflow-y-auto z-[2]",
           cartItems.length && "max-w-[500px] w-full"
         )}
       >

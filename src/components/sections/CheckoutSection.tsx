@@ -48,9 +48,10 @@ const CheckoutSection = ({
               disableRemove
             />
           ))}
-          <div className="w-full flex flex-col items-end my-10">
+          <div className="border-t border-zinc-300 my-5" />
+          <div className="w-full flex flex-col items-end">
             <p className="font-medium mb-2">Your Total</p>
-            <h2 className="text-4xl font-black mb-4">
+            <h2 className="text-4xl font-black mb-4 text-red-800">
               $
               {displayNumbers(
                 order.orderItems.reduce(

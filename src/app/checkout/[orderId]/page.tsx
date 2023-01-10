@@ -1,6 +1,5 @@
 import { Status } from "@prisma/client";
 import { notFound } from "next/navigation";
-import { use } from "react";
 import CheckoutSection from "../../../components/sections/CheckoutSection";
 import { getCurrentUser } from "../../../lib/servers/session";
 import { getOrder } from "../../../server/handlers/orders/getOrder";

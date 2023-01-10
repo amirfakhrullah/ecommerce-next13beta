@@ -52,7 +52,7 @@ const CartCard = ({ item, price, index, disableRemove = false }: Props) => {
           {item.name}
         </p>
         <p className="text-[14px] font-medium">US M{item.size}</p>
-        <p className="text-md font-bold">${displayNumbers(price)}</p>
+        <p className="text-md font-bold text-red-800">${displayNumbers(price)}</p>
         {!disableRemove && (
           <div className="flex justify-end">
             <Button

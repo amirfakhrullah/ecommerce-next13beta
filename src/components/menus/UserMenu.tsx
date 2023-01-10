@@ -32,7 +32,7 @@ const UserMenu = ({ user }: { user: User }) => {
           />
         </div>
       </MenuHandler>
-      <MenuList className="rounded-md bg-zinc-100 p-3 shadow-md mb-2">
+      <MenuList className="rounded-md bg-zinc-100 p-3 shadow-md mb-2 z-[2] min-w-[200px]">
         <p className="text-[14px] font-medium" onClick={() => signOut()}>
           {user.name}
         </p>
