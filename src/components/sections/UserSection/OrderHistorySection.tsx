@@ -13,7 +13,7 @@ import SmallLoader from "../../loaders/SmallLoader";
 const OrderHistorySection = () => {
   const { ref, inView } = useInView();
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    trpc.order.orderHistory.useInfiniteQuery(
+    trpc.order.history.useInfiniteQuery(
       {
         take: ORDERS_PER_PAGE,
       },
@@ -36,7 +36,7 @@ const OrderHistorySection = () => {
     return <Loader />;
   }
 
-  if (!pages) {
+  if (!pages || pages.length === 0) {
     return <NotFoundText>No Order History</NotFoundText>;
   }
 
@@ -44,6 +44,9 @@ const OrderHistorySection = () => {
     <div className="mb-5">
       {pages.map((page) => (
         <Fragment key={page.cursor ?? "last"}>
+          {page.orders.length === 0 && (
+            <NotFoundText>No Order History</NotFoundText>
+          )}
           {page.orders.map((order) => (
             <OrderCard key={order.id} order={order} />
           ))}

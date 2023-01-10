@@ -54,7 +54,7 @@ export const paymentRouter = router({
       })
     )
     .query(async ({ ctx, input }) => {
-      const orders = await ctx.prisma.order.findFirst({
+      const order = await ctx.prisma.order.findFirst({
         where: {
           userId: ctx.session.user.id,
           stripePaymentIntentId: input.paymentIntent,
@@ -71,10 +71,10 @@ export const paymentRouter = router({
           },
         },
       });
-      if (!orders) return;
+      if (!order) return;
       return {
-        ...orders,
-        orderItems: orders.orderItems.map((item) => ({
+        ...order,
+        orderItems: order.orderItems.map((item) => ({
           productId: item.productId,
           size: item.size.toString(),
         })),

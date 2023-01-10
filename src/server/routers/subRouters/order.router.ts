@@ -1,9 +1,17 @@
+import { inferRouterOutputs } from "@trpc/server";
+import { z } from "zod";
 import { orderHistoryInputSchema } from "../../../helpers/validations/userRoutesSchema";
+import { getOrder } from "../../handlers/orders/getOrder";
 import { userProcedure } from "../../procedures";
 import { router } from "../../trpc";
 
 export const orderRouter = router({
-  orderHistory: userProcedure
+  get: userProcedure
+    .input(z.string().max(30))
+    .query(async ({ ctx, input: orderId }) => {
+      return await getOrder(orderId, ctx.session.user.id, ctx.prisma);
+    }),
+  history: userProcedure
     .input(orderHistoryInputSchema)
     .query(async ({ ctx, input }) => {
       const { take, cursor } = input;
@@ -11,7 +19,11 @@ export const orderRouter = router({
         where: {
           userId: ctx.session.user.id,
         },
-        include: {
+        select: {
+          id: true,
+          status: true,
+          createdAt: true,
+          updatedAt: true,
           _count: {
             select: {
               orderItems: true,
@@ -35,3 +47,7 @@ export const orderRouter = router({
       };
     }),
 });
+
+type OrderRouterOutput = inferRouterOutputs<typeof orderRouter>;
+export type OrderResponse = OrderRouterOutput["get"];
+export type OrderHistoryList = OrderRouterOutput["history"];

@@ -1,19 +1,16 @@
 "use client";
 
-import { Order } from "@prisma/client";
 import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import { OrderHistoryList } from "../../server/routers/subRouters/order.router";
 import SeeAllButton from "../buttons/SeeAllButton";
 import StatusBox from "../StatusBox";
 
-interface OrderCardProps {
-  order: Order & {
-    _count: {
-      orderItems: number;
-    };
-  };
-}
-const OrderCard = ({ order }: OrderCardProps) => {
+const OrderCard = ({
+  order,
+}: {
+  order: OrderHistoryList["orders"][number];
+}) => {
   const router = useRouter();
   const navigatePath = `/orders/${order.id}`;
   return (

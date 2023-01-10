@@ -1,8 +1,9 @@
 import { Prisma, PrismaClient } from "@prisma/client";
 import db from "../../../lib/servers/prismadb";
 
-export const getOrder = async (
+export const getOrderCheckout = async (
   orderId: string,
+  paymentIntentClientSecret: string,
   userId: string,
   prisma?: PrismaClient<
     Prisma.PrismaClientOptions,
@@ -14,12 +15,9 @@ export const getOrder = async (
     where: {
       id: orderId,
       userId,
+      stripePaymentClientSecret: paymentIntentClientSecret,
     },
-    select: {
-      id: true,
-      status: true,
-      createdAt: true,
-      updatedAt: true,
+    include: {
       orderItems: {
         include: {
           product: {
@@ -34,7 +32,9 @@ export const getOrder = async (
       },
     },
   });
+
   if (!order) return;
+
   return {
     ...order,
     orderItems: order.orderItems.map((item) => ({

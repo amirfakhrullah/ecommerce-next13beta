@@ -2,7 +2,7 @@ import { Status } from "@prisma/client";
 import { notFound } from "next/navigation";
 import CheckoutSection from "../../../components/sections/CheckoutSection";
 import { getCurrentUser } from "../../../lib/servers/session";
-import { getOrder } from "../../../server/handlers/orders/getOrder";
+import { getOrderCheckout } from "../../../server/handlers/orders/getOrderCheckout";
 
 interface PageProps {
   params: {
@@ -40,7 +40,6 @@ const CheckoutOrderIdPage = async ({
   searchParams,
 }: PageProps) => {
   const paymentIntentClientSecret = searchParams?.user_checkout_session;
-
   if (
     !orderId ||
     !paymentIntentClientSecret ||
@@ -50,13 +49,11 @@ const CheckoutOrderIdPage = async ({
   }
 
   const user = await getCurrentUser();
-
   if (!user) {
     return notFound();
   }
 
-  const order = await getOrder(orderId, paymentIntentClientSecret, user.id);
-
+  const order = await getOrderCheckout(orderId, paymentIntentClientSecret, user.id);
   if (!order) {
     return notFound();
   }
