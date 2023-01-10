@@ -1,7 +1,6 @@
 import Stripe from "stripe";
 import { getCartProductsInputSchema } from "../../../helpers/validations/productRoutesSchema";
 import { stripe } from "../../../lib/servers/stripe";
-import { failOrder } from "../../handlers/orders/failOrder";
 import { checkoutProducts } from "../../handlers/orders/checkoutProducts";
 import { userProcedure } from "../../procedures";
 import { z } from "zod";
@@ -24,7 +23,9 @@ export const paymentRoute = {
           payment_method_types: ["card"],
         });
       } catch (ex) {
-        await failOrder(order.id, ctx.session.user.id, ctx.prisma);
+        if (ex instanceof Error) {
+          throw new Error(`Stripe error: ${ex.message}`);
+        }
         throw new Error("There's an error with the stripe");
       }
       await ctx.prisma.order.updateMany({
@@ -39,7 +40,10 @@ export const paymentRoute = {
         },
       });
 
-      return paymentIntent.client_secret;
+      return {
+        orderId: order.id,
+        paymentIntentClientSecret: paymentIntent.client_secret,
+      };
     }),
   checkStatus: userProcedure
     .input(

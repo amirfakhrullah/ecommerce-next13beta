@@ -1,19 +1,17 @@
 "use client";
 
-import { notFound } from "next/navigation";
 import { Elements } from "@stripe/react-stripe-js";
 import { getClientStripe } from "../../lib/clients/stripeClient";
-import CheckoutForm from "../../components/forms/CheckoutForm";
+import CheckoutForm from "../forms/CheckoutForm";
 import { useCartContext } from "../../providers/CartContextProvider";
 import { useEffect } from "react";
 
-interface PageProps {
-  searchParams?: {
-    user_checkout_session?: string;
-  };
+interface CheckoutSectionProps {
+  paymentIntentClientSecret: string;
 }
-const CheckoutPage = ({ searchParams }: PageProps) => {
-  const clientSecret = searchParams?.user_checkout_session;
+const CheckoutSection = ({
+  paymentIntentClientSecret,
+}: CheckoutSectionProps) => {
   const { setCartItems } = useCartContext();
 
   useEffect(() => {
@@ -21,29 +19,25 @@ const CheckoutPage = ({ searchParams }: PageProps) => {
     // eslint-disable-next-line
   }, []);
 
-  if (!clientSecret || typeof clientSecret !== "string") {
-    return notFound();
-  }
-
   const stripeClientPromise = getClientStripe();
 
   return (
     <div>
-      {clientSecret && (
+      {paymentIntentClientSecret && (
         <Elements
           options={{
             appearance: {
               theme: "none",
             },
-            clientSecret,
+            clientSecret: paymentIntentClientSecret,
           }}
           stripe={stripeClientPromise}
         >
-          <CheckoutForm clientSecret={clientSecret} />
+          <CheckoutForm clientSecret={paymentIntentClientSecret} />
         </Elements>
       )}
     </div>
   );
 };
 
-export default CheckoutPage;
+export default CheckoutSection;

@@ -2,13 +2,15 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
+/**
+ * Not used for seeding. I'm using this to update date :(
+ */
 const seed = async () => {
   const products = await prisma.product.updateMany({
-    where: {
-      quantity: 0
-    },
     data: {
-      quantity: 1
+      quantity: {
+        increment: 100
+      }
     }
   })
   console.log(products);

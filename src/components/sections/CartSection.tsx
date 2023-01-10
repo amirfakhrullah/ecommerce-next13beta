@@ -88,13 +88,19 @@ const CartSection = () => {
 
   const { isLoading: isPaymentIntentLoading, mutate } =
     trpc.createPaymentIntent.useMutation({
-      onError: (err) => toast.error(err.message),
-      onSuccess: (key) => {
-        if (!key) {
+      onError: (err) => {
+        toast.error(err.message);
+        return router.push("/user");
+      },
+      onSuccess: ({ orderId, paymentIntentClientSecret }) => {
+        if (!paymentIntentClientSecret || !orderId) {
           toast.error("There's an error occured with the payment system");
+          return router.push("/user");
         }
         setIsRedirecting(true);
-        router.push(`/checkout?user_checkout_session=${key}`);
+        router.push(
+          `/checkout/${orderId}?user_checkout_session=${paymentIntentClientSecret}`
+        );
       },
       retry: false,
     });
