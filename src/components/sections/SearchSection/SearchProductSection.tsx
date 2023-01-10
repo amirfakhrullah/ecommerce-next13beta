@@ -16,7 +16,7 @@ interface SearchProductSection {
 const SearchProductSection = ({ search, onClose }: SearchProductSection) => {
   const [page, setPage] = useState(1);
 
-  const { data: products, isLoading } = trpc.searchProducts.useQuery(
+  const { data: products, isLoading } = trpc.product.search.useQuery(
     {
       search,
       page,

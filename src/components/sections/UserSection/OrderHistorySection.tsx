@@ -13,7 +13,7 @@ import SmallLoader from "../../loaders/SmallLoader";
 const OrderHistorySection = () => {
   const { ref, inView } = useInView();
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    trpc.getOrderHistory.useInfiniteQuery(
+    trpc.order.orderHistory.useInfiniteQuery(
       {
         take: ORDERS_PER_PAGE,
       },

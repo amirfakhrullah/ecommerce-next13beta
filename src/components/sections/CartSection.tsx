@@ -28,7 +28,7 @@ const CartSection = () => {
 
   const router = useRouter();
 
-  const { isLoading, isRefetching, isFetching } = trpc.getCartProducts.useQuery(
+  const { isLoading, isRefetching, isFetching } = trpc.product.carts.useQuery(
     cartItems.map((item) => ({
       id: item.id,
       size: item.size,
@@ -87,7 +87,7 @@ const CartSection = () => {
   );
 
   const { isLoading: isPaymentIntentLoading, mutate } =
-    trpc.createPaymentIntent.useMutation({
+    trpc.payment.intent.useMutation({
       onError: (err) => {
         toast.error(err.message);
         return router.push("/user");

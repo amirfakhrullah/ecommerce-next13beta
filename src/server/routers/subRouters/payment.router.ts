@@ -4,9 +4,10 @@ import { stripe } from "../../../lib/servers/stripe";
 import { checkoutProducts } from "../../handlers/orders/checkoutProducts";
 import { userProcedure } from "../../procedures";
 import { z } from "zod";
+import { router } from "../../trpc";
 
-export const paymentRoute = {
-  createPaymentIntent: userProcedure
+export const paymentRouter = router({
+  intent: userProcedure
     .input(getCartProductsInputSchema)
     .mutation(async ({ ctx, input }) => {
       const { order, totalPrice } = await checkoutProducts(
@@ -79,4 +80,4 @@ export const paymentRoute = {
         })),
       };
     }),
-};
+});

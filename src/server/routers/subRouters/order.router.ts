@@ -1,15 +1,9 @@
-import { userProcedure } from "../../procedures";
 import { orderHistoryInputSchema } from "../../../helpers/validations/userRoutesSchema";
+import { userProcedure } from "../../procedures";
+import { router } from "../../trpc";
 
-export const userRoutes = {
-  getProfileData: userProcedure.query(async ({ ctx }) => {
-    return await ctx.prisma.user.findFirst({
-      where: {
-        id: ctx.session.user.id,
-      },
-    });
-  }),
-  getOrderHistory: userProcedure
+export const orderRouter = router({
+  orderHistory: userProcedure
     .input(orderHistoryInputSchema)
     .query(async ({ ctx, input }) => {
       const { take, cursor } = input;
@@ -40,4 +34,4 @@ export const userRoutes = {
         cursor: orders[take - 1]?.id,
       };
     }),
-};
+});

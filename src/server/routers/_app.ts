@@ -1,12 +1,14 @@
 import { router } from "../trpc";
-import { paymentRoute } from "./routes/payment.route";
-import { productRoutes } from "./routes/product.route";
-import { userRoutes } from "./routes/user.route";
+import { orderRouter } from "./subRouters/order.router";
+import { paymentRouter } from "./subRouters/payment.router";
+import { productRouter } from "./subRouters/product.router";
+import { userRouter } from "./subRouters/user.router";
 
 export const appRouter = router({
-  ...productRoutes,
-  ...userRoutes,
-  ...paymentRoute,
+  user: userRouter,
+  product: productRouter,
+  payment: paymentRouter,
+  order: orderRouter,
 });
 
 // export type definition of API

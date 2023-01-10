@@ -1,8 +1,7 @@
 "use client";
 
-import { notFound, redirect, useRouter } from "next/navigation";
+import { notFound, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
-import { useCartContext } from "../../providers/CartContextProvider";
 import { trpc } from "../../providers/trpcProvider";
 import Loader from "../loaders/Loader";
 
@@ -15,8 +14,7 @@ const OrderStatusSection = ({
   paymentIntentClientSecret,
 }: OrderStatusSectionProps) => {
   const router = useRouter();
-  const { cartItems, setCartItems } = useCartContext();
-  const { isLoading, data } = trpc.checkStatus.useQuery(
+  const { isLoading, data } = trpc.payment.checkStatus.useQuery(
     {
       paymentIntent,
       paymentIntentClientSecret,

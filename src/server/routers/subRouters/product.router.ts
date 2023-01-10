@@ -5,10 +5,10 @@ import {
 } from "../../../helpers/validations/productRoutesSchema";
 import { getCartProducts } from "../../handlers/products/getCartProducts";
 import { getProductsBySearch } from "../../handlers/products/getProductsBySearch";
-import { procedure } from "../../trpc";
+import { procedure, router } from "../../trpc";
 
-export const productRoutes = {
-  searchProducts: procedure
+export const productRouter = router({
+  search: procedure
     .input(searchProductsSchema)
     .query(async ({ ctx, input }) => {
       const { search, page } = input;
@@ -20,9 +20,9 @@ export const productRoutes = {
         ctx.prisma
       );
     }),
-  getCartProducts: procedure
+  carts: procedure
     .input(getCartProductsInputSchema)
     .query(async ({ ctx, input }) => {
       return await getCartProducts(input, ctx.prisma);
     }),
-};
+});
