@@ -14,8 +14,12 @@ import { usePathname, useRouter } from "next/navigation";
 const CheckoutBtn = () => {
   const router = useRouter();
   const path = usePathname();
+
+  // hide this component if in these pages
   const toHide =
-    path && ["/carts", "/checkout", "/orders/status"].includes(path);
+    path &&
+    (["/carts", "/orders/status"].includes(path) ||
+      path.startsWith("/checkout"));
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);

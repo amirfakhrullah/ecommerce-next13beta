@@ -1,3 +1,4 @@
+import { Status } from "@prisma/client";
 import { notFound } from "next/navigation";
 import { use } from "react";
 import CheckoutSection from "../../../components/sections/CheckoutSection";
@@ -11,6 +12,28 @@ interface PageProps {
   searchParams?: {
     user_checkout_session?: string;
   };
+}
+
+export interface OrderDetails {
+  orderItems: {
+    size: string;
+    id: string;
+    productId: string;
+    orderId: string;
+    product: {
+      id: string;
+      name: string;
+      image: string;
+      price: number;
+    };
+  }[];
+  id: string;
+  userId: string;
+  status: Status;
+  createdAt: Date;
+  updatedAt: Date | null;
+  stripePaymentIntentId: string | null;
+  stripePaymentClientSecret: string | null;
 }
 
 const CheckoutOrderIdPage = async ({
@@ -35,9 +58,16 @@ const CheckoutOrderIdPage = async ({
 
   const order = await getOrder(orderId, paymentIntentClientSecret, user.id);
 
+  if (!order) {
+    return notFound();
+  }
+
   return (
     <div>
-      <CheckoutSection paymentIntentClientSecret={paymentIntentClientSecret} />
+      <CheckoutSection
+        paymentIntentClientSecret={paymentIntentClientSecret}
+        order={order}
+      />
     </div>
   );
 };

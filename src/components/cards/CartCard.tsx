@@ -12,12 +12,13 @@ import Button from "../buttons/Button";
 export interface CartCardProps {
   item: CartItem;
   price: number;
+  disableRemove?: boolean;
 }
 
 interface Props extends CartCardProps {
   index: number;
 }
-const CartCard = ({ item, price, index }: Props) => {
+const CartCard = ({ item, price, index, disableRemove = false }: Props) => {
   const { cartItems, setCartItems } = useCartContext();
   const router = useRouter();
 
@@ -52,16 +53,18 @@ const CartCard = ({ item, price, index }: Props) => {
         </p>
         <p className="text-[14px] font-medium">US M{item.size}</p>
         <p className="text-md font-bold">${displayNumbers(price)}</p>
-        <div className="flex justify-end">
-          <Button
-            onClick={() => handleRemove()}
-            isLoading={isDeleting}
-            color="red"
-            className="py-2 px-6"
-          >
-            Remove
-          </Button>
-        </div>
+        {!disableRemove && (
+          <div className="flex justify-end">
+            <Button
+              onClick={() => handleRemove()}
+              isLoading={isDeleting}
+              color="red"
+              className="py-2 px-6"
+            >
+              Remove
+            </Button>
+          </div>
+        )}
       </div>
     </div>
   );
