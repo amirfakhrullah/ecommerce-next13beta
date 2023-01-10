@@ -3,7 +3,7 @@
 import { useState } from "react";
 import OrderHistorySection from "../../components/sections/UserSection/OrderHistorySection";
 import ProfileSection from "../../components/sections/UserSection/ProfileSection";
-import UserDangerSection from "../../components/sections/UserSection/UserDangerSection";
+import UserDangerSection from "../../components/sections/UserSection/AboutSection";
 import UserTabs from "../../components/UserTabs";
 
 const ProfilePage = () => {
