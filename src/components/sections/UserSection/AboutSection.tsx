@@ -30,6 +30,7 @@ const AboutSection = () => {
           <a
             href="https://github.com/amirfakhrullah/ecommerce-next13beta"
             target="_blank"
+            rel="noreferrer"
             className="underline text-blue-600"
           >
             ecommerce-next13beta
