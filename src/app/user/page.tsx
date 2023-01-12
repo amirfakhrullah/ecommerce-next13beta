@@ -2,8 +2,7 @@
 
 import { useState } from "react";
 import OrderHistorySection from "../../components/sections/UserSection/OrderHistorySection";
-import ProfileSection from "../../components/sections/UserSection/ProfileSection";
-import UserDangerSection from "../../components/sections/UserSection/AboutSection";
+import AboutSection from "../../components/sections/UserSection/AboutSection";
 import UserTabs from "../../components/UserTabs";
 
 const ProfilePage = () => {
@@ -14,7 +13,7 @@ const ProfilePage = () => {
       case 0:
         return <OrderHistorySection />;
       case 1:
-        return <UserDangerSection />;
+        return <AboutSection />;
       default:
         return <></>;
     }
