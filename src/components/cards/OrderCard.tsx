@@ -1,7 +1,7 @@
 "use client";
 
-import { format } from "date-fns";
 import { useRouter } from "next/navigation";
+import { getDateCompare } from "../../helpers/date";
 import { OrderHistoryList } from "../../server/routers/subRouters/order.router";
 import SeeAllButton from "../buttons/SeeAllButton";
 import StatusBox from "../StatusBox";
@@ -31,10 +31,9 @@ const OrderCard = ({
       </div>
       <div className="md:flex hidden flex-row items-center justify-center">
         <p className="text-sm">
-          {order.updatedAt ? "Updated on " : "Created on "}
-          {format(
-            new Date(order.updatedAt ? order.updatedAt : order.createdAt),
-            "MM/dd/yyyy h:mm a"
+          {order.updatedAt ? "Updated " : "Created "}
+          {getDateCompare(
+            new Date(order.updatedAt ? order.updatedAt : order.createdAt)
           )}
         </p>
       </div>

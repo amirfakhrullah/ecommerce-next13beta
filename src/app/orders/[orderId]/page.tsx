@@ -1,9 +1,9 @@
-import { format } from "date-fns";
 import { notFound } from "next/navigation";
 import Border from "../../../components/Border";
 import BackButton from "../../../components/buttons/BackButton";
 import CartCard from "../../../components/cards/CartCard";
 import StatusBox from "../../../components/StatusBox";
+import { getDateCompare } from "../../../helpers/date";
 import { displayNumbers } from "../../../helpers/numbers";
 import { getCurrentUser } from "../../../lib/servers/session";
 import { getOrder } from "../../../server/handlers/orders/getOrder";
@@ -46,10 +46,9 @@ const OrderIdPage = async ({ params: { orderId } }: PageProps) => {
               {order.orderItems.length} Item(s)
             </p>
             <p className="text-sm">
-              {order.updatedAt ? "Updated on " : "Created on "}
-              {format(
-                new Date(order.updatedAt ? order.updatedAt : order.createdAt),
-                "MM/dd/yyyy h:mm a"
+              {order.updatedAt ? "Updated " : "Created "}
+              {getDateCompare(
+                new Date(order.updatedAt ? order.updatedAt : order.createdAt)
               )}
             </p>
           </div>
