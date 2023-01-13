@@ -16,4 +16,4 @@ jobs:
       with:
         url: ${{ secrets.CRON_URL }}
         method: "GET"
-        customHeaders: '{ "x-api-key": ${{ secrets.CRON_API_KEY }}'
+        customHeaders: '{ "x-api-key": ${{ secrets.CRON_API_KEY }} }'
