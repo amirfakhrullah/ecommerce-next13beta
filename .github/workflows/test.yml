@@ -1,0 +1,14 @@
+name: Test
+
+on:
+  schedule:
+   - cron: "* * * * *"
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Test
+      run: echo "hello world"
