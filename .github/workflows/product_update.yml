@@ -1,4 +1,4 @@
-name: Trigger Product Quantity Update on CRON Schedule
+name: Product Quantity Update on CRON Schedule
 
 on:
   schedule:
@@ -7,8 +7,8 @@ on:
   
   jobs:
     build:
-      name: Product Quantity Update
       runs-on: ubuntu-latest
+
       steps:
-        - name: cURL Request
+        - name: Product Quantity Update
           run: curl -X POST -d {} secrets.WEBHOOK_ENDPOINT
