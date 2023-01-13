@@ -12,9 +12,8 @@ jobs:
 
     steps:
     - name: Product Quantity Update
-      run: curl -X GET -H 'Content-type: application/json' -H 'x-api-key: ${{ secrets.CRON_API_KEY }}' ${{ secrets.CRON_URL }}
-      # uses: fjogeleit/http-request-action@v1
-      # with:
-      #   url: ${{ secrets.CRON_URL }}
-      #   method: "GET"
-      #   customHeaders: '{ "Content-Type": "application/json", "x-api-key": ${{ secrets.CRON_API_KEY }} }'
+      run: |
+        curl -X GET \
+        -H 'Content-type: application/json' \
+        -H 'x-api-key: ${{ secrets.CRON_API_KEY }}' \
+        --url ${{ secrets.CRON_URL }}
