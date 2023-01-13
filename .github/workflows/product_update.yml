@@ -13,4 +13,4 @@ jobs:
 
     steps:
       - name: cURL Req
-        run: curl ${secrets.WEBHOOK_ENDPOINT}
+        run: curl secrets.WEBHOOK_ENDPOINT
