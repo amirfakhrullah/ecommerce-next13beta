@@ -1,0 +1,14 @@
+name: Trigger Product Quantity Update on CRON Schedule
+
+on:
+  schedule:
+    # - cron: "0 12 * * 1"
+    - cron: "1 * * * *"
+  workflow_dispatch: 
+
+jobs:
+  my-job:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Product Quantity Update
+      run: echo "hello world"
