@@ -13,10 +13,7 @@ jobs:
     steps:
     - name: Product Quantity Update
       uses: fjogeleit/http-request-action@v1
-      env:
-        cron_url: ${{ secrets.CRON_URL }}
-        cron_api_key: ${{ secrets.CRON_API_KEY }}
       with:
-        url: cron_url
+        url: ${{ secrets.CRON_URL }}
         method: "GET"
-        customHeaders: '{ "x-api-key": ${{ cron_api_key }}'
+        customHeaders: '{ "x-api-key": ${{ secrets.CRON_API_KEY }}'
