@@ -9,4 +9,5 @@ export default async function handler(
   }
 
   console.log(req.headers);
+  return res.status(200).end();
 }
