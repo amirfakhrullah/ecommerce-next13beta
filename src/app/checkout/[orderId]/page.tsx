@@ -53,18 +53,20 @@ const CheckoutOrderIdPage = async ({
     return notFound();
   }
 
-  const order = await getOrderCheckout(orderId, paymentIntentClientSecret, user.id);
+  const order = await getOrderCheckout(
+    orderId,
+    paymentIntentClientSecret,
+    user.id
+  );
   if (!order) {
     return notFound();
   }
 
   return (
-    <div>
-      <CheckoutSection
-        paymentIntentClientSecret={paymentIntentClientSecret}
-        order={order}
-      />
-    </div>
+    <CheckoutSection
+      paymentIntentClientSecret={paymentIntentClientSecret}
+      order={order}
+    />
   );
 };
 

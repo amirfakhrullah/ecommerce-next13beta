@@ -7,7 +7,6 @@ import {
   useStripe,
 } from "@stripe/react-stripe-js";
 import Button from "../buttons/Button";
-import CartSection from "../sections/CartSection";
 import { useUserContext } from "../../providers/UserProvider";
 import { notFound, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
