@@ -1,0 +1,21 @@
+name: Trigger Product Quantity Update on CRON Schedule
+
+on:
+  schedule:
+    # - cron: "0 12 * * 1"
+    - cron: "15 0 * * *"
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Product Quantity Update
+      uses: fjogeleit/http-request-action@v1
+      env:
+        cron_url: ${{ secrets.CRON_URL }}
+        cron_api_key: ${{ secrets.CRON_API_KEY }}
+      with:
+        url: cron_url
+        method: "GET"
+        customHeaders: '{ "x-api-key": ${{ cron_api_key }}'
