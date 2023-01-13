@@ -1,6 +1,8 @@
 name: Product Quantity Update on CRON Schedule
 
 on:
+  push:
+    branches: [ feat/cron ]
   schedule:
     # - cron: "0 12 * * 1"
     - cron: "15 0 * * *"
@@ -10,5 +12,5 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-      - name: Product Quantity Update
-        run: curl -X POST -d {} secrets.WEBHOOK_ENDPOINT
+      - name: cURL Req
+        run: curl https://checks.amrf.me/api/webhooks/cron
