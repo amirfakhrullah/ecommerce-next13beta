@@ -2,8 +2,7 @@ name: Trigger Product Quantity Update on CRON Schedule
 
 on:
   schedule:
-    - cron: "0 12 * * 1"
-  workflow_dispatch: 
+  - cron: "0 12 * * *"
 
 jobs:
   build:
