@@ -1,0 +1,19 @@
+name: Product Quantity Update on CRON Schedule
+
+on:
+  schedule:
+    # - cron: "0 12 * * 1"
+    - cron: "5 0 * * *"
+  
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Product Quantity Update
+        uses: fjogeleit/http-request-action@v1
+        with:
+          url: "https://checks.amrf.me/api/webhooks/cron"
+          method: "POST"
+          customHeaders: '{ "Cron-Key": ${{ secrets.WEBHOOK_SECRET }}'
+          data: "{}"
