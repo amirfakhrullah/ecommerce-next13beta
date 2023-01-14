@@ -44,6 +44,7 @@ export default async function handler(
             quantity: {
               increment: 1,
             },
+            updatedAt: new Date(),
           },
         })
       )
@@ -56,6 +57,7 @@ export default async function handler(
       },
       data: {
         status: "Failed",
+        updatedAt: new Date(),
       },
     }),
   ]);

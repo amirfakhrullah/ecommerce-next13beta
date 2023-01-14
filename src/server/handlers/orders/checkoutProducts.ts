@@ -27,6 +27,7 @@ export const checkoutProducts = async (
               quantity: {
                 decrement: 1,
               },
+              updatedAt: new Date(),
             },
           });
           if (product.quantity < 0) {

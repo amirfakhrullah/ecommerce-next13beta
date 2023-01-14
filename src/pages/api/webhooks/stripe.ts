@@ -56,7 +56,7 @@ export default async function handler(
       status = "Processing";
       break;
     case "payment_intent.payment_failed":
-      status = "Failed";
+      status = "NotPaid";
       break;
     default:
       status = undefined;
