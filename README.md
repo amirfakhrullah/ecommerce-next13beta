@@ -4,13 +4,16 @@ An e-commerce site for Nike sneakers built with the new Next.js 13 Beta (and oth
 
 > **Warning**
 > Not a real e-commerce site. Built for experimenting and learning purposes.
-> This app is still in development.
 
 ## Demo
 
-![progress1](https://user-images.githubusercontent.com/73758525/210262578-0057b65c-b193-4f2c-9529-28bc2562823e.png)
+![progress1](https://user-images.githubusercontent.com/73758525/212482738-8eb76e3b-2cf8-42f6-86ee-8b0c9b4b63eb.png)
 
-![progress2](https://user-images.githubusercontent.com/73758525/210262585-61f377d1-1985-4210-b5ac-9f7cf0183cc4.png)
+![progress2](https://user-images.githubusercontent.com/73758525/212482779-0a1daf72-3758-4ef4-bf89-f3695034bd82.png)
+
+![progress3](https://user-images.githubusercontent.com/73758525/212482786-373d6b13-c0e9-40fe-beec-7b89b84c097a.png)
+
+![progress4](https://user-images.githubusercontent.com/73758525/212482792-ac440448-d848-47f1-a746-f260ea63ec1a.png)
 
 ## About
 
@@ -19,7 +22,7 @@ An e-commerce site for Nike sneakers built with the new Next.js 13 Beta (and oth
 - Haven't built an e-commerce site, so I'm challenging myself to build one!
 - Building this in public. You can follow the progress/updates on [@amirfkrlh](https://twitter.com/amirfkrlh)
 
-## Tech-stacks (Currently)
+## Tech-stacks
 
 - [Next.js 13 Beta](https://beta.nextjs.org/docs)
 - [TailwindCSS](https://tailwindcss.com/)
@@ -35,6 +38,14 @@ An e-commerce site for Nike sneakers built with the new Next.js 13 Beta (and oth
 - Next.js: [Vercel](https://vercel.com/)
 - Database: [Railway](https://railway.app/)
 - Image hosting: [AWS S3](https://aws.amazon.com/s3/)
+
+## Payment
+
+- [Stripe](https://stripe.com/)
+
+## Cron Job
+
+- GitHub Action
 
 ## Setting up locally
 
