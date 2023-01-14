@@ -3,25 +3,11 @@
 import { signIn } from "next-auth/react";
 import Button from "./Button";
 import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
-import { toast } from "react-hot-toast";
 
 export const SignInButton = () => {
-  const params = useSearchParams();
   const handleSignIn = async (provider: "github" | "twitch") => {
     await signIn(provider);
   };
-
-  useEffect(() => {
-    if (params.get("error") && params.get("callbackUrl")) {
-      if (params.get("error") === "OAuthAccountNotLinked") {
-        toast.error("The email is linked to different provider")
-      } else {
-        toast.error(params.get("error"))
-      }
-    }
-  }, [params])
 
   return (
     <Menu placement="bottom-end">
