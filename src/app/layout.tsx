@@ -9,6 +9,7 @@ import { TRPCProvider } from "../providers/trpcProvider";
 import { use } from "react";
 import { getCurrentUser } from "../lib/servers/session";
 import UserContextProvider from "../providers/UserProvider";
+import AuthError from "../components/AuthError";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
@@ -31,6 +32,7 @@ export default function RootLayout({
                 {children}
                 <Toaster position="top-center" />
                 <Footer />
+                <AuthError />
                 <AnalyticsWrapper />
               </>
             </CartContextProvider>
