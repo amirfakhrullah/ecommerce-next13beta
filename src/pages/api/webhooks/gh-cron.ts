@@ -33,6 +33,10 @@ export default async function handler(
     },
   });
 
+  if (orders.length === 0) {
+    return res.status(200).end();
+  }
+
   await db.$transaction([
     ...orders.flatMap((order) =>
       order.orderItems.map((item) =>
@@ -62,5 +66,5 @@ export default async function handler(
     }),
   ]);
 
-  res.status(200).end();
+  return res.status(200).end();
 }
