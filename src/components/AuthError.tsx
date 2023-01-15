@@ -21,7 +21,7 @@ const AuthError = () => {
           toast.error(params.get("error"));
         }
       }, 100);
-      router.push(currentPath);
+      router.push(currentPath ?? "/");
     }
     return () => clearTimeout(timeout);
   }, []);
