@@ -8,20 +8,31 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const key = req.headers["x-api-key"];
-  if (!key || typeof key !== "string") {
+  if (!key || typeof key !== "string" || key !== env.CRON_API_KEY) {
     return res.status(401).end();
   }
 
-  if (key !== env.CRON_API_KEY) {
-    return res.status(401).end();
-  }
+  const timeRange = {
+    lte: (() => {
+      const date = new Date();
+      date.setMinutes(date.getMinutes() - 5);
+      return date;
+    })(),
+  };
 
-  const statusLists: Status[] = ["NotPaid", "Processing"];
   const orders = await db.order.findMany({
     where: {
       status: {
-        in: statusLists,
+        in: ["NotPaid", "Processing"],
       },
+      OR: [
+        {
+          createdAt: timeRange,
+        },
+        {
+          updatedAt: timeRange,
+        },
+      ],
     },
     select: {
       id: true,

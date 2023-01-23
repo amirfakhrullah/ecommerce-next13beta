@@ -3,14 +3,27 @@ import { data } from "./data";
 
 const prisma = new PrismaClient();
 
-/**
- * Not used for seeding. I'm using this to update date :(
- */
 const seed = async () => {
-  const products = await prisma.product.createMany({
-    data,
+  const timeRange = {
+    lte: (() => {
+      const date = new Date();
+      date.setMinutes(date.getMinutes() - 5);
+      return date;
+    })(),
+  };
+  const orders = await prisma.order.findMany({
+    where: {
+      OR: [
+        {
+          createdAt: timeRange,
+        },
+        {
+          updatedAt: timeRange,
+        },
+      ],
+    },
   });
-  console.log(products);
+  console.log(orders);
 };
 
 seed()
