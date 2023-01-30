@@ -80,6 +80,7 @@ const CheckoutBtn = () => {
                 width={200}
                 height={200}
                 className="w-auto h-auto"
+                unoptimized
               />
             </div>
             <div className="col-span-3 flex flex-col justify-between p-1">

@@ -43,7 +43,7 @@ const CartCard = ({ item, price, index, disableAction = false }: Props) => {
           width={150}
           height={150}
           className="w-auto h-auto"
-          unoptimized={true}
+          unoptimized
         />
       </div>
       <div className="sm:col-span-3 col-span-2">
