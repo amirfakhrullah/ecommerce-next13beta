@@ -24,7 +24,6 @@ const ProductCard = ({
           alt={id}
           width={200}
           height={200}
-          unoptimized
         />
       </div>
       <div className="flex flex-col justify-between flex-1">

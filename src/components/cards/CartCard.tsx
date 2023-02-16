@@ -43,7 +43,6 @@ const CartCard = ({ item, price, index, disableAction = false }: Props) => {
           width={150}
           height={150}
           className="w-auto h-auto"
-          unoptimized
         />
       </div>
       <div className="sm:col-span-3 col-span-2">
@@ -51,7 +50,8 @@ const CartCard = ({ item, price, index, disableAction = false }: Props) => {
           onClick={() => !disableAction && router.push(`/products/${item.id}`)}
           className={cn(
             "sm:text-lg text-[16px] font-black ease-in duration-75",
-            !disableAction && "hover:underline hover:text-red-800 cursor-pointer"
+            !disableAction &&
+              "hover:underline hover:text-red-800 cursor-pointer"
           )}
         >
           {item.name}
