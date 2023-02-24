@@ -1,13 +1,25 @@
 import { inferRouterOutputs } from "@trpc/server";
+import { z } from "zod";
 import { paginatedInputSchema } from "../../../helpers/validations/userRoutesSchema";
 import { adminProcedure } from "../../procedures";
 import { router } from "../../trpc";
 
+enum Sort {
+  Desc = "Desc",
+  Asc = "Asc",
+  PriceUp = "PriceUp",
+  PriceDown = "PriceDown",
+}
+
 export const adminRouter = router({
   getProductsInfo: adminProcedure
-    .input(paginatedInputSchema)
+    .input(
+      paginatedInputSchema.extend({
+        sort: z.nativeEnum(Sort),
+      })
+    )
     .query(async ({ ctx, input }) => {
-      const { take, cursor } = input;
+      const { take, cursor, sort } = input;
       const products = await ctx.prisma.product.findMany({
         select: {
           id: true,
@@ -37,7 +49,10 @@ export const adminRouter = router({
           },
         }),
         orderBy: {
-          id: "desc",
+          ...(sort === Sort.Asc && { id: "asc" }),
+          ...(sort === Sort.Desc && { id: "desc" }),
+          ...(sort === Sort.PriceDown && { price: "desc" }),
+          ...(sort === Sort.PriceUp && { price: "asc" }),
         },
       });
       return {

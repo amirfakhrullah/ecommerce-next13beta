@@ -10,12 +10,20 @@ import NotFoundText from "../../components/NotFoundText";
 import { ITEMS_PER_PAGE } from "../../constants";
 import { trpc } from "../../providers/trpcProvider";
 
+enum Sort {
+  Desc = "Desc",
+  Asc = "Asc",
+  PriceUp = "PriceUp",
+  PriceDown = "PriceDown",
+}
+
 const AdminPage = () => {
   const { ref, inView } = useInView();
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     trpc.admin.getProductsInfo.useInfiniteQuery(
       {
         take: ITEMS_PER_PAGE,
+        sort: Sort.PriceDown,
       },
       {
         onError: (err) => toast.error(err.message),
