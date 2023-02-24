@@ -1,6 +1,6 @@
 import { inferRouterOutputs } from "@trpc/server";
 import { z } from "zod";
-import { orderHistoryInputSchema } from "../../../helpers/validations/userRoutesSchema";
+import { paginatedInputSchema } from "../../../helpers/validations/userRoutesSchema";
 import { getOrder } from "../../handlers/orders/getOrder";
 import { userProcedure } from "../../procedures";
 import { router } from "../../trpc";
@@ -12,7 +12,7 @@ export const orderRouter = router({
       return await getOrder(orderId, ctx.session.user.id, ctx.prisma);
     }),
   history: userProcedure
-    .input(orderHistoryInputSchema)
+    .input(paginatedInputSchema)
     .query(async ({ ctx, input }) => {
       const { take, cursor } = input;
       const orders = await ctx.prisma.order.findMany({
