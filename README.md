@@ -63,10 +63,16 @@ git clone https://github.com/amirfakhrullah/ecommerce-next13beta.git
 npm i
 ```
 
-- Push and synchronize the prisma schema to the database:
+- Push and synchronize the prisma schema to the database (make sure you have prisma cli installed):
 
 ```bash
 npx prisma db push
+```
+
+- Seed initial data:
+
+```bash
+npx prisma db seed
 ```
 
 - Run locally:

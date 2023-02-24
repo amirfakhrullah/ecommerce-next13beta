@@ -1,29 +1,22 @@
 import { PrismaClient } from "@prisma/client";
-import { data } from "./data";
+import { initCategories } from "./seedData/categories";
+import { initProducts } from "./seedData/products";
 
 const prisma = new PrismaClient();
 
 const seed = async () => {
-  const timeRange = {
-    lte: (() => {
-      const date = new Date();
-      date.setMinutes(date.getMinutes() - 5);
-      return date;
-    })(),
-  };
-  const orders = await prisma.order.findMany({
-    where: {
-      OR: [
-        {
-          createdAt: timeRange,
-        },
-        {
-          updatedAt: timeRange,
-        },
-      ],
-    },
-  });
-  console.log(orders);
+  const [categoryOutputs, productOutputs] = await prisma.$transaction([
+    prisma.category.createMany({
+      data: initCategories,
+      skipDuplicates: true,
+    }),
+    prisma.product.createMany({
+      data: initProducts,
+      skipDuplicates: true,
+    }),
+  ]);
+  console.log("categoryOutputs =>", categoryOutputs);
+  console.log("productOutputs =>", productOutputs);
 };
 
 seed()
