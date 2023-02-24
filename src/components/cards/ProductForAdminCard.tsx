@@ -1,8 +1,8 @@
-import { IoArrowForwardOutline } from "react-icons/io5";
 import { getDateCompare } from "../../helpers/date";
 import { ProductsInfoResponse } from "../../server/routers/subRouters/admin.router";
 import Button from "../buttons/Button";
 import Image from "next/image";
+import { FiEdit2 } from "react-icons/fi";
 
 const ProductForAdminCard = ({
   id,
@@ -30,9 +30,7 @@ const ProductForAdminCard = ({
           <p className="sm:text-[16px] text-[14px] font-semibold text-red-800">
             ${price}
           </p>
-          <p className="text-sm">
-            {sold} sold
-          </p>
+          <p className="text-sm">{sold} sold</p>
         </div>
       </div>
       <div className="md:flex col-span-1 hidden flex-row items-center justify-center">
@@ -43,8 +41,8 @@ const ProductForAdminCard = ({
       </div>
       <div className="col-span-1 flex items-center justify-end">
         <Button className="py-3 px-6" color="secondary">
-          View / Edit
-          <IoArrowForwardOutline className="text-xl ml-2" />
+          <FiEdit2 className="mr-2" />
+          Edit
         </Button>
       </div>
     </div>

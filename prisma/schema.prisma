@@ -24,6 +24,7 @@ model Product {
   orderItems  OrderItem[]
   createdAt   DateTime    @default(now())
   updatedAt   DateTime?
+  deleted     Boolean     @default(false) // soft delete
 }
 
 model Category {
@@ -61,7 +62,6 @@ model Order {
   stripePaymentIntentId     String?
   stripePaymentClientSecret String?
 }
-
 
 // Next-Auth
 model Account {
