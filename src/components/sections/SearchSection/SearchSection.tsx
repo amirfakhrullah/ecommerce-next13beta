@@ -15,6 +15,7 @@ const SearchSection = () => {
   const [search, setSearch] = useState("");
   const handleOpen = () => setOpen(!open);
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   const debounced = useCallback(
     debounce((val: string) => {
       setSearch(val);

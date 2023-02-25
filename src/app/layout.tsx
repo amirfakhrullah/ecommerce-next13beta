@@ -6,27 +6,27 @@ import CartContextProvider from "../providers/CartContextProvider";
 import Toaster from "../components/Toaster";
 import { AnalyticsWrapper } from "../lib/clients/Analytics";
 import { TRPCProvider } from "../providers/trpcProvider";
-import { use } from "react";
-import { getCurrentUser } from "../lib/servers/session";
 import UserContextProvider from "../providers/UserProvider";
 import AuthError from "../components/AuthError";
 import db from "../lib/servers/prismadb";
 import { UserType } from "@prisma/client";
+import { getCurrentUser } from "../lib/getCurrentUser";
+import { use } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
-export default async function RootLayout({
+export default function RootLayout({
   children,
 }: {
   children: React.ReactNode;
 }) {
-  const user = await getCurrentUser();
+  const user = use(getCurrentUser());
 
   let isAdmin = false;
   if (user) {
     isAdmin =
-      (
-        await db.user.findFirst({
+      use(
+        db.user.findFirst({
           where: {
             id: user.id,
           },

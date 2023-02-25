@@ -5,7 +5,7 @@ import CartCard from "../../../components/cards/CartCard";
 import StatusBox from "../../../components/StatusBox";
 import { getDateCompare } from "../../../helpers/date";
 import { displayNumbers } from "../../../helpers/numbers";
-import { getCurrentUser } from "../../../lib/servers/session";
+import { getCurrentUser } from "../../../lib/getCurrentUser";
 import { getOrder } from "../../../server/handlers/orders/getOrder";
 
 interface PageProps {

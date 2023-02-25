@@ -10,11 +10,10 @@ import SeeAllButton from "../buttons/SeeAllButton";
 import cn from "../../helpers/cn";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
-import { } from "next/link"
 
 const CheckoutBtn = () => {
   const router = useRouter();
-  const path = usePathname();
+  const path = window.location.pathname;
 
   // hide this component if in these pages
   const toHide =

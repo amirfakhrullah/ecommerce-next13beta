@@ -9,7 +9,13 @@ import NotFoundText from "../../../components/NotFoundText";
 import { ITEMS_PER_PAGE } from "../../../constants";
 import usePaginatedRef from "../../../hooks/usePaginatedRef";
 import { trpc } from "../../../providers/trpcProvider";
-import { Sort } from "../../../server/routers/subRouters/admin.router";
+
+enum Sort {
+  Desc = "Desc",
+  Asc = "Asc",
+  PriceUp = "PriceUp",
+  PriceDown = "PriceDown",
+}
 
 const AdminPage = () => {
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =

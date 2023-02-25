@@ -1,7 +1,7 @@
 import { Status } from "@prisma/client";
 import { notFound } from "next/navigation";
 import CheckoutSection from "../../../components/sections/CheckoutSection";
-import { getCurrentUser } from "../../../lib/servers/session";
+import { getCurrentUser } from "../../../lib/getCurrentUser";
 import { getOrderCheckout } from "../../../server/handlers/orders/getOrderCheckout";
 
 interface PageProps {
