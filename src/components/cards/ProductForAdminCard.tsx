@@ -1,8 +1,7 @@
 import { getDateCompare } from "../../helpers/date";
 import { ProductsInfoResponse } from "../../server/routers/subRouters/admin.router";
-import Button from "../buttons/Button";
 import Image from "next/image";
-import { FiEdit2 } from "react-icons/fi";
+import EditOrAddProductDialog from "../sections/EditOrAddProductSection/EditOrAddProductDialog";
 
 const ProductForAdminCard = ({
   id,
@@ -40,10 +39,7 @@ const ProductForAdminCard = ({
         </p>
       </div>
       <div className="col-span-1 flex items-center justify-end">
-        <Button className="py-3 px-6" color="secondary">
-          <FiEdit2 className="mr-2" />
-          Edit
-        </Button>
+        <EditOrAddProductDialog id={id} />
       </div>
     </div>
   );

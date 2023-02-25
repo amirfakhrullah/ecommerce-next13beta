@@ -19,6 +19,8 @@ export const getCartProductsInputSchema = z
   )
   .max(5);
 
+  export type CartProductsInput = z.infer<typeof getCartProductsInputSchema>;
+
 export const createProductInputSchema = z.object({
   name: z.string(),
   image: z.string(),
@@ -29,4 +31,4 @@ export const createProductInputSchema = z.object({
   categoryId: z.string(),
 });
 
-export type CartProductsInput = z.infer<typeof getCartProductsInputSchema>;
+export type CreateProductsInput = z.infer<typeof createProductInputSchema>;
