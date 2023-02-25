@@ -3,6 +3,7 @@ import { z } from "zod";
 import { createProductInputSchema } from "../../../helpers/validations/productRoutesSchema";
 import { paginatedInputSchema } from "../../../helpers/validations/userRoutesSchema";
 import { fetchPaginatedProducts } from "../../handlers/products/fetchPaginatedProducts";
+import { getPreSignedUrl } from "../../handlers/s3/getPreSignedUrl";
 import { adminProcedure } from "../../procedures";
 import { router } from "../../trpc";
 
@@ -33,6 +34,13 @@ export const adminRouter = router({
         cursor: products[take - 1]?.id,
       };
     }),
+  getSignedUrl: adminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ input }) => getPreSignedUrl(input.id)),
   createProduct: adminProcedure
     .input(createProductInputSchema)
     .mutation(async ({ ctx, input }) => {

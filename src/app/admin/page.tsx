@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import { toast } from "react-hot-toast";
 import ProductForAdminCard from "../../components/cards/ProductForAdminCard";
 import Loader from "../../components/loaders/Loader";
@@ -8,6 +8,7 @@ import SmallLoader from "../../components/loaders/SmallLoader";
 import NotFoundText from "../../components/NotFoundText";
 import { ITEMS_PER_PAGE } from "../../constants";
 import usePaginatedRef from "../../hooks/usePaginatedRef";
+import useUploadImage from "../../hooks/useUploadImage";
 import { trpc } from "../../providers/trpcProvider";
 
 enum Sort {
@@ -33,8 +34,10 @@ const AdminPage = () => {
 
   const { viewRef } = usePaginatedRef({
     hasNextPage,
-    fetchNextPage
+    fetchNextPage,
   });
+
+  const { handleChange, isLoading: isUploadLoading, mutate } = useUploadImage();
 
   const pages = data?.pages;
   if (isLoading) {
@@ -47,6 +50,10 @@ const AdminPage = () => {
 
   return (
     <div className="mb-5">
+      <input type="file" placeholder="upload" onChange={handleChange} />
+      <button type="button" onClick={mutate}>
+        Submit
+      </button>
       {pages.map((page) => (
         <Fragment key={page.cursor ?? "last"}>
           {page.products.length === 0 && (
