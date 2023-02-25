@@ -58,21 +58,23 @@ export const adminRouter = router({
         },
       });
     }),
-  deleteProduct: adminProcedure.input(
-    z.object({
-      id: z.string(),
-    })
-  ).mutation(async ({ ctx, input }) => {
-    return ctx.prisma.product.update({
-      where: {
-        id: input.id
-      },
-      data: {
-        deleted: true,
-        updatedAt: new Date()
-      }
-    })
-  }),
+  deleteProduct: adminProcedure
+    .input(
+      z.object({
+        id: z.string(),
+      })
+    )
+    .mutation(async ({ ctx, input }) => {
+      return ctx.prisma.product.update({
+        where: {
+          id: input.id,
+        },
+        data: {
+          deleted: true,
+          updatedAt: new Date(),
+        },
+      });
+    }),
 });
 
 type AdminRouterOutput = inferRouterOutputs<typeof adminRouter>;
