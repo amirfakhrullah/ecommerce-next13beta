@@ -8,7 +8,7 @@ import cn from "../../helpers/cn";
 import UserAvatar from "../Avatar";
 import Button from "../buttons/Button";
 
-const UserMenu = ({ user }: { user: User }) => {
+const UserMenu = ({ user, isAdmin }: { user: User; isAdmin: boolean }) => {
   const router = useRouter();
 
   const handleSignOut = async () => {
@@ -45,6 +45,16 @@ const UserMenu = ({ user }: { user: User }) => {
         >
           Manage
         </Button>
+
+        {isAdmin && (
+          <Button
+            color="secondary"
+            className="w-full py-2 mb-1"
+            onClick={() => router.push("/admin")}
+          >
+            Admin Page
+          </Button>
+        )}
 
         <Button color="primary" className="w-full py-2" onClick={handleSignOut}>
           Logout

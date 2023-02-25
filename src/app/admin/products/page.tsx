@@ -2,20 +2,14 @@
 
 import { Fragment } from "react";
 import { toast } from "react-hot-toast";
-import ProductForAdminCard from "../../components/cards/ProductForAdminCard";
-import Loader from "../../components/loaders/Loader";
-import SmallLoader from "../../components/loaders/SmallLoader";
-import NotFoundText from "../../components/NotFoundText";
-import { ITEMS_PER_PAGE } from "../../constants";
-import usePaginatedRef from "../../hooks/usePaginatedRef";
-import { trpc } from "../../providers/trpcProvider";
-
-enum Sort {
-  Desc = "Desc",
-  Asc = "Asc",
-  PriceUp = "PriceUp",
-  PriceDown = "PriceDown",
-}
+import ProductForAdminCard from "../../../components/cards/ProductForAdminCard";
+import Loader from "../../../components/loaders/Loader";
+import SmallLoader from "../../../components/loaders/SmallLoader";
+import NotFoundText from "../../../components/NotFoundText";
+import { ITEMS_PER_PAGE } from "../../../constants";
+import usePaginatedRef from "../../../hooks/usePaginatedRef";
+import { trpc } from "../../../providers/trpcProvider";
+import { Sort } from "../../../server/routers/subRouters/admin.router";
 
 const AdminPage = () => {
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
@@ -33,7 +27,7 @@ const AdminPage = () => {
 
   const { viewRef } = usePaginatedRef({
     hasNextPage,
-    fetchNextPage
+    fetchNextPage,
   });
 
   const pages = data?.pages;
