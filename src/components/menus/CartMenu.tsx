@@ -9,7 +9,8 @@ import Button from "../buttons/Button";
 import SeeAllButton from "../buttons/SeeAllButton";
 import cn from "../../helpers/cn";
 import { toast } from "react-hot-toast";
-import { usePathname, useRouter } from "next/navigation";
+import { useRouter } from "next/navigation";
+import { } from "next/link"
 
 const CheckoutBtn = () => {
   const router = useRouter();

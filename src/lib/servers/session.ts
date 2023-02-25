@@ -1,8 +1,8 @@
-import { unstable_getServerSession } from "next-auth/next";
+import { getServerSession } from "next-auth/next";
 import authOptions from "./authOptions";
 
 export const getSession = async () => {
-  return await unstable_getServerSession(authOptions);
+  return await getServerSession(authOptions);
 };
 
 export const getCurrentUser = async () => {
