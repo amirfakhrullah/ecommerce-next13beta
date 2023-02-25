@@ -13,7 +13,7 @@ export const productRouter = router({
     .query(async ({ ctx, input }) => {
       const { search, page } = input;
       if (!search) return [];
-      return await getProductsBySearch(
+      return getProductsBySearch(
         search,
         PRODUCTS_PER_PAGE,
         (page - 1) * PRODUCTS_PER_PAGE,
@@ -23,6 +23,6 @@ export const productRouter = router({
   carts: procedure
     .input(getCartProductsInputSchema)
     .query(async ({ ctx, input }) => {
-      return await getCartProducts(input, ctx.prisma);
+      return getCartProducts(input, ctx.prisma);
     }),
 });

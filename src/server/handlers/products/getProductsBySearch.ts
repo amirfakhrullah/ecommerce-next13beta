@@ -16,6 +16,7 @@ export const getProductsBySearch = async (
   if (searchValues.length === 0) return [];
   const products = await (prisma ?? db).product.findMany({
     where: {
+      deleted: false,
       OR: [
         {
           AND: searchValues.flatMap((val) => [

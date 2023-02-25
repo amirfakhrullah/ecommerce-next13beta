@@ -9,7 +9,7 @@ export const orderRouter = router({
   get: userProcedure
     .input(z.string().max(30))
     .query(async ({ ctx, input: orderId }) => {
-      return await getOrder(orderId, ctx.session.user.id, ctx.prisma);
+      return getOrder(orderId, ctx.session.user.id, ctx.prisma);
     }),
   history: userProcedure
     .input(paginatedInputSchema)
