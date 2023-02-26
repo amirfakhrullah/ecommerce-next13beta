@@ -1,7 +1,7 @@
 "use client";
 
 import { Menu, MenuHandler, MenuList } from "@material-tailwind/react";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { AiOutlineShoppingCart } from "react-icons/ai";
 import { CartContext } from "../../providers/CartContextProvider";
@@ -20,6 +20,7 @@ const CheckoutBtn = () => {
     path &&
     (["/carts", "/orders/status"].includes(path) ||
       path.startsWith("/checkout"));
+
   const { cartItems, setCartItems } = useContext(CartContext);
 
   const [isLoading, setIsLoading] = useState(false);

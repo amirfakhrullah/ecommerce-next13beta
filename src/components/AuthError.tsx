@@ -11,6 +11,7 @@ const AuthError = () => {
   const [isNotified, setIsNotified] = useState(false);
 
   useEffect(() => {
+    if (!params) return;
     let timeout: NodeJS.Timeout;
     if (params.get("error") && params.get("callbackUrl") && !isNotified) {
       setIsNotified(true);
@@ -24,6 +25,7 @@ const AuthError = () => {
       router.push(currentPath ?? "/");
     }
     return () => clearTimeout(timeout);
+    // eslint-disable-next-line
   }, []);
 
   return <></>;

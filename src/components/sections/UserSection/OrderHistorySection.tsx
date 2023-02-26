@@ -1,21 +1,20 @@
 "use client";
 
-import { Fragment, useEffect } from "react";
+import { Fragment } from "react";
 import { toast } from "react-hot-toast";
 import Loader from "../../loaders/Loader";
 import NotFoundText from "../../../components/NotFoundText";
-import { ORDERS_PER_PAGE } from "../../../constants";
+import { ITEMS_PER_PAGE } from "../../../constants";
 import { trpc } from "../../../providers/trpcProvider";
 import OrderCard from "../../cards/OrderCard";
-import { useInView } from "react-intersection-observer";
 import SmallLoader from "../../loaders/SmallLoader";
+import usePaginatedRef from "../../../hooks/usePaginatedRef";
 
 const OrderHistorySection = () => {
-  const { ref, inView } = useInView();
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
     trpc.order.history.useInfiniteQuery(
       {
-        take: ORDERS_PER_PAGE,
+        take: ITEMS_PER_PAGE,
       },
       {
         onError: (err) => toast.error(err.message),
@@ -24,12 +23,10 @@ const OrderHistorySection = () => {
       }
     );
 
-  useEffect(() => {
-    if (inView && hasNextPage) {
-      fetchNextPage();
-    }
-    // eslint-disable-next-line
-  }, [inView]);
+  const { viewRef } = usePaginatedRef({
+    hasNextPage,
+    fetchNextPage,
+  });
 
   const pages = data?.pages;
   if (isLoading) {
@@ -52,7 +49,7 @@ const OrderHistorySection = () => {
           ))}
         </Fragment>
       ))}
-      <span ref={ref} />
+      <span ref={viewRef} />
       {isFetchingNextPage && <SmallLoader />}
     </div>
   );

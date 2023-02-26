@@ -14,6 +14,7 @@ export const getCartProducts = async (
   if (products.length === 0) return [];
   const data = await (prisma ?? db).product.findMany({
     where: {
+      deleted: false,
       OR: products.map((product) => ({
         id: product.id,
         quantity: {

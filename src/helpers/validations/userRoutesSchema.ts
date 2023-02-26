@@ -1,6 +1,6 @@
 import { z } from "zod";
 
-export const orderHistoryInputSchema = z.object({
+export const paginatedInputSchema = z.object({
   take: z.number(),
   cursor: z.string().optional(),
 });

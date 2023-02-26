@@ -1,6 +1,5 @@
 import { notFound } from "next/navigation";
 import OrderStatusSection from "../../../components/sections/OrderStatusSection";
-import { getCurrentUser } from "../../../lib/servers/session";
 
 interface PageProps {
   searchParams?: {

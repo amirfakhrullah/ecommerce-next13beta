@@ -13,6 +13,7 @@ const OrderCard = ({
 }) => {
   const router = useRouter();
   const navigatePath = `/orders/${order.id}`;
+  
   return (
     <div className="p-4 md:mx-0 mx-2 border border-zinc-300 mt-2 rounded-md shadow-md grid md:grid-cols-4 grid-cols-2">
       <div className="grid-cols-1">

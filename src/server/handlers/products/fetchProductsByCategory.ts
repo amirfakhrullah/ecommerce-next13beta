@@ -22,6 +22,7 @@ export const fetchProductsByCategory = async (
     prismadb.product.findMany({
       where: {
         categoryId,
+        deleted: false,
       },
       include: {
         category: true,
