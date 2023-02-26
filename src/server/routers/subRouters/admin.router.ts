@@ -2,6 +2,7 @@ import { inferRouterOutputs } from "@trpc/server";
 import { z } from "zod";
 import { createProductInputSchema } from "../../../helpers/validations/productRoutesSchema";
 import { paginatedInputSchema } from "../../../helpers/validations/userRoutesSchema";
+import { getAllOrders } from "../../handlers/admin/getAllOrders";
 import { fetchPaginatedProducts } from "../../handlers/products/fetchPaginatedProducts";
 import { getPreSignedUrl } from "../../handlers/s3/getPreSignedUrl";
 import { adminProcedure } from "../../procedures";
@@ -33,6 +34,12 @@ export const adminRouter = router({
         products,
         cursor: products[take - 1]?.id,
       };
+    }),
+  getOrdersInfo: adminProcedure
+    .input(paginatedInputSchema)
+    .query(async ({ ctx, input }) => {
+      const { take, cursor } = input;
+      return getAllOrders(take, cursor, ctx.prisma);
     }),
   getSignedUrl: adminProcedure
     .input(
@@ -99,6 +106,7 @@ export const adminRouter = router({
 
 type AdminRouterOutput = inferRouterOutputs<typeof adminRouter>;
 export type ProductsInfoResponse = AdminRouterOutput["getProductsInfo"];
+export type OrdersInfoResponse = AdminRouterOutput["getOrdersInfo"];
 export type CreateProductResponse = AdminRouterOutput["createProduct"];
 export type UpdateProductResponse = AdminRouterOutput["updateProduct"];
 export type DeleteProductResponse = AdminRouterOutput["deleteProduct"];

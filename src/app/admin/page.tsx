@@ -1,15 +1,14 @@
 "use client";
 
-import { Fragment, useState } from "react";
+import { Fragment } from "react";
 import { toast } from "react-hot-toast";
-import ProductForAdminCard from "../../components/cards/ProductForAdminCard";
+import AdminOrderCard from "../../components/cards/AdminOrderCard";
+import OrderCard from "../../components/cards/OrderCard";
 import Loader from "../../components/loaders/Loader";
 import SmallLoader from "../../components/loaders/SmallLoader";
 import NotFoundText from "../../components/NotFoundText";
-import EditOrAddProductDialog from "../../components/sections/EditOrAddProductSection/EditOrAddProductDialog";
 import { ITEMS_PER_PAGE } from "../../constants";
 import usePaginatedRef from "../../hooks/usePaginatedRef";
-import useUploadImage from "../../hooks/useUploadImage";
 import { trpc } from "../../providers/trpcProvider";
 
 enum Sort {
@@ -21,10 +20,9 @@ enum Sort {
 
 const AdminPage = () => {
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =
-    trpc.admin.getProductsInfo.useInfiniteQuery(
+    trpc.admin.getOrdersInfo.useInfiniteQuery(
       {
         take: ITEMS_PER_PAGE,
-        sort: Sort.PriceDown,
       },
       {
         onError: (err) => toast.error(err.message),
@@ -38,8 +36,6 @@ const AdminPage = () => {
     fetchNextPage,
   });
 
-  const { handleChange, isLoading: isUploadLoading, mutate } = useUploadImage();
-
   const pages = data?.pages;
   if (isLoading) {
     return <Loader />;
@@ -51,14 +47,13 @@ const AdminPage = () => {
 
   return (
     <div className="mb-5">
-      <EditOrAddProductDialog />
       {pages.map((page) => (
         <Fragment key={page.cursor ?? "last"}>
-          {page.products.length === 0 && (
+          {page.orders.length === 0 && (
             <NotFoundText>No Order History</NotFoundText>
           )}
-          {page.products.map((product) => (
-            <ProductForAdminCard key={product.id} {...product} />
+          {page.orders.map((order) => (
+            <AdminOrderCard key={order.id} order={order} />
           ))}
         </Fragment>
       ))}

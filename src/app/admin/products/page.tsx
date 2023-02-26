@@ -6,6 +6,7 @@ import ProductForAdminCard from "../../../components/cards/ProductForAdminCard";
 import Loader from "../../../components/loaders/Loader";
 import SmallLoader from "../../../components/loaders/SmallLoader";
 import NotFoundText from "../../../components/NotFoundText";
+import EditOrAddProductDialog from "../../../components/sections/EditOrAddProductSection/EditOrAddProductDialog";
 import { ITEMS_PER_PAGE } from "../../../constants";
 import usePaginatedRef from "../../../hooks/usePaginatedRef";
 import { trpc } from "../../../providers/trpcProvider";
@@ -47,6 +48,7 @@ const AdminPage = () => {
 
   return (
     <div className="mb-5">
+    <EditOrAddProductDialog />
       {pages.map((page) => (
         <Fragment key={page.cursor ?? "last"}>
           {page.products.length === 0 && (

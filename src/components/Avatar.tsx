@@ -5,15 +5,23 @@ import { User } from "next-auth";
 import { RefAttributes } from "react";
 
 interface UserAvatarProps {
-  user: User & {
+  user: {
     id: string;
+    name?: string | null;
+    email?: string | null;
+    image?: string | null;
   };
   rootProps?: Avatar.AvatarProps & RefAttributes<HTMLSpanElement>;
-  imageProps?: Avatar.AvatarImageProps & RefAttributes<HTMLImageElement>
-  fallbackProps?: Avatar.AvatarFallbackProps & RefAttributes<HTMLSpanElement>
+  imageProps?: Avatar.AvatarImageProps & RefAttributes<HTMLImageElement>;
+  fallbackProps?: Avatar.AvatarFallbackProps & RefAttributes<HTMLSpanElement>;
 }
 
-const UserAvatar = ({ user, rootProps, imageProps, fallbackProps }: UserAvatarProps) => (
+const UserAvatar = ({
+  user,
+  rootProps,
+  imageProps,
+  fallbackProps,
+}: UserAvatarProps) => (
   <Avatar.Root {...rootProps}>
     <Avatar.Image
       src={user?.image || undefined}
@@ -21,7 +29,7 @@ const UserAvatar = ({ user, rootProps, imageProps, fallbackProps }: UserAvatarPr
       {...imageProps}
     />
     <Avatar.Fallback {...fallbackProps}>
-      {user?.name?.[0] || user?.email?.[0] || ''}
+      {user?.name?.[0] || user?.email?.[0] || ""}
     </Avatar.Fallback>
   </Avatar.Root>
 );
