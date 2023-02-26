@@ -1,7 +1,9 @@
 "use client";
 
+import ProductForm from "../../forms/ProductForm";
+
 const AddNewProduct = () => {
-  return <div>AddNewProduct</div>;
+  return <ProductForm type="add" />;
 };
 
 export default AddNewProduct;

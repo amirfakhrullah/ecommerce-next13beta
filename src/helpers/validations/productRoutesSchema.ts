@@ -22,12 +22,12 @@ export const getCartProductsInputSchema = z
   export type CartProductsInput = z.infer<typeof getCartProductsInputSchema>;
 
 export const createProductInputSchema = z.object({
-  name: z.string(),
-  image: z.string(),
-  description: z.string().optional(),
-  sizes: z.array(z.number()),
-  quantity: z.number(),
-  price: z.number(),
+  name: z.string().min(5).max(50),
+  image: z.string().min(5).max(500),
+  description: z.string().max(500).optional(),
+  sizes: z.array(z.string().min(1).max(10)),
+  quantity: z.number().min(10),
+  price: z.number().min(100),
   categoryId: z.string(),
 });
 

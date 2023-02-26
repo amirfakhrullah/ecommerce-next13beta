@@ -41,11 +41,22 @@ export const adminRouter = router({
       })
     )
     .mutation(async ({ input }) => getPreSignedUrl(input.id)),
+  getCategoryList: adminProcedure.query(async ({ ctx }) => {
+    return ctx.prisma.category.findMany({
+      select: {
+        id: true,
+        name: true,
+      },
+    });
+  }),
   createProduct: adminProcedure
     .input(createProductInputSchema)
     .mutation(async ({ ctx, input }) => {
       return ctx.prisma.product.create({
-        data: input,
+        data: {
+          ...input,
+          sizes: input.sizes.map((size) => parseInt(size)),
+        },
       });
     }),
   updateProduct: adminProcedure
@@ -62,6 +73,7 @@ export const adminRouter = router({
         },
         data: {
           ...updateData,
+          sizes: updateData.sizes.map((size) => parseInt(size)),
           updatedAt: new Date(),
         },
       });
@@ -90,3 +102,4 @@ export type ProductsInfoResponse = AdminRouterOutput["getProductsInfo"];
 export type CreateProductResponse = AdminRouterOutput["createProduct"];
 export type UpdateProductResponse = AdminRouterOutput["updateProduct"];
 export type DeleteProductResponse = AdminRouterOutput["deleteProduct"];
+export type CategoryListResponse = AdminRouterOutput["getCategoryList"];

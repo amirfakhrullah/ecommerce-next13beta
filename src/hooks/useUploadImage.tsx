@@ -8,7 +8,9 @@ import { v4 as uuidv4 } from "uuid";
 /**
  * Only admin user can use this hook
  */
-const useUploadImage = (id: string = uuidv4() + new Date().toDateString()) => {
+const useUploadImage = (
+  id: string = uuidv4() + new Date().toISOString().split(":").join()
+) => {
   const [file, setFile] = useState<File | null>(null);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -36,8 +38,8 @@ const useUploadImage = (id: string = uuidv4() + new Date().toDateString()) => {
           errMessage || "There's an error occured when saving the image"
         );
       }
+      setIsLoading(false);
     },
-    onSettled: () => setIsLoading(false),
   });
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -55,6 +57,8 @@ const useUploadImage = (id: string = uuidv4() + new Date().toDateString()) => {
     handleChange,
     isLoading,
     id,
+    file,
+    setFile
   };
 };
 
