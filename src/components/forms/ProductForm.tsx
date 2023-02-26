@@ -17,6 +17,7 @@ import Button from "../buttons/Button";
 import { DEFAULT_SIZES } from "../../constants";
 import cn from "../../helpers/cn";
 import Loader from "../loaders/Loader";
+import DeleteProduct from "../DeleteProduct";
 
 interface ProductFormProps {
   type: "add" | "edit";
@@ -189,7 +190,6 @@ const ProductForm = ({ type, initialData }: ProductFormProps) => {
             className="p-3"
             disabled={loading}
             localLoaderOnClick={false}
-            isLoading={loading}
             type="button"
             onClick={() => changeImageState()}
           >
@@ -305,7 +305,11 @@ const ProductForm = ({ type, initialData }: ProductFormProps) => {
         register={register("quantity")}
       />
 
-      <div className="flex flex-row justify-end">
+      <div className="flex flex-row justify-end mt-5">
+        {type === "edit" && initialData && (
+          <DeleteProduct disabled={loading} id={initialData.id} />
+        )}
+
         <Button
           color="primary"
           className="p-3"
