@@ -48,7 +48,9 @@ const AdminPage = () => {
 
   return (
     <div className="mb-5">
-    <EditOrAddProductDialog />
+      <div className="flex flex-row justify-end py-4">
+        <EditOrAddProductDialog />
+      </div>
       {pages.map((page) => (
         <Fragment key={page.cursor ?? "last"}>
           {page.products.length === 0 && (

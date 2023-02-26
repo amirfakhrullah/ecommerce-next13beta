@@ -46,20 +46,25 @@ const AdminPage = () => {
   }
 
   return (
-    <div className="mb-5">
-      {pages.map((page) => (
-        <Fragment key={page.cursor ?? "last"}>
-          {page.orders.length === 0 && (
-            <NotFoundText>No Order History</NotFoundText>
-          )}
-          {page.orders.map((order) => (
-            <AdminOrderCard key={order.id} order={order} />
-          ))}
-        </Fragment>
-      ))}
-      <span ref={viewRef} />
-      {isFetchingNextPage && <SmallLoader />}
-    </div>
+    <>
+    <h2 className="text-2xl font-black mt-10 mb-5">
+      All Orders 🚗
+    </h2>
+      <div className="mb-5">
+        {pages.map((page) => (
+          <Fragment key={page.cursor ?? "last"}>
+            {page.orders.length === 0 && (
+              <NotFoundText>No Order History</NotFoundText>
+            )}
+            {page.orders.map((order) => (
+              <AdminOrderCard key={order.id} order={order} />
+            ))}
+          </Fragment>
+        ))}
+        <span ref={viewRef} />
+        {isFetchingNextPage && <SmallLoader />}
+      </div>
+    </>
   );
 };
 

@@ -43,7 +43,7 @@ const UserMenu = ({ user, isAdmin }: { user: User; isAdmin: boolean }) => {
           className="w-full py-2 mb-1"
           onClick={() => router.push("/user")}
         >
-          Manage
+          Profile
         </Button>
 
         {isAdmin && (
@@ -52,7 +52,7 @@ const UserMenu = ({ user, isAdmin }: { user: User; isAdmin: boolean }) => {
             className="w-full py-2 mb-1"
             onClick={() => router.push("/admin")}
           >
-            Admin Page
+            Admin Section
           </Button>
         )}
 

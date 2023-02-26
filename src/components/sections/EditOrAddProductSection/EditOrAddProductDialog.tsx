@@ -4,6 +4,7 @@ import { Dialog, DialogBody } from "@material-tailwind/react";
 import { useState } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import { FiEdit2 } from "react-icons/fi";
+import { BiAddToQueue } from "react-icons/bi";
 import Button from "../../buttons/Button";
 import AddNewProduct from "./AddNewProduct";
 import EditProduct from "./EditProduct";
@@ -26,10 +27,19 @@ const EditOrAddProductDialog = ({ id }: EditOrAddProductDialogProps) => {
         onClick={handleOpen}
         localLoaderOnClick={false}
         className="py-3 px-6"
-        color="secondary"
+        color={isEdit ? "secondary" : "primary"}
       >
-        <FiEdit2 className="mr-2" />
-        {isEdit ? "Edit" : "Add New"}
+        {isEdit ? (
+          <>
+            <FiEdit2 className="mr-2" />
+            Edit
+          </>
+        ) : (
+          <>
+            <BiAddToQueue className="mr-2" />
+            Add New Product
+          </>
+        )}
       </Button>
       <Dialog
         dismiss={{
@@ -55,7 +65,11 @@ const EditOrAddProductDialog = ({ id }: EditOrAddProductDialogProps) => {
             </Button>
           </div>
           <div className="mx-auto pt-4 max-h-[70vh] max-w-6xl overflow-y-auto">
-            {isEdit ? <EditProduct id={id} deletePostAction={deletePostAction} /> : <AddNewProduct />}
+            {isEdit ? (
+              <EditProduct id={id} deletePostAction={deletePostAction} />
+            ) : (
+              <AddNewProduct />
+            )}
           </div>
         </DialogBody>
       </Dialog>
