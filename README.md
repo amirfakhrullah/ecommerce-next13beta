@@ -15,6 +15,9 @@ An e-commerce site for Nike sneakers built with the new Next.js 13 Beta (and oth
 
 ![progress4](https://user-images.githubusercontent.com/73758525/212482792-ac440448-d848-47f1-a746-f260ea63ec1a.png)
 
+### Admin Section
+
+![progress6](https://user-images.githubusercontent.com/73758525/221421117-0ce7b81a-2647-4de5-93f5-0cd4ef0d8d79.png)
 ## About
 
 - For testing and experimenting all the new features in Next.js 13 Beta (`/app` dir, server components and everything new)
