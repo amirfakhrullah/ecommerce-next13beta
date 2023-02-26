@@ -6,14 +6,16 @@ import TitleClick from "./TitleClick";
 import SearchSection from "./sections/SearchSection/SearchSection";
 import { usePathname, useRouter } from "next/navigation";
 import cn from "../helpers/cn";
+import { useUserContext } from "../providers/UserProvider";
 
 const Header = () => {
+  const { isAdmin } = useUserContext();
   const path = usePathname();
   const router = useRouter();
 
   const isInPath = (route: string) => path === route;
 
-  const adminSection = !!path?.startsWith("/admin");
+  const adminSection = isAdmin && !!path?.startsWith("/admin");
 
   return (
     <div className="sticky top-0 bg-gray-100 mx-1 px-2 py-3 border-b border-zinc-300 flex flex-row items-center justify-between z-[1]">
