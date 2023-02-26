@@ -17,6 +17,8 @@ const EditOrAddProductDialog = ({ id }: EditOrAddProductDialogProps) => {
 
   const handleOpen = () => setOpen(!open);
 
+  const deletePostAction = () => setOpen(false);
+
   return (
     <>
       <Button
@@ -53,7 +55,7 @@ const EditOrAddProductDialog = ({ id }: EditOrAddProductDialogProps) => {
             </Button>
           </div>
           <div className="mx-auto pt-4 max-h-[70vh] max-w-6xl overflow-y-auto">
-            {isEdit ? <EditProduct id={id} /> : <AddNewProduct />}
+            {isEdit ? <EditProduct id={id} deletePostAction={deletePostAction} /> : <AddNewProduct />}
           </div>
         </DialogBody>
       </Dialog>

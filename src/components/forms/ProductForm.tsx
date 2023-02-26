@@ -22,9 +22,14 @@ import DeleteProduct from "../DeleteProduct";
 interface ProductFormProps {
   type: "add" | "edit";
   initialData?: FullProductClient;
+  deletePostAction?: () => void;
 }
 
-const ProductForm = ({ type, initialData }: ProductFormProps) => {
+const ProductForm = ({
+  type,
+  initialData,
+  deletePostAction,
+}: ProductFormProps) => {
   const [changeImage, setChangeImage] = useState(type === "add");
   const utils = trpc.useContext();
 
@@ -307,7 +312,7 @@ const ProductForm = ({ type, initialData }: ProductFormProps) => {
 
       <div className="flex flex-row justify-end mt-5">
         {type === "edit" && initialData && (
-          <DeleteProduct disabled={loading} id={initialData.id} />
+          <DeleteProduct disabled={loading} id={initialData.id} deletePostAction={deletePostAction} />
         )}
 
         <Button

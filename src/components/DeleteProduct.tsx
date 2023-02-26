@@ -1,7 +1,6 @@
 "use client";
 
 import { Dialog, DialogBody } from "@material-tailwind/react";
-import { useRouter } from "next/navigation";
 import { useState } from "react";
 import { toast } from "react-hot-toast";
 import { trpc } from "../providers/trpcProvider";
@@ -10,16 +9,16 @@ import Button from "./buttons/Button";
 interface DeleteProductProps {
   id: string;
   disabled?: boolean;
+  deletePostAction?: () => void;
 }
-const DeleteProduct = ({ id, disabled }: DeleteProductProps) => {
-  const router = useRouter();
+const DeleteProduct = ({ id, disabled, deletePostAction }: DeleteProductProps) => {
   const [open, setOpen] = useState(false);
 
   const { isLoading, mutate } = trpc.admin.deleteProduct.useMutation({
     retry: false,
     onSuccess: () => {
       toast.success("Product successfully deleted");
-      router.refresh();
+      deletePostAction?.();
     },
     onError: (err) => toast.error(err.message),
   });
@@ -54,7 +53,6 @@ const DeleteProduct = ({ id, disabled }: DeleteProductProps) => {
               color="secondary"
               className="p-3 mr-1"
               disabled={disabled}
-              isLoading={isLoading}
               localLoaderOnClick={false}
               type="button"
               onClick={() => setOpen(!open)}
