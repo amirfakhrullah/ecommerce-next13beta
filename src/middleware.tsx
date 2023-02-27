@@ -2,18 +2,35 @@ import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
 
 export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
   const baseUrl = req.nextUrl.origin;
-  const authCheck = await fetch(`${baseUrl}/api/auth-check`, {
-    headers: {
-      cookie: req.headers.get("cookie") || "",
-    },
-  });
+  const path = req.nextUrl.pathname;
+  const headers = {
+    cookie: req.headers.get("cookie") || "",
+  };
 
-  if (authCheck.status !== 200) {
+  let pass = false;
+  if (path.startsWith("/admin")) {
+    const adminCheck = await fetch(`${baseUrl}/api/admin-check`, {
+      headers,
+    });
+    pass = adminCheck.status === 200;
+  } else {
+    const authCheck = await fetch(`${baseUrl}/api/auth-check`, {
+      headers,
+    });
+    pass = authCheck.status === 200;
+  }
+
+  if (!pass) {
     return NextResponse.redirect(new URL("/", req.url), req);
   }
   return;
 }
 
 export const config = {
-  matcher: ["/user/:path*", "/checkout/:path*", "/orders/:path*"]
+  matcher: [
+    "/user/:path*",
+    "/checkout/:path*",
+    "/orders/:path*",
+    "/admin/:path*",
+  ],
 };
