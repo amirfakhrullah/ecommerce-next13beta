@@ -19,7 +19,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const user = use(getCurrentUser());
-  const admin = use(isAdmin());
+  const admin = use(isAdmin(user?.id));
 
   return (
     <html lang="en" className={inter.variable}>
