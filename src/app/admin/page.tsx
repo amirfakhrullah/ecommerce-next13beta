@@ -3,7 +3,6 @@
 import { Fragment } from "react";
 import { toast } from "react-hot-toast";
 import AdminOrderCard from "../../components/cards/AdminOrderCard";
-import OrderCard from "../../components/cards/OrderCard";
 import Loader from "../../components/loaders/Loader";
 import SmallLoader from "../../components/loaders/SmallLoader";
 import NotFoundText from "../../components/NotFoundText";

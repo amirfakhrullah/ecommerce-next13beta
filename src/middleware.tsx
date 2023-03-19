@@ -21,7 +21,7 @@ export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
   }
 
   if (!pass) {
-    return NextResponse.redirect(new URL("/404", req.url), req);
+    return NextResponse.redirect(new URL("/not-found", req.url), req);
   }
   return;
 }
