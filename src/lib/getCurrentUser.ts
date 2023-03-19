@@ -12,10 +12,10 @@ export const isAdmin = async () => {
   const session = await getSession();
   if (!session?.user) return false;
 
-  return !!db.user.findFirst({
+  return !!(await db.user.findFirst({
     where: {
       id: session.user.id,
       userType: UserType.Admin,
     },
-  });
+  }));
 };
