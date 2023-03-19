@@ -8,9 +8,7 @@ import { AnalyticsWrapper } from "../lib/clients/Analytics";
 import { TRPCProvider } from "../providers/trpcProvider";
 import UserContextProvider from "../providers/UserProvider";
 import AuthError from "../components/AuthError";
-import db from "../lib/servers/prismadb";
-import { UserType } from "@prisma/client";
-import { getCurrentUser } from "../lib/getCurrentUser";
+import { getCurrentUser, isAdmin } from "../lib/getCurrentUser";
 import { use } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
@@ -21,27 +19,13 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   const user = use(getCurrentUser());
-
-  let isAdmin = false;
-  if (user) {
-    isAdmin =
-      use(
-        db.user.findFirst({
-          where: {
-            id: user.id,
-          },
-          select: {
-            userType: true,
-          },
-        })
-      )?.userType === UserType.Admin;
-  }
+  const admin = use(isAdmin());
 
   return (
     <html lang="en" className={inter.variable}>
       <head />
       <body className="bg-gray-100">
-        <UserContextProvider user={user} isAdmin={isAdmin}>
+        <UserContextProvider user={user} isAdmin={admin}>
           <TRPCProvider>
             <CartContextProvider>
               <>
