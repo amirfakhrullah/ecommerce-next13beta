@@ -34,7 +34,9 @@ export const getOrder = async (
       },
     },
   });
+
   if (!order) return;
+  
   return {
     ...order,
     orderItems: order.orderItems.map((item) => ({

@@ -27,5 +27,6 @@ export const fetchPopularProducts = async (
       },
     },
   });
+  
   return massageProductClientList(products);
 };

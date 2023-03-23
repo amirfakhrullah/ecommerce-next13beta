@@ -14,6 +14,7 @@ export const getProductsBySearch = async (
 ) => {
   const searchValues = search.split(" ");
   if (searchValues.length === 0) return [];
+
   const products = await (prisma ?? db).product.findMany({
     where: {
       deleted: false,
@@ -61,5 +62,6 @@ export const getProductsBySearch = async (
     ...(take && { take }),
     ...(skip && { skip }),
   });
+  
   return massageProductClientList(products);
 };

@@ -17,6 +17,7 @@ export const paymentRouter = router({
       );
 
       let paymentIntent: Stripe.Response<Stripe.PaymentIntent>;
+
       try {
         paymentIntent = await stripe.paymentIntents.create({
           amount: totalPrice * 100,
@@ -24,11 +25,9 @@ export const paymentRouter = router({
           payment_method_types: ["card"],
         });
       } catch (ex) {
-        if (ex instanceof Error) {
-          throw new Error(`Stripe error: ${ex.message}`);
-        }
-        throw new Error("There's an error with the stripe");
+        throw new Error(`Stripe error: ${JSON.stringify(ex)}`);
       }
+
       await ctx.prisma.order.updateMany({
         where: {
           id: order.id,
@@ -46,6 +45,7 @@ export const paymentRouter = router({
         paymentIntentClientSecret: paymentIntent.client_secret,
       };
     }),
+
   checkStatus: userProcedure
     .input(
       z.object({
@@ -71,7 +71,9 @@ export const paymentRouter = router({
           },
         },
       });
+
       if (!order) return;
+      
       return {
         ...order,
         orderItems: order.orderItems.map((item) => ({

@@ -32,11 +32,7 @@ export default async function handler(
       env.STRIPE_WEBHOOK_SECRET
     );
   } catch (ex) {
-    if (ex instanceof Error) {
-      return res.status(400).send(`Webhook error: ${ex.message}`);
-    } else {
-      return res.status(400).send("Webhook error occurred");
-    }
+    return res.status(400).send(`Webhook error: ${JSON.stringify(ex)}`);
   }
 
   const eventObj = event.data.object as Stripe.PaymentIntent;

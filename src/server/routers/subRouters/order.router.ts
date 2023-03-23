@@ -11,10 +11,12 @@ export const orderRouter = router({
     .query(async ({ ctx, input: orderId }) => {
       return getOrder(orderId, ctx.session.user.id, ctx.prisma);
     }),
+
   history: userProcedure
     .input(paginatedInputSchema)
     .query(async ({ ctx, input }) => {
       const { take, cursor } = input;
+
       const orders = await ctx.prisma.order.findMany({
         where: {
           userId: ctx.session.user.id,
@@ -41,6 +43,7 @@ export const orderRouter = router({
           id: "desc",
         },
       });
+      
       return {
         orders,
         cursor: orders[take - 1]?.id,
