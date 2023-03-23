@@ -165,7 +165,6 @@ const ProductForm = ({
     <div>
       {!file && getValues("image") && (
         <div className="max-w-[400px] mx-auto">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
             src={getValues("image")}
             alt="image"
@@ -177,7 +176,6 @@ const ProductForm = ({
       )}
       {file && (
         <div className="max-w-[400px] mx-auto">
-          {/* eslint-disable-next-line @next/next/no-img-element */}
           <Image
             src={URL.createObjectURL(file)}
             alt="image"
