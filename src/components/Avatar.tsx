@@ -1,7 +1,6 @@
 "use client";
 
 import * as Avatar from "@radix-ui/react-avatar";
-import { User } from "next-auth";
 import { RefAttributes } from "react";
 
 interface UserAvatarProps {

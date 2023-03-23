@@ -1,6 +1,6 @@
-import { NextFetchEvent, NextRequest, NextResponse } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
-export default async function middleware(req: NextRequest, ev: NextFetchEvent) {
+export default async function middleware(req: NextRequest) {
   const baseUrl = req.nextUrl.origin;
   const path = req.nextUrl.pathname;
   const headers = {

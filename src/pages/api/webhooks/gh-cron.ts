@@ -23,7 +23,7 @@ export default async function handler(
   const orders = await db.order.findMany({
     where: {
       status: {
-        in: ["NotPaid", "Processing"],
+        in: [Status.NotPaid, Status.Processing],
       },
       OR: [
         {
@@ -71,7 +71,7 @@ export default async function handler(
         },
       },
       data: {
-        status: "Failed",
+        status: Status.Failed,
         updatedAt: new Date(),
       },
     }),

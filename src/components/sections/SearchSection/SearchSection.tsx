@@ -3,7 +3,7 @@
 import { AiOutlineClose, AiOutlineSearch } from "react-icons/ai";
 import Button from "../../buttons/Button";
 import { Dialog, DialogBody } from "@material-tailwind/react";
-import { useCallback, useEffect, useState } from "react";
+import React, { useCallback, useState } from "react";
 import { debounce } from "lodash";
 import SearchProductSection from "./SearchProductSection";
 import NotFoundText from "../../NotFoundText";

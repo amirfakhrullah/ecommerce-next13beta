@@ -10,12 +10,12 @@ import { ITEMS_PER_PAGE } from "../../constants";
 import usePaginatedRef from "../../hooks/usePaginatedRef";
 import { trpc } from "../../providers/trpcProvider";
 
-enum Sort {
-  Desc = "Desc",
-  Asc = "Asc",
-  PriceUp = "PriceUp",
-  PriceDown = "PriceDown",
-}
+// enum Sort {
+//   Desc = "Desc",
+//   Asc = "Asc",
+//   PriceUp = "PriceUp",
+//   PriceDown = "PriceDown",
+// }
 
 const AdminPage = () => {
   const { isLoading, data, fetchNextPage, hasNextPage, isFetchingNextPage } =

@@ -1,5 +1,3 @@
-import NotFoundText from "../../NotFoundText";
-
 const AboutSection = () => {
   return (
     <div className="min-h-[40vh] mx-auto max-w-6xl w-full">
