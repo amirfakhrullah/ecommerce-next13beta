@@ -24,23 +24,28 @@ export const adminRouter = router({
     )
     .query(async ({ ctx, input }) => {
       const { take, cursor, sort } = input;
+
       const products = await fetchPaginatedProducts(
         ctx.prisma,
         sort,
         take,
         cursor
       );
+
       return {
         products,
         cursor: products[take - 1]?.id,
       };
     }),
+
   getOrdersInfo: adminProcedure
     .input(paginatedInputSchema)
     .query(async ({ ctx, input }) => {
       const { take, cursor } = input;
+
       return getAllOrders(take, cursor, ctx.prisma);
     }),
+
   getSignedUrl: adminProcedure
     .input(
       z.object({
@@ -48,6 +53,7 @@ export const adminRouter = router({
       })
     )
     .mutation(async ({ input }) => getPreSignedUrl(input.id)),
+
   getCategoryList: adminProcedure.query(async ({ ctx }) => {
     return ctx.prisma.category.findMany({
       select: {
@@ -56,6 +62,7 @@ export const adminRouter = router({
       },
     });
   }),
+
   createProduct: adminProcedure
     .input(createProductInputSchema)
     .mutation(async ({ ctx, input }) => {
@@ -66,6 +73,7 @@ export const adminRouter = router({
         },
       });
     }),
+
   updateProduct: adminProcedure
     .input(
       createProductInputSchema.extend({
@@ -74,6 +82,7 @@ export const adminRouter = router({
     )
     .mutation(async ({ ctx, input }) => {
       const { id, ...updateData } = input;
+      
       return ctx.prisma.product.update({
         where: {
           id,
@@ -85,6 +94,7 @@ export const adminRouter = router({
         },
       });
     }),
+
   deleteProduct: adminProcedure
     .input(
       z.object({

@@ -17,11 +17,14 @@ export const productRouter = router({
       if (!id) return;
       return fetchProductById(id, ctx.prisma);
     }),
+
   search: procedure
     .input(searchProductsSchema)
     .query(async ({ ctx, input }) => {
       const { search, page } = input;
+
       if (!search) return [];
+
       return getProductsBySearch(
         search,
         PRODUCTS_PER_PAGE,
@@ -29,6 +32,7 @@ export const productRouter = router({
         ctx.prisma
       );
     }),
+
   carts: procedure
     .input(getCartProductsInputSchema)
     .query(async ({ ctx, input }) => {

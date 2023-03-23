@@ -37,5 +37,6 @@ export const fetchProductSuggestions = async ({
       },
     },
   });
+  
   return massageProductClientList(products);
 };

@@ -24,6 +24,7 @@ export const fetchProductById = async (
       },
     },
   });
+  
   if (!product) return;
   return massageProductClient(product);
 };

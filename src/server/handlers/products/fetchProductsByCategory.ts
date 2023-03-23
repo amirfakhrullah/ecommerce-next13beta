@@ -13,6 +13,7 @@ export const fetchProductsByCategory = async (
   >
 ) => {
   const prismadb = prisma ?? db;
+
   const [category, products] = await prismadb.$transaction([
     prismadb.category.findFirst({
       where: {
@@ -36,6 +37,7 @@ export const fetchProductsByCategory = async (
       ...(skip && { skip }),
     }),
   ]);
+  
   return {
     category,
     products: massageProductClientList(products),

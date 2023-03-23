@@ -26,5 +26,6 @@ export const fetchAllProducts = async (
     ...(skip && { skip }),
     ...(take && { take }),
   });
+  
   return massageProductClientList(products);
 };

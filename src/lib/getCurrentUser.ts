@@ -11,10 +11,15 @@ export const getCurrentUser = async () => {
 export const isAdmin = async (userId?: string) => {
   if (!userId) return false;
 
-  return !!(await db.user.findFirst({
-    where: {
-      id: userId,
-      userType: UserType.Admin,
-    },
-  }));
+  const { userType } =
+    (await db.user.findFirst({
+      where: {
+        id: userId,
+      },
+      select: {
+        userType: true,
+      },
+    })) || {};
+
+  return userType === UserType.Admin;
 };
