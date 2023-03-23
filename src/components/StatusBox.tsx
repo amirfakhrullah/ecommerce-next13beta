@@ -6,22 +6,22 @@ import cn from "../helpers/cn";
 const StatusBox = ({ status }: { status: Status }) => {
   let Icon: IconType = IoIosTimer;
   let boxClassName = "";
-  const text = status === "NotPaid" ? "Not Paid" : status;
+  const text = status === Status.NotPaid ? "Not Paid" : status;
 
   switch (status) {
-    case "Paid":
+    case Status.Paid:
       Icon = IoMdDoneAll;
       boxClassName = "bg-green-500 text-white";
       break;
-    case "Processing":
+    case Status.Processing:
       Icon = IoIosTimer;
       boxClassName = "bg-zinc-300";
       break;
-    case "NotPaid":
+    case Status.NotPaid:
       Icon = IoMdPause;
       boxClassName = "bg-yellow-500 text-white";
       break;
-    case "Failed":
+    case Status.Failed:
       Icon = IoMdClose;
       boxClassName = "bg-red-700 text-white";
       break;

@@ -1,5 +1,6 @@
 "use client";
 
+import { Status } from "@prisma/client";
 import { notFound, useRouter } from "next/navigation";
 import { toast } from "react-hot-toast";
 import { trpc } from "../../providers/trpcProvider";
@@ -28,9 +29,9 @@ const OrderStatusSection = ({
       },
       onSuccess: (res) => {
         if (res && res.id && res.status) {
-          if (res.status === "Paid") {
+          if (res.status === Status.Paid) {
             toast.success("Payment successful");
-          } else if (res.status === "Processing") {
+          } else if (res.status === Status.Processing) {
             toast(
               "Payment is processing. Make sure you're checking out properly"
             );
