@@ -7,7 +7,6 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "typecheck": "tsc --noEmit",
     "postinstall": "prisma generate",
     "ts-node": "ts-node -O \"{\\\"module\\\":\\\"commonjs\\\"}\""
   },
