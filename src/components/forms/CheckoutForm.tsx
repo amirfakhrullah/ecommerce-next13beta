@@ -9,7 +9,7 @@ import {
 import Button from "../buttons/Button";
 import { useUserContext } from "../../providers/UserProvider";
 import { notFound, useRouter } from "next/navigation";
-import { useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { toast } from "react-hot-toast";
 
 const CheckoutForm = ({ clientSecret }: { clientSecret: string }) => {

@@ -1,4 +1,3 @@
-import { Status } from "@prisma/client";
 import { NextApiRequest, NextApiResponse } from "next";
 import env from "../../../env";
 import db from "../../../lib/servers/prismadb";

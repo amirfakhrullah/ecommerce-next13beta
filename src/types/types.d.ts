@@ -1,4 +1,4 @@
-import { Product } from "@prisma/client";
+import { Category, Product } from "@prisma/client";
 import { User } from "next-auth";
 import { z } from "zod";
 import { cartItemSchema } from "../helpers/validations/cartItemSchema";

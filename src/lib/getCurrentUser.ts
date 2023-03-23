@@ -1,5 +1,4 @@
 import { UserType } from "@prisma/client";
-import { Session } from "next-auth";
 import db from "./servers/prismadb";
 import { getSession } from "./servers/session";
 

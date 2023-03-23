@@ -1,5 +1,6 @@
 "use client";
 
+import React from "react";
 import { useForm } from "react-hook-form";
 import { FullProductClient } from "../../types/types";
 import Input from "../inputs/Input";
@@ -79,11 +80,10 @@ const ProductForm = ({
     handleSubmit,
     setValue,
     reset,
-    resetField,
     getValues,
     watch,
     trigger,
-    formState: { errors, isValid },
+    formState: { errors },
   } = useForm<CreateProductsInput>({
     defaultValues: {
       name: initialData?.name,
@@ -312,7 +312,11 @@ const ProductForm = ({
 
       <div className="flex flex-row justify-end mt-5">
         {type === "edit" && initialData && (
-          <DeleteProduct disabled={loading} id={initialData.id} deletePostAction={deletePostAction} />
+          <DeleteProduct
+            disabled={loading}
+            id={initialData.id}
+            deletePostAction={deletePostAction}
+          />
         )}
 
         <Button

@@ -9,11 +9,11 @@ import Loader from "../../loaders/Loader";
 import NotFoundText from "../../NotFoundText";
 import ProductGrids from "../../ProductGrids";
 
-interface SearchProductSection {
+interface SearchProductSectionProp {
   search: string;
   onClose?: () => void;
 }
-const SearchProductSection = ({ search, onClose }: SearchProductSection) => {
+const SearchProductSection = ({ search, onClose }: SearchProductSectionProp) => {
   const [page, setPage] = useState(1);
 
   const { data: products, isLoading } = trpc.product.search.useQuery(

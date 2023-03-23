@@ -9,7 +9,7 @@ import { TRPCProvider } from "../providers/trpcProvider";
 import UserContextProvider from "../providers/UserProvider";
 import AuthError from "../components/AuthError";
 import { getCurrentUser, isAdmin } from "../lib/getCurrentUser";
-import { use } from "react";
+import React, { use } from "react";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-inter" });
 
