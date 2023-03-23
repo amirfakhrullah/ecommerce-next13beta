@@ -2,12 +2,12 @@
 const nextConfig = {
   reactStrictMode: true,
   images: {
-    domains: ["checks-over-stripes.s3.ap-southeast-1.amazonaws.com"],
+    domains: [process.env.NEXT_PUBLIC_S3_BUCKET_URL],
     unoptimized: true,
   },
   experimental: {
     appDir: true,
   },
-}
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;
