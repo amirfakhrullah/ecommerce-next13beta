@@ -90,7 +90,8 @@ const CartSection = () => {
     trpc.payment.intent.useMutation({
       onError: (err) => {
         toast.error(err.message);
-        return router.push("/user");
+        if (err.data?.code !== "PRECONDITION_FAILED")
+          return router.push("/user");
       },
       onSuccess: ({ orderId, paymentIntentClientSecret }) => {
         if (!paymentIntentClientSecret || !orderId) {
