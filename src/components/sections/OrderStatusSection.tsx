@@ -31,7 +31,7 @@ const OrderStatusSection = ({
         if (res && res.id && res.status) {
           if (res.status === Status.Paid) {
             toast.success("Payment successful");
-          } else if (res.status === Status.Processing) {
+          } else if (res.status === Status.Processing || res.status === Status.Created) {
             toast(
               "Payment is processing. Make sure you're checking out properly"
             );

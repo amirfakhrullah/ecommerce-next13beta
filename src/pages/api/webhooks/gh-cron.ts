@@ -8,7 +8,7 @@ export default async function handler(
   res: NextApiResponse
 ) {
   const key = req.headers["x-api-key"];
-  if (!key || typeof key !== "string" || key !== env.CRON_API_KEY) {
+  if (!key || key !== env.CRON_API_KEY) {
     return res.status(401).end();
   }
 
@@ -23,7 +23,7 @@ export default async function handler(
   const orders = await db.order.findMany({
     where: {
       status: {
-        in: [Status.NotPaid, Status.Processing],
+        in: [Status.Created, Status.NotPaid, Status.Processing],
       },
       OR: [
         {
