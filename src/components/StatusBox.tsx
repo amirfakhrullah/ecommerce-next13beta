@@ -13,6 +13,10 @@ const StatusBox = ({ status }: { status: Status }) => {
       Icon = IoMdDoneAll;
       boxClassName = "bg-green-500 text-white";
       break;
+    case Status.Created:
+      Icon = IoIosTimer;
+      boxClassName = "bg-zinc-300";
+      break;
     case Status.Processing:
       Icon = IoIosTimer;
       boxClassName = "bg-zinc-300";

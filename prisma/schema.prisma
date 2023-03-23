@@ -36,6 +36,7 @@ model Category {
 }
 
 enum Status {
+  Created
   NotPaid
   Processing
   Failed
@@ -55,7 +56,7 @@ model Order {
   id                        String      @id @default(cuid())
   user                      User        @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId                    String
-  status                    Status      @default(NotPaid)
+  status                    Status      @default(Created)
   orderItems                OrderItem[]
   createdAt                 DateTime    @default(now())
   updatedAt                 DateTime?

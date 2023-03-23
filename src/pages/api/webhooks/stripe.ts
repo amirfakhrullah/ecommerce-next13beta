@@ -47,7 +47,7 @@ export default async function handler(
 
   switch (event.type) {
     case "payment_intent.created":
-      status = Status.Processing;
+      status = Status.Created;
       break;
     case "payment_intent.succeeded":
       status = Status.Paid;
