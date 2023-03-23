@@ -4,7 +4,6 @@ import Header from "../components/Header";
 import Footer from "../components/Footer";
 import CartContextProvider from "../providers/CartContextProvider";
 import Toaster from "../components/Toaster";
-import { AnalyticsWrapper } from "../lib/clients/Analytics";
 import { TRPCProvider } from "../providers/trpcProvider";
 import UserContextProvider from "../providers/UserProvider";
 import AuthError from "../components/AuthError";
@@ -34,7 +33,6 @@ export default function RootLayout({
                 <Toaster position="top-center" />
                 <Footer />
                 <AuthError />
-                <AnalyticsWrapper />
               </>
             </CartContextProvider>
           </TRPCProvider>
