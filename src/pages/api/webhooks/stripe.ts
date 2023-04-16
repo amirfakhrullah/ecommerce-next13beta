@@ -37,7 +37,6 @@ export default async function handler(
 
   const eventObj = event.data.object as Stripe.PaymentIntent;
   const stripePaymentIntentId = eventObj.id;
-  const stripePaymentIntentClientSecret = eventObj.client_secret;
 
   let status: Status | undefined;
 
@@ -57,11 +56,10 @@ export default async function handler(
       break;
   }
 
-  if (stripePaymentIntentId && stripePaymentIntentClientSecret && status) {
+  if (stripePaymentIntentId && status) {
     await db.order.update({
       where: {
         stripePaymentIntentId,
-        stripePaymentClientSecret: stripePaymentIntentClientSecret,
       },
       data: {
         status,
