@@ -9,7 +9,7 @@ interface PageProps {
     orderId?: string;
   };
   searchParams?: {
-    user_checkout_session?: string;
+    s?: string;
   };
 }
 
@@ -39,7 +39,7 @@ const CheckoutOrderIdPage = async ({
   params: { orderId },
   searchParams,
 }: PageProps) => {
-  const paymentIntentClientSecret = searchParams?.user_checkout_session;
+  const paymentIntentClientSecret = searchParams?.s;
   if (
     !orderId ||
     !paymentIntentClientSecret ||

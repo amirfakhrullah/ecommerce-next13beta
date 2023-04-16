@@ -63,10 +63,9 @@ export const paymentRouter = router({
         throw new Error(`Stripe error: ${JSON.stringify(ex)}`);
       }
 
-      await ctx.prisma.order.updateMany({
+      await ctx.prisma.order.update({
         where: {
           id: order.id,
-          userId: ctx.session.user.id,
         },
         data: {
           stripePaymentIntentId: paymentIntent.id,

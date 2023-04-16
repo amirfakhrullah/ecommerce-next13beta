@@ -43,13 +43,11 @@ export default async function handler(
 
   switch (event.type) {
     case "payment_intent.created":
-      status = Status.Created;
+    case "payment_intent.processing":
+      status = Status.Processing;
       break;
     case "payment_intent.succeeded":
       status = Status.Paid;
-      break;
-    case "payment_intent.processing":
-      status = Status.Processing;
       break;
     case "payment_intent.payment_failed":
       status = Status.NotPaid;
@@ -60,7 +58,7 @@ export default async function handler(
   }
 
   if (stripePaymentIntentId && stripePaymentIntentClientSecret && status) {
-    await db.order.updateMany({
+    await db.order.update({
       where: {
         stripePaymentIntentId,
         stripePaymentClientSecret: stripePaymentIntentClientSecret,
