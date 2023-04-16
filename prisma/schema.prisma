@@ -50,6 +50,8 @@ model OrderItem {
   order     Order   @relation(fields: [orderId], references: [id], onDelete: Cascade)
   orderId   String
   size      Decimal
+
+  @@index([productId])
 }
 
 model Order {
@@ -60,8 +62,10 @@ model Order {
   orderItems                OrderItem[]
   createdAt                 DateTime    @default(now())
   updatedAt                 DateTime?
-  stripePaymentIntentId     String?
-  stripePaymentClientSecret String?
+  stripePaymentIntentId     String?     @unique
+  stripePaymentClientSecret String?     @unique
+
+  @@index([userId])
 }
 
 // Next-Auth
