@@ -100,7 +100,7 @@ const CartSection = () => {
         }
         setIsRedirecting(true);
         router.push(
-          `/checkout/${orderId}?user_checkout_session=${paymentIntentClientSecret}`
+          `/checkout/${orderId}?s=${paymentIntentClientSecret}`
         );
       },
       retry: false,
