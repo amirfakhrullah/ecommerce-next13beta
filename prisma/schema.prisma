@@ -62,10 +62,9 @@ model Order {
   orderItems                OrderItem[]
   createdAt                 DateTime    @default(now())
   updatedAt                 DateTime?
-  stripePaymentIntentId     String?
+  stripePaymentIntentId     String?     @unique
   stripePaymentClientSecret String?
 
-  @@unique([stripePaymentIntentId, stripePaymentClientSecret])
   @@index([userId])
 }
 
